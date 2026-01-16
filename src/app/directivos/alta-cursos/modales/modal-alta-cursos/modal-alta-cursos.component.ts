@@ -30,14 +30,19 @@ export class ModalAltaCursosComponent {
     categorias: [],
     sedes: []
   };
+  calendarios: any;
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {
+    this.traerCalendarios();
   }
   
   emitir() {
     this.emitidor.emit(this.dato);
+  }
+  traerCalendarios(){
+    this.calendarios = this.generales.calendariosActuales(this.listas.calendarios);
   }
   
   cerrar() {

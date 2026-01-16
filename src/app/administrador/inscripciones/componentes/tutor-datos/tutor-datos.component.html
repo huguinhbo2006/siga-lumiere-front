@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <app-input [obligatorio]="true" [mayusculas]="true" [etiqueta]="'Nombre'" [valor]="datos.nombre" (emitidor)="datos.nombre = $event;"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [obligatorio]="true" [mayusculas]="true" [validacion]="'numero'" [etiqueta]="'Celular'" [cantidad]="10" [valor]="datos.celular" (emitidor)="datos.celular = $event;"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [validacion]="'numero'" [mayusculas]="true" [etiqueta]="'Telefono'" [cantidad]="10" [valor]="datos.telefono" (emitidor)="datos.telefono = $event;"></app-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 text-start">
+            <button class="btn btn-success" (click)="emitirAnterior();">Anterior</button>
+        </div>
+        <div class="col-sm-6 text-end">
+            <button class="btn btn-success" (click)="emitirSiguiente();">Siguiente</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Calle'" [mayusculas]="true" [valor]="datos.calle" (emitidor)="datos.calle = $event"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Numero exterior'" [mayusculas]="true" [valor]="datos.numeroExterior" (emitidor)="datos.numeroExterior = $event"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Numero interior'" [mayusculas]="true" [valor]="datos.numeroInterior" (emitidor)="datos.numeroInterior = $event"></app-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Colonia'" [mayusculas]="true" [valor]="datos.colonia" (emitidor)="datos.colonia = $event"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Codigo postal'" [validacion]="'numero'" [cantidad]="5" [valor]="datos.codigoPostal" (emitidor)="datos.codigoPostal = $event"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-select [etiqueta]="'Estado'" [datos]="listas.estados" [dato]="datos.idEstado" (emitidor)="datos.idEstado = $event; listaMunicipios(false);"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [etiqueta]="'Municipio'" [datos]="municipios" [dato]="datos.idMunicipio" (emitidor)="datos.idMunicipio = $event;"></app-select>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 text-start">
+            <button class="btn btn-success" (click)="emitirAnterior();">Anterior</button>
+        </div>
+        <div class="col-sm-6 text-end">
+            <button class="btn btn-success" (click)="emitirSiguiente();">Siguiente</button>
+        </div>
+    </div>
+</div>

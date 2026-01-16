@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <app-imagen [imagen]="imagen" [valor]="imagen"></app-imagen>
+            <h5 class="mb-1 text-white">{{nombre}}</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <app-input [etiqueta]="'Usuario'" [valor]="usuario" [activo]="true"></app-input>
+                </div>
+                <div class="col-sm-4">
+                    <app-input [tipo]="'password'" [etiqueta]="'Contraseña'" (emitidor)="password = $event;"></app-input>
+                </div>
+                <div class="col-sm-4">
+                    <br><button class="btn bg-yellow" (click)="actualizar();">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+</app-modal>

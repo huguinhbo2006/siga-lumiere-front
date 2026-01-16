@@ -1,0 +1,7 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Datos publicitarios</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <app-publicitarios-datos [datos]="datos" [listas]="listas" (siguiente)="emitir($event);" (anterior)="cerrar();"></app-publicitarios-datos>
+</div>

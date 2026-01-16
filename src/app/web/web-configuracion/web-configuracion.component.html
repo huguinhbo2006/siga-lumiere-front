@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Pagina web</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <app-select [datos]="listas.paginas" [etiqueta]="'Paginas'" (emitidor)="traerConfiguracion($event);"></app-select>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Vigencia'"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-success">Guardar Vigencia</button>
+                </div>
+            </div><br>
+            <div class="row" *ngIf="paginaSeleccionada !== undefined && paginaSeleccionada > 0">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('componente');">Agregar Componente</button>
+                    <button class="btn btn-success" (click)="guardarConfiguracion();">Guardar Configuracion</button>
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="paginaSeleccionada !== undefined && paginaSeleccionada > 0">
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let configuracion of configuraciones" cdkDrag>
+                        {{configuracion.componente}}
+                        <button class="btn btn-danger" (click)="eliminar(configuracion)">Eliminar</button>
+                        <button class="btn btn-warning" (click)="configurar(configuracion)" *ngIf="configuracion.configuracion">Configurar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+    <app-modal-configuracion *ngSwitchCase="'componente'" [lista]="listas.componentes" (emitidor)="guardarComponente($event)"></app-modal-configuracion>
+    <app-modal-configuracion-banner *ngSwitchCase="'banner'" [configuracion]="configuracionSeleccionada.id"></app-modal-configuracion-banner>
+    <app-modal-configuracion-titulo *ngSwitchCase="'titulo'" [configuracion]="configuracionSeleccionada.id"></app-modal-configuracion-titulo>
+    <app-modal-configuracion-cursos *ngSwitchCase="'cursos'" [configuracion]="configuracionSeleccionada.id"></app-modal-configuracion-cursos>
+    <app-modal-configuracion-video *ngSwitchCase="'video'" [configuracion]="configuracionSeleccionada.id"></app-modal-configuracion-video>
+</app-modal>

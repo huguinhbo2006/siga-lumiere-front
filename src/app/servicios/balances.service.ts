@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class BalancesService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + this.generales.getSesionToken()
   });
-  uri = this.generales.getUrl()+'/balanceSucursales/';
+  uri = environment.url + 'balanceSucursales/';
   
   mostrar(body: any) {
     const url = this.uri + 'mostrar';
@@ -37,5 +38,10 @@ export class BalancesService {
   saldoCaja(body: any){
     const url = this.uri + 'saldoCaja';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  cuentas(){
+    const url = this.uri + 'cuentas';
+    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 }

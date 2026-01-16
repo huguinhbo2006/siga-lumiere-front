@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Cursos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="guardar();">Guardar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2" *ngFor="let curso of listado">
+                    <app-imagen-seleccionable [dato]="curso"></app-imagen-seleccionable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

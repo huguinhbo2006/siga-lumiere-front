@@ -1,0 +1,53 @@
+<div class="modal-header bg-gradient-success">
+    <h4 class="text-white">Configuracion de Cursos</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" (emitidor)="busqueda.idCalendario = $event; buscar();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Categoria'" [datos]="listas.categorias" (emitidor)="busqueda.idCategoria = $event; buscar();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Curso'" [datos]="listas.cursos" (emitidor)="busqueda.idCurso = $event; buscar();"></app-select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-input [etiqueta]="'Titulo'" (emitidor)="mensaje = $event;" [valor]="mensaje"></app-input>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="nuevo()">Guardar</button>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="example-container">
+                    <h2>Cursos</h2>
+
+                    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="listaCursos" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let item of listaCursos" cdkDrag>
+                            <app-curso-asignacion [curso]="item"></app-curso-asignacion>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="example-container">
+                    <h2>Asigandos</h2>
+
+                    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="listaAsignados" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let item of listaAsignados" cdkDrag>
+                            <app-curso-asignacion [curso]="item"></app-curso-asignacion>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

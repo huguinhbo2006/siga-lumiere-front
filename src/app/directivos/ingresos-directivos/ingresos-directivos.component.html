@@ -44,6 +44,9 @@
             <app-select [datos]="listas.sucursales" [etiqueta]="'Sucursal'" (emitidor)="busqueda.idSucursal = $event;"></app-select>
         </div>
         <div class="col-sm-12">
+            <app-input [etiqueta]="'Dias'" (emitidor)="busqueda.dias = $event; gerentes();"></app-input>
+        </div>
+        <div class="col-sm-12">
             <button class="btn btn-info" (click)="buscar();">Buscar</button>
         </div>
     </div>

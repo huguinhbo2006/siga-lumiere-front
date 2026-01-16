@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Transferencias</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-success" (click)="modal('nuevo');">Nueva transferencia</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+    <app-modal-transferencia *ngSwitchCase="'nuevo'" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-transferencia>
+</app-modal>

@@ -1,10 +1,30 @@
 <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
     <div class="my-auto">
         <img src="./assets/img/logo.png" class="avatar avatar-sm  me-3 ">
-        <b>Hugo Alberto Perez Carbajal</b>
+        <b>{{user}}</b>
     </div>
 </a>
 <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+    <li class="mb-2" routerLink="perfil">
+        <div class="d-flex py-1">
+            &nbsp;
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="text-sm font-weight-normal mb-1">
+                    <span class="font-weight-bold">Perfil</span>
+                </h6>
+            </div>
+        </div>
+    </li>
+    <li class="mb-2" routerLink="citas">
+        <div class="d-flex py-1">
+            &nbsp;
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="text-sm font-weight-normal mb-1">
+                    <span class="font-weight-bold">citas</span>
+                </h6>
+            </div>
+        </div>
+    </li>
     <li class="mb-2" (click)="cerrarSesion();">
         <div class="d-flex py-1">
             &nbsp;

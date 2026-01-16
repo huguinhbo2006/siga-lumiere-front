@@ -47,6 +47,9 @@
             <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
                 <app-imagen [imagen]="dato.imagen" [valor]="dato.imagen" (emitidor)="dato.imagen = $event;"></app-imagen>
             </div>
+            <div class="col-sm-4">
+                <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
+            </div>
         </div>
         <div class="row justify-content-end">
             <div class="col-sm-12 d-md-flex justify-content-md-end">

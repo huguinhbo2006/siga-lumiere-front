@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class ViasPublicitariasService {
   constructor(private http: HttpClient, private generales: GeneralesService) { }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
-    Authorization : 'bearer ' + this.generales.getSesionToken()
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  uri = this.generales.getUrl()+'/viasPublicitarias/';
+  uri = environment.url+'viasPublicitarias/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

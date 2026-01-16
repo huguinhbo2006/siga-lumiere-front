@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Auditoria de ingresos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" (emitidor)="busqueda.idCalendario = $event;"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [etiqueta]="'Sucursal'" [datos]="listas.sucursales" (emitidor)="busqueda.idSucursal = $event;"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [etiqueta]="'Cuenta'" [datos]="listas.cuentas" (emitidor)="busqueda.idCuenta = $event"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [etiqueta]="'Forma de pago'" [datos]="listas.formas" (emitidor)="busqueda.idFormaPago = $event;"></app-select>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-success" (click)="buscar();">Buscar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <app-select [datos]="opciones" [dato]="seleccion.auditado" (emitidor)="opcion = $event; estado();"></app-select>
+    <button class="btn btn-info" (click)="voucher();">Ver voucher</button>
+    <button *ngIf="seleccion.idFormaPago !== 1" class="btn btn-info" (click)="modal('financieros');">Datos financieros</button>
+    <button class="btn btn-info" (click)="modal('observaciones')">Observaciones</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-financieros *ngSwitchCase="'financieros'" [dato]="seleccion" [bancos]="listas.bancos" [cuentas]="listas.cuentas" (emitidor)="financieros($event);"></app-modal-financieros>
+    <app-modal-observaciones-ingreso *ngSwitchCase="'observaciones'" [dato]="seleccion" (emitidor)="observaciones($event);"></app-modal-observaciones-ingreso>
+    <img src="{{imagen}}" alt="" *ngSwitchCase="'voucher'">
+</app-modal>

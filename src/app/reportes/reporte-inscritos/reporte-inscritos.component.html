@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Reporte de inscritos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <app-select [datos]="listaCalendarios" [etiqueta]="'Calendarios'" (emitidor)="busqueda.idCalendario = $event"></app-select>
+                </div>
+                <div class="col-sm-4">
+                    <app-select [datos]="listaNiveles" [etiqueta]="'Niveles'" (emitidor)="busqueda.idNivel = $event"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-success" (click)="traer()">
+                        <i class="fas fa-file-excel"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-sm-6">
+        <button class="btn btn-info" (click)="tipo = 1; modificarPercepcion = false;">Percepciones</button>
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-info" (click)="tipo = 2; modificarDeduccion = false;">Deducciones</button>
+    </div>
+</div>
+<div class="row">
+    <app-percepcion-rh *ngIf="tipo === 1 && !modificarPercepcion" [conceptos]="percepciones" [idDepartamento]="idDepartamento" (emitidor)="agregarPercepcion($event);"></app-percepcion-rh>
+    <app-percepcion-rh *ngIf="tipo === 1 && modificarPercepcion" [conceptos]="percepciones" [idDepartamento]="idDepartamento" [percepcion]="percepcionSeleccionada" (emitidor)="actualizarPercepcion($event);"></app-percepcion-rh>
+    <app-deduccion-rh *ngIf="tipo === 2 && !modificarDeduccion" [conceptos]="deducciones" [idDepartamento]="idDepartamento" (emitidor)="agregarDeduccion($event);"></app-deduccion-rh>
+    <app-deduccion-rh *ngIf="tipo === 2 && modificarDeduccion" [conceptos]="deducciones" [idDepartamento]="idDepartamento" [deduccion]="percepcionSeleccionada" (emitidor)="actualizarDeduccion($event);"></app-deduccion-rh>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Concepto</h6>
+    </div>
+    <div class="col-sm-2">
+        <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor Unitario</h6>
+    </div>
+    <div class="col-sm-1">
+        <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cantidad</h6>
+    </div>
+    <div class="col-sm-2">
+        <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</h6>
+    </div>
+    <div class="col-sm-2">
+        <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Forma de pago</h6>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<div class="row text-success" *ngFor="let item of dato.percepciones">
+    <div class="col-sm-3">{{generales.nombre(percepciones, item.idConcepto)}}</div>
+    <div class="col-sm-2">{{'$' + generales.milesNumeros(item.valorUnitario.toString())}}</div>
+    <div class="col-sm-1">{{item.cantidad}}</div>
+    <div class="col-sm-2">{{'$' + generales.milesNumeros(item.monto)}}</div>
+    <div class="col-sm-2">{{generales.nombre(formas, item.idFormaPago)}}</div>
+    <div class="col-sm-1">
+        <i class="fas fa-times text-danger" (click)="quitarPercepcion(item);"></i>
+        <i class="fas fa-pen text-yellow" (click)="tipo = 1; modificarPercepcion = true; percepcionSeleccionada = item;"></i>
+    </div>
+</div>
+<div class="row text-danger" *ngFor="let item of dato.deducciones">
+    <div class="col-sm-3">{{generales.nombre(deducciones, item.idConcepto)}}</div>
+    <div class="col-sm-2">{{'$' + generales.milesNumeros(item.valorUnitario.toString())}}</div>
+    <div class="col-sm-1">{{item.cantidad}}</div>
+    <div class="col-sm-2">{{'$' + generales.milesNumeros(item.monto)}}</div>
+    <div class="col-sm-2">{{generales.nombre(formas, item.idFormaPago)}}</div>
+    <div class="col-sm-1">
+        <i class="fas fa-times text-danger" (click)="quitarDeduccion(item);"></i>
+        <i class="fas fa-pen text-yellow" (click)="tipo = 2; modificarDeduccion = true; deduccionSeleccionada = item;"></i>
+    </div>
+</div>
+<div class="row text-end">
+    <div class="col-sm-12">
+        ${{generales.milesNumeros(total)}}
+    </div>
+</div><br><br>
+<div class="row text-end">
+    <div class="col-sm-6">
+        <button class="btn btn-success" (click)="emitir();">Guardar</button>
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-danger" (click)="back();">Atras</button>
+    </div>
+</div>

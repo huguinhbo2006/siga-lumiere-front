@@ -47,7 +47,6 @@ import { TiposPagosComponent } from '../catalogos/tipos-pagos/tipos-pagos.compon
 import { TiposUsuariosComponent } from '../catalogos/tipos-usuarios/tipos-usuarios.component';
 import { TiposIngresosComponent } from '../catalogos/tipos-ingresos/tipos-ingresos.component';
 import { ViasPublicitariasComponent } from '../catalogos/vias-publicitarias/vias-publicitarias.component';
-import { ComponentesWebComponent } from '../desarrollo/componentes-web/componentes-web.component';
 import { ModulosComponent } from '../desarrollo/modulos/modulos.component';
 import { PaginasComponent } from '../desarrollo/paginas/paginas.component';
 import { AltaCursosComponent } from '../directivos/alta-cursos/alta-cursos.component';
@@ -63,10 +62,69 @@ import { CobroNominasComponent } from '../administrador/cobro-nominas/cobro-nomi
 import { CorteCajaComponent } from '../administrador/corte-caja/corte-caja.component';
 import { CursosCongeladosComponent } from '../administrador/cursos-congelados/cursos-congelados.component';
 import { EgresosAdministrativosComponent } from '../administrador/egresos-administrativos/egresos-administrativos.component';
+import { EmisionValesComponent } from '../administrador/emision-vales/emision-vales.component';
+import { IngresosAdministrativosComponent } from '../administrador/ingresos-administrativos/ingresos-administrativos.component';
+import { InscripcionesComponent } from '../administrador/inscripciones/inscripciones.component';
+import { TransferenciaSucursalesComponent } from '../administrador/transferencia-sucursales/transferencia-sucursales.component';
+import { ValesGerencialesComponent } from '../administrador/vales-gerenciales/vales-gerenciales.component';
+import { IngresosAuditoriasComponent } from '../auditorias/ingresos-auditorias/ingresos-auditorias.component';
+import { SolicitudesModificacionEgresosComponent } from '../directivos/solicitudes-modificacion-egresos/solicitudes-modificacion-egresos.component';
+import { SolicitudesNominasComponent } from '../directivos/solicitudes-nominas/solicitudes-nominas.component';
+import { TransferenciasComponent } from '../directivos/transferencias/transferencias.component';
+import { EmpleadosComponent } from '../recursos-humanos/empleados/empleados.component';
+import { NominasComponent } from '../recursos-humanos/nominas/nominas.component';
+import { InscripcionesVentasComponent } from '../ventas/inscripciones-ventas/inscripciones-ventas.component';
+import { AulasComponent } from '../gerentes/aulas/aulas.component';
+import { BalanceGerentesComponent } from '../gerentes/balance-gerentes/balance-gerentes.component';
+import { BloqueoHorariosComponent } from '../gerentes/bloqueo-horarios/bloqueo-horarios.component';
+import { ControlHorariosComponent } from '../gerentes/control-horarios/control-horarios.component';
+import { EgresosGerentesComponent } from '../gerentes/egresos-gerentes/egresos-gerentes.component';
+import { EmpleadosGerentesComponent } from '../gerentes/empleados-gerentes/empleados-gerentes.component';
+import { IngresosGerentesComponent } from '../gerentes/ingresos-gerentes/ingresos-gerentes.component';
+import { ReservacionAulasComponent } from '../gerentes/reservacion-aulas/reservacion-aulas.component';
+import { WebConfiguracionComponent } from '../web/web-configuracion/web-configuracion.component';
+import { ComisionesEmpleadoComponent } from '../ventas/comisiones-empleado/comisiones-empleado.component';
+import { ComisionesGeneralesComponent } from '../ventas/comisiones-generales/comisiones-generales.component';
+import { EstadisticasComponent } from '../principal/estadisticas/estadisticas.component';
+import { ComisionesCursosComponent } from '../ventas/comisiones-cursos/comisiones-cursos.component';
+import { MetasIngresosVentasComponent } from '../ventas/metas-ingresos-ventas/metas-ingresos-ventas.component';
+import { MetasCategoriasVentasComponent } from '../ventas/metas-categorias-ventas/metas-categorias-ventas.component';
+import { MetasCursosVentasComponent } from '../ventas/metas-cursos-ventas/metas-cursos-ventas.component';
+import { MetasMesVentasComponent } from '../ventas/metas-mes-ventas/metas-mes-ventas.component';
+import { FichaComponent } from '../principal/ficha/ficha.component';
+import { BusquedaAlumnosPrincipalComponent } from '../principal/busqueda-alumnos-principal/busqueda-alumnos-principal.component';
+import { PerfilComponent } from '../principal/perfil/perfil.component';
+import { NominaPrincipalComponent } from '../principal/nomina-principal/nomina-principal.component';
+import { AlumnoPrincipalComponent } from '../principal/alumno-principal/alumno-principal.component';
+import { ReporteEstadisticasMaestasComponent } from '../reportes/reporte-estadisticas-maestas/reporte-estadisticas-maestas.component';
+import { ReporteAlumnosComponent } from '../reportes/reporte-alumnos/reporte-alumnos.component';
+import { ReporteEgresosComponent } from '../reportes/reporte-egresos/reporte-egresos.component';
+import { ReporteIngresosComponent } from '../reportes/reporte-ingresos/reporte-ingresos.component';
+import { ReporteInscritosComponent } from '../reportes/reporte-inscritos/reporte-inscritos.component';
+import { CRMComponent } from '../ventas/crm/crm.component';
+import { ProspectoPrincipalComponent } from '../principal/prospecto-principal/prospecto-principal.component';
+import { SeguimientosPrincipalComponent } from '../principal/seguimientos-principal/seguimientos-principal.component';
+import { CitasComponent } from '../principal/citas/citas.component';
+import { MetasEconomicasComponent } from '../ventas/metas-economicas/metas-economicas.component';
+import { CalificadorComponent } from '../lumiere-social/calificador/calificador.component';
+import { CalificarGrupoComponent } from '../lumiere-social/calificar-grupo/calificar-grupo.component';
+import { MetasEconomicasVendedorComponent } from '../ventas/metas-economicas-vendedor/metas-economicas-vendedor.component';
+import { MetaEconomicaComponent } from '../ventas/meta-economica/meta-economica.component';
+import { SeccionesComponent } from '../aplicacion/secciones/secciones.component';
+import { TemasComponent } from '../aplicacion/temas/temas.component';
+import { SubtemasComponent } from '../aplicacion/subtemas/subtemas.component';
+import { QuizesComponent } from '../aplicacion/quizes/quizes.component';
+import { LecturasComponent } from '../aplicacion/lecturas/lecturas.component';
+import { TestingComponent } from '../desarrollo/testing/testing.component';
+import { AplicacionProfesoresComponent } from '../aplicacion/aplicacion-profesores/aplicacion-profesores.component';
+import { AplicacionHomeComponent } from '../aplicacion/aplicacion-home/aplicacion-home.component';
+import { AplicacionGuiaAlumnoComponent } from '../aplicacion/aplicacion-guia-alumno/aplicacion-guia-alumno.component';
+import { AplicacionCursosComponent } from '../aplicacion/aplicacion-cursos/aplicacion-cursos.component';
+import { BalanceCuentasComponent } from '../auditorias/balance-cuentas/balance-cuentas.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
-    //{ path: '', canActivate: [AutenticacionGuard], component: EstadisticasCalendarioComponent },
+    { path: '', canActivate: [auntenticacionGuard], component: EstadisticasComponent },
     { path: 'bancos', canActivate: [auntenticacionGuard], component: BancosComponent },
     { path: 'calendarios', canActivate: [auntenticacionGuard], component: CalendariosComponent },
     { path: 'campanias', canActivate: [auntenticacionGuard], component: CampaniasComponent },
@@ -112,7 +170,6 @@ const routes: Routes = [
     { path: 'tipoUsuario', canActivate: [auntenticacionGuard], component: TiposUsuariosComponent },
     { path: 'tiposIngreso', canActivate: [auntenticacionGuard], component: TiposIngresosComponent },
     { path: 'viasPublicitarias', canActivate: [auntenticacionGuard], component: ViasPublicitariasComponent },
-    { path: 'componentes', canActivate: [auntenticacionGuard], component: ComponentesWebComponent },
     { path: 'modulos', canActivate: [auntenticacionGuard], component: ModulosComponent },
     { path: 'paginas', canActivate: [auntenticacionGuard], component: PaginasComponent },
     { path: 'altaCursos', canActivate: [auntenticacionGuard], component: AltaCursosComponent },
@@ -129,6 +186,64 @@ const routes: Routes = [
     { path: 'balanceAdministrativos', canActivate: [auntenticacionGuard], component: CorteCajaComponent},
     { path: 'cursosCongelados', canActivate: [auntenticacionGuard], component: CursosCongeladosComponent},
     { path: 'egresosAdministrativos', canActivate: [auntenticacionGuard], component: EgresosAdministrativosComponent},
+    { path: 'emisionVales', canActivate: [auntenticacionGuard], component: EmisionValesComponent},
+    { path: 'ingresosAdministrativos', canActivate: [auntenticacionGuard], component: IngresosAdministrativosComponent},
+    { path: 'inscripciones', canActivate: [auntenticacionGuard], component: InscripcionesComponent},
+    { path: 'recepcionTransferencias', canActivate: [auntenticacionGuard], component: TransferenciaSucursalesComponent},
+    { path: 'valeGerencial', canActivate: [auntenticacionGuard], component: ValesGerencialesComponent},
+    { path: 'auditoriasIngresos', canActivate: [auntenticacionGuard], component: IngresosAuditoriasComponent},
+    { path: 'solicitudesModificacionEgresos', canActivate: [auntenticacionGuard], component: SolicitudesModificacionEgresosComponent},
+    { path: 'solicitudesNominas', canActivate: [auntenticacionGuard], component: SolicitudesNominasComponent },
+    { path: 'emisionTransferencias', canActivate: [auntenticacionGuard], component: TransferenciasComponent },
+    { path: 'empleados', canActivate: [auntenticacionGuard], component: EmpleadosComponent },
+    { path: 'nominasEmpleados', canActivate: [auntenticacionGuard], component: NominasComponent },
+    { path: 'inscripcionesVentas', canActivate: [auntenticacionGuard], component: InscripcionesVentasComponent },
+    { path: 'aulas', canActivate: [auntenticacionGuard], component: AulasComponent },
+    { path: 'balanceGerentes', canActivate: [auntenticacionGuard], component: BalanceGerentesComponent },
+    { path: 'bloqueoHorarios', canActivate: [auntenticacionGuard], component: BloqueoHorariosComponent },
+    { path: 'controlHorarios', canActivate: [auntenticacionGuard], component: ControlHorariosComponent },
+    { path: 'egresosGerentes', canActivate: [auntenticacionGuard], component: EgresosGerentesComponent },
+    { path: 'empleadosGerentes', canActivate: [auntenticacionGuard], component: EmpleadosGerentesComponent },
+    { path: 'ingresosGerentes', canActivate: [auntenticacionGuard], component: IngresosGerentesComponent },
+    { path: 'reservarAulas', canActivate: [auntenticacionGuard], component: ReservacionAulasComponent },
+    { path: 'webConfiguraciones', canActivate: [auntenticacionGuard], component: WebConfiguracionComponent },
+    { path: 'comisionesVendedor', canActivate: [auntenticacionGuard], component: ComisionesEmpleadoComponent },
+    { path: 'comisiones', canActivate: [auntenticacionGuard], component: ComisionesGeneralesComponent },
+    { path: 'configuracionComisionCursos', canActivate: [auntenticacionGuard], component: ComisionesCursosComponent },
+    { path: 'metasIngresos', canActivate: [auntenticacionGuard], component: MetasIngresosVentasComponent },
+    { path: 'metasCategorias', canActivate: [auntenticacionGuard], component: MetasCategoriasVentasComponent },
+    { path: 'metasCursos', canActivate: [auntenticacionGuard], component: MetasCursosVentasComponent },
+    { path: 'metasSucursales', canActivate: [auntenticacionGuard], component: MetasMesVentasComponent },
+    { path: 'perfil', canActivate: [auntenticacionGuard], component: PerfilComponent },
+    { path: 'estadisticasMaestras', canActivate: [auntenticacionGuard], component: ReporteEstadisticasMaestasComponent },
+    { path: 'reporteImpartidos', canActivate: [auntenticacionGuard], component: ReporteAlumnosComponent },
+    { path: 'reporteEgresosGenerales', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
+    { path: 'reporteIngresosGenerales', canActivate: [auntenticacionGuard], component: ReporteIngresosComponent },
+    { path: 'reporteInscritos', canActivate: [auntenticacionGuard], component: ReporteInscritosComponent },
+    { path: 'crm', canActivate: [auntenticacionGuard], component: CRMComponent },
+    { path: 'citas', canActivate: [auntenticacionGuard], component: CitasComponent },
+    { path: 'calificador', canActivate: [auntenticacionGuard], component: CalificadorComponent },
+    { path: 'metasEconomicas', canActivate: [auntenticacionGuard], component: MetasEconomicasComponent },
+    { path: 'metaEconomicaVendedor', canActivate: [auntenticacionGuard], component: MetasEconomicasVendedorComponent },
+    { path: 'metaEconomica', canActivate: [auntenticacionGuard], component: MetaEconomicaComponent },
+    { path: 'secciones', canActivate: [auntenticacionGuard], component: SeccionesComponent },
+    { path: 'lecturas', canActivate: [auntenticacionGuard], component: LecturasComponent },
+    { path: 'testing', canActivate: [auntenticacionGuard], component: TestingComponent },
+    { path: 'aplicacionProfesores', canActivate: [auntenticacionGuard], component: AplicacionProfesoresComponent },
+    { path: 'aplicacionHome', canActivate: [auntenticacionGuard], component: AplicacionHomeComponent },
+    { path: 'aplicacionGuiasAlumno', canActivate: [auntenticacionGuard], component: AplicacionGuiaAlumnoComponent },
+    { path: 'aplicacionCursos', canActivate: [auntenticacionGuard], component: AplicacionCursosComponent },
+    { path: 'balanceCuentas', canActivate: [auntenticacionGuard], component: BalanceCuentasComponent },
+    { path: 'temas/:id/:nombre', canActivate: [auntenticacionGuard], component: TemasComponent },
+    { path: 'subtemas/:id/:nombre', canActivate: [auntenticacionGuard], component: SubtemasComponent },
+    { path: 'quizes/:id/:nombre', canActivate: [auntenticacionGuard], component: QuizesComponent },
+    { path: 'ficha/:ficha', canActivate: [auntenticacionGuard], component: FichaComponent },
+    { path: 'busqueda/:alumno', canActivate: [auntenticacionGuard], component: BusquedaAlumnosPrincipalComponent },
+    { path: 'nomina/:nomina', canActivate: [auntenticacionGuard], component: NominaPrincipalComponent },
+    { path: 'alumno/:alumno', canActivate: [auntenticacionGuard], component: AlumnoPrincipalComponent },
+    { path: 'prospecto/:prospecto', canActivate: [auntenticacionGuard], component: ProspectoPrincipalComponent },
+    { path: 'seguimiento/:seguimiento', canActivate: [auntenticacionGuard], component: SeguimientosPrincipalComponent },
+    { path: 'calificarGrupo/:grupo', canActivate: [auntenticacionGuard], component: CalificarGrupoComponent},
   ]}
 ];
 

@@ -1,0 +1,54 @@
+<div class="modal-header bg-gradient-info">
+    <h4 class="text-white">Seguimiento</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="seguimiento.idCalendario" (emitidor)="seguimiento.idCalendario = $event; traerNiveles();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Nivel'" [datos]="listaNiveles" [dato]="seguimiento.idNivel" (emitidor)="seguimiento.idNivel = $event; traerSubniveles();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Subnivel'" [datos]="listaSubniveles" [dato]="seguimiento.idSubnivel" (emitidor)="seguimiento.idSubnivel = $event; traerCategorias();"></app-select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Categoria'" [datos]="listaCategorias" [dato]="seguimiento.idCategoria" (emitidor)="seguimiento.idCategoria = $event; traerModalidades();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Modalidad'" [datos]="listaModalidades" [dato]="seguimiento.idModalidad" (emitidor)="seguimiento.idModalidad = $event; traerCursos();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Curso'" [datos]="listas.cursos" [dato]="seguimiento.idCurso" (emitidor)="seguimiento.idCurso = $event;"></app-select>
+            </div>
+        </div>
+        <div class="row" *ngIf="seguimiento.idNivel.toString() !== '2'">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Universidad'" [datos]="listas.universidades" [dato]="seguimiento.idUniversidad" (emitidor)="seguimiento.idUniversidad = $event; traerCentrosUniversitarios();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Centro Universitario'" [datos]="listaCentrosUniversitarios" [dato]="seguimiento.idCentroUniversitario" (emitidor)="seguimiento.idCentroUniversitario = $event; traerCarreras();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Carrera'" [datos]="listaCarreras" [dato]="seguimiento.idCarrera" (emitidor)="seguimiento.idCarrera = $event;"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Medio de Contacto'" [datos]="listas.medios" [dato]="seguimiento.idMedioContacto" (emitidor)="seguimiento.idMedioContacto = $event;"></app-select>
+            </div>
+            <div class="col-sm-4" *ngIf="existe">
+                <app-select [etiqueta]="'Estatus'" [datos]="listaEstatus" [dato]="seguimiento.estatus" (emitidor)="seguimiento.estatus = $event"></app-select>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="emitir()">Guardar</button>
+        </div>
+    </div>
+</div>

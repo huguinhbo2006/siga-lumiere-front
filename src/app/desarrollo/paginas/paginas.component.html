@@ -26,5 +26,4 @@
 </app-botones>
 <app-modal [ngSwitch]="vista">
     <app-modal-pagina *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-pagina>
-    <app-modal-pagina *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-pagina>
 </app-modal>

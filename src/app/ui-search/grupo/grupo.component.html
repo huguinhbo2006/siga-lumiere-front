@@ -1,0 +1,40 @@
+<app-card [color]="'transparent'">
+    <div class="container">
+        <div class="row">
+            <div class="col-auto">
+                <div class="bg-white rounded-circle shadow manita">
+                    <img src="{{grupo.icono}}" alt="icono" style="width: 75px; height: 75px;">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-titulo color="'secondary'" [titulo]="grupo.curso" [fuente]="'info'" [icono]="'fas fa-graduation-cap'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.nivel" [icono]="'fas fa-greater-than'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.subnivel" [icono]="'fas fa-greater-than-equal'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.categoria" [icono]="'fas fa-compress'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.modalidad" [icono]="'fas fa-columns'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.sede" [icono]="'fa-map-marked-alt fas'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.turno" [icono]="'fas fa-moon'"></app-titulo>
+            </div>
+            <div class="col-sm-12 pod">
+                <app-titulo [color]="'secondary'" [titulo]="grupo.horario" [icono]="'fas fa-clock'"></app-titulo>
+            </div>
+        </div>
+        <div class="row">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</app-card>

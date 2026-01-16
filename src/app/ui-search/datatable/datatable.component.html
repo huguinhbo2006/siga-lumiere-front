@@ -31,19 +31,25 @@
                         <td class="w-30" *ngFor="let item of configuracion.encabezados, let j = index">
                             <div class="d-flex px-2 py-1 align-items-center">
                                 <div class="ms-4">
-                                    <ng-container *ngIf="items[item] !== undefined">
+                                    <ng-container *ngIf="items[item] !== undefined && item !== 'profesores'">
                                         <ng-container *ngIf="esIcono(items[item])">
                                             <i class="{{items[item]}}" title="{{items[item]}}"></i>
                                         </ng-container>
                                         <ng-container *ngIf="esColor(items[item])">
                                             <i class="fas fa-circle {{items[item]}}" title="{{items[item]}}"></i>
                                         </ng-container>
-                                        <ng-container *ngIf="!esIcono(items[item]) && !esColor(items[item])">
+                                        <ng-container *ngIf="esHay(item)">
+                                            <i class="fas fa-circle {{(items[item]) ? 'text-success' : 'text-danger'}}" title="{{items[item]}}"></i>
+                                        </ng-container>
+                                        <ng-container *ngIf="!esIcono(items[item]) && !esColor(items[item]) && !esHay(item)">
                                             <h6 class="text-sm mb-0">{{items[item]}}</h6>
                                         </ng-container>
                                     </ng-container>
-                                    <ng-container *ngIf="items[item] === undefined">
+                                    <ng-container *ngIf="items[item] === undefined && item !== 'profesores'">
 
+                                    </ng-container>
+                                    <ng-container *ngIf="item === 'profesores'">
+                                        <app-celda-imagenes [imagenes]="items[item]"></app-celda-imagenes>
                                     </ng-container>
                                 </div>
                             </div>

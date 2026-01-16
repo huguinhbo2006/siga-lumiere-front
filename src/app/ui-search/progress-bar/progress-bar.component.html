@@ -1,0 +1,25 @@
+<div class="row text-black">
+    <div class="col-sm-12 text-center">
+        Meta {{(activo) ? 'General' : meta.sucursal}} {{titulo}}
+    </div>
+    <div class="col-sm-12 text-center">
+        {{seleccion.inscritos}} de {{seleccion.meta}} Inscritos
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="progress" style="height: 25px;">
+            <div class="input-group-text" *ngIf="existe">
+                <input type="checkbox" [(ngModel)]="activo" (change)="seleccionar()" title="Selecciona si deseas ver meta general">
+            </div>
+            <div class="progress-bar progress-bar-striped {{bg}} progress-bar-animated" role="progressbar" [style]="'width:' + porcentaje + '%'">
+                {{porcentaje}}%
+            </div>
+        </div>
+    </div>
+</div>

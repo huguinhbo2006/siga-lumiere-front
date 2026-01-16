@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Bloqueo de horarios</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let grupo of grupos">
+                    <app-grupo [grupo]="grupo">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <app-titulo [color]="'secondary'" [titulo]="(grupo.bloqueo) ? 'Bloqueado' : 'Desbloqueado'"></app-titulo>
+                            </div>
+                            <div class="col-sm-4">
+                                <app-checktimes [activo]="grupo.bloqueo" (emitidor)="(grupo.bloqueo) ? desbloquear(grupo.idBloqueo) : bloquear(grupo.id);"></app-checktimes>
+                            </div>
+                        </div>
+                    </app-grupo>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Concepto'" [datos]="lista" [dato]="percepcion.idConcepto" (emitidor)="percepcion.idConcepto = $event;"></app-select>
+    </div>
+    <div class="col-sm-3" *ngIf="idDepartamento.toString() !== '1'">
+        <app-select [etiqueta]="'Forma de pago'" [datos]="formas" [dato]="percepcion.idFormaPago" (emitidor)="percepcion.idFormaPago = $event;"></app-select>
+    </div>
+    <div class="col-sm-3" *ngIf="idDepartamento.toString() === '1'">
+        <app-input [etiqueta]="'Cantidad'" [validacion]="'decimal'" [valor]="percepcion.cantidad" (emitidor)="percepcion.cantidad = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Valor Unitario'" [validacion]="'decimal'" [valor]="percepcion.valorUnitario" (emitidor)="percepcion.valorUnitario = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <button class="btn btn-success" (click)="emitir();">Guardar</button>
+    </div>
+</div>

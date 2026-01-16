@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Aulas</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Aula</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Aula</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Aula</button>
+    <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Aula</button>
+    <button class="btn btn-success" *ngIf="seleccion.activo" (click)="desactivar();">Desactivar Aula</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Aula</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-aulas *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-aulas>
+    <app-modal-aulas *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-aulas>
+</app-modal>

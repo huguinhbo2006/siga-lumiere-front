@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-titulo [titulo]="'Escuela de procedencia'"></app-titulo>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Tipo de escuela'" [datos]="listas.tipos" [dato]="datos.idTipoEscuela" (emitidor)="datos.idTipoEscuela = $event; traerEscuelas(false);"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Escuela'" [datos]="escuelas" [dato]="datos.idEscuela" (emitidor)="datos.idEscuela = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Estado'" [datos]="listas.estados" [dato]="datos.idEstado" (emitidor)="datos.idEstado = $event; traerMunicipios(false);"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Municipio'" [datos]="municipios" [dato]="datos.idMunicipio" (emitidor)="datos.idMunicipio = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-input [obligatorio]="true" [validacion]="'decimal'" [etiqueta]="'Promedio'" [valor]="datos.promedio" (emitidor)="datos.promedio = $event;"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <app-input [obligatorio]="true" [validacion]="'numero'" [etiqueta]="'Numero de intentos'" [valor]="datos.intentos" (emitidor)="datos.intentos = $event;"></app-input>
+        </div>
+    </div>
+    <div class="col-row">
+        <div class="col-sm-12">
+            <app-titulo [titulo]="'Escuela de aspiracion'"></app-titulo>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Universidad'" [datos]="listas.universidades" [dato]="datos.idUniversidad" (emitidor)="datos.idUniversidad = $event; traerCentros(false);"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Centro Universitario'" [datos]="centros" [dato]="datos.idCentroUniversitario" (emitidor)="datos.idCentroUniversitario = $event; traerCarreras(false);"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Carrera'" [datos]="carreras" [dato]="datos.idCarrera" (emitidor)="datos.idCarrera = $event;"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 text-start">
+            <button class="btn btn-success" (click)="emitirAnterior();">Anterior</button>
+        </div>
+        <div class="col-sm-6 text-end">
+            <button class="btn btn-success" (click)="emitirSiguiente();">Siguiente</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Nomina</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="vista = 1">Empleado</button>
+                    <button class="btn btn-info" (click)="vista = 2">Nomina</button>
+                </div>
+            </div>
+            <div class="row" *ngIf="vista === 1">
+                <app-empleado-nomina-principal [nomina]="id"></app-empleado-nomina-principal>
+            </div>
+            <div class="row" *ngIf="vista === 2">
+                <app-cuenta-nomina-principal [nomina]="id"></app-cuenta-nomina-principal>
+            </div>
+        </div>
+    </div>
+</div>

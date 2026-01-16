@@ -1,0 +1,43 @@
+<div class="modal-header bg-gradient-info">
+    <h4 class="text-white">Nuevo Seguimiento</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [datos]="tipo" [etiqueta]="'Tipo'" (emitidor)="seguimiento.tipo = $event"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-textarea [etiqueta]="'Comentario'" (emitidor)="seguimiento.comentario = $event"></app-textarea>
+            </div>
+            <div class="col-sm-4">
+                <app-input [valor]="seguimiento.fecha" [etiqueta]="'Fecha'" [tipo]="'date'" (emitidor)="seguimiento.fecha = $event"></app-input>
+            </div>
+            <div class="col-sm-4" *ngIf="seguimiento.tipo.toString() === '1'">
+                <app-select [etiqueta]="'Medio de Contacto'" [datos]="listaMediosContacto" (emitidor)="seguimiento.medio = $event"></app-select>
+            </div>
+        </div>
+        <div class="row" *ngIf="seguimiento.tipo.toString() === '2'">
+            <div class="col-sm-4">
+                <app-select [datos]="tiposDescuento" [etiqueta]="'Tipo de descuento'" (emitidor)="seguimiento.tipoDescuento = $event"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-input [etiqueta]="'Descuento'" [validacion]="'decimal'" (emitidor)="seguimiento.descuento = $event"></app-input>
+            </div>
+            <div class="col-sm-4">
+                <app-input [valor]="seguimiento.caducidad" [tipo]="'date'" [etiqueta]="'Caducidad'" (emitidor)="seguimiento.caducidad = $event"></app-input>
+            </div>
+            <div class="col-sm-4">
+                <app-select [datos]="listaMotivosDescuento" [etiqueta]="'Concepto de Descuento'" (emitidor)="seguimiento.conceptoDescuento = $event"></app-select>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="emitir()">Guardar</button>
+        </div>
+    </div>
+</div>

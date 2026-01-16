@@ -57,5 +57,5 @@
 <app-modal [ngSwitch]="vista">
     <app-modal-alta-cursos *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-alta-cursos>
     <app-modal-alta-cursos *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-alta-cursos>
-    <app-modal-horarios *ngSwitchCase="'horarios'"></app-modal-horarios>
+    <app-modal-horarios *ngSwitchCase="'horarios'" [dato]="seleccion"></app-modal-horarios>
 </app-modal>

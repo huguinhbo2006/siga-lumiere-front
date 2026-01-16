@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header bg-lumiere border-0">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="mb-0 text-white">CRM</h3>
+            </div>
+            <div class="col-sm-4" *ngIf="seleccion === undefined">
+                <button class="btn btn-success" (click)="modal('nuevo')">Agregar Prospecto</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6 col-12">
+                <app-input [etiqueta]="'Busqueda'" (enter)="buscar($event)"></app-input>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;" (doble)="seleccionarProspecto($event)"></app-datatable>
+            </div>
+        </div>
+    </div>
+</div>
+<app-botones (emitidor)="seleccion = undefined" *ngIf="seleccion !== undefined">
+    <button class="btn bg-yellow" (click)="modal('modificar')">Modificar prospecto</button>
+    <button class="btn bg-info text-white" (click)="seleccionarProspecto(seleccion)">Ir al prospecto</button>
+    <button class="btn btn-success" title="Agregar Prospecto" (click)="modal('nuevo')">Agregar prospecto</button>
+    <button class="btn btn-danger" title="Eliminar Prospecto" (click)="eliminar()" *ngIf="usuario === '13'">Eliminar prospecto</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-prospecto *ngSwitchCase="'nuevo'" (emitidor)="guardar($event)"></app-modal-prospecto>
+    <app-modal-prospecto *ngSwitchCase="'modificar'" [prospecto]="seleccion" (emitidor)="modificar($event)"></app-modal-prospecto>
+</app-modal>
+<app-cargando *ngIf="cargando"></app-cargando>

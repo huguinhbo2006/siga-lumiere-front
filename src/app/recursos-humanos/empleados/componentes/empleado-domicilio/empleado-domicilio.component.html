@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Domicilio</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Calle'" [valor]="dato.calle" (emitidor)="dato.calle = $event"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Numero exterior'" [valor]="dato.numeroExterior" (emitidor)="dato.numeroExterior = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [etiqueta]="'Numero interior'" [valor]="dato.numeroInterior" (emitidor)="dato.numeroInterior = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Colonia'" [valor]="dato.colonia" (emitidor)="dato.colonia = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Estado'" [datos]="listas.estados" [dato]="dato.idEstado" (emitidor)="dato.idEstado = $event; buscarMunicipios();"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Municipio'" [datos]="municipios" [dato]="dato.idMunicipio" (emitidor)="dato.idMunicipio = $event;"></app-select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Codigo postal'" [validacion]="'numero'" [cantidad]="5" [valor]="dato.codigoPostal" (emitidor)="dato.codigoPostal = $event;"></app-input>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cerrar()">Anterior</button>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Metas de ingresos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Meta de ingreso</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" (emitidor)="this.busqueda.idCalendario = $event; buscar();"></app-select>
+                </div>
+                <div class="col-sm-6">
+                    <app-select [etiqueta]="'Sucursal'" [datos]="listas.sucursales" (emitidor)="this.busqueda.idSucursal = $event; buscar();"></app-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Meta de ingreso</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Meta de ingreso</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Meta de ingreso</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-meta-ingreso-ventas *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-meta-ingreso-ventas>
+    <app-modal-meta-ingreso-ventas *ngSwitchCase="'modificar'" [modificar]="true" [listas]="listas" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-meta-ingreso-ventas>
+</app-modal>

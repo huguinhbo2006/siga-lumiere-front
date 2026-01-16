@@ -1,0 +1,83 @@
+<div class="modal-header bg-gradient-success">
+    <h4 class="text-white">Agregar Inscripcion</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs mb-3" id="tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active {{(bloqueos.alumno) ? 'disabled' : ''}} {{(validar.alumno) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="alumnoTab" data-toggle="tab" href="#alumno" role="tab" aria-controls="alumno" aria-selected="true">
+                            Alumno
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('grupo')">
+                        <a class="nav-link {{(bloqueos.inscripcion) ? 'disabled' : ''}} {{(validar.inscripcion) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="grupoTab" data-toggle="pill" href="#grupo" role="tab" aria-controls="grupo" aria-selected="true">
+                            Inscripcion
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('domicilio')">
+                        <a class="nav-link {{(bloqueos.domicilio) ? 'disabled' : ''}} {{(validar.domicilio) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="domicilioTab" data-toggle="pill" href="#domicilio" role="tab" aria-controls="domicilio" aria-selected="true">
+                            Domicilio
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('tutor')">
+                        <a class="nav-link {{(bloqueos.tutor) ? 'disabled' : ''}} {{(validar.tutor) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="tutorTab" data-toggle="pill" href="#tutor" role="tab" aria-controls="tutor" aria-selected="true">
+                            Tutor
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('escolares')">
+                        <a class="nav-link {{(bloqueos.escolares) ? 'disabled' : ''}} {{(validar.escolares) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="escolaresTab" data-toggle="pill" href="#escolares" role="tab" aria-controls="escolares" aria-selected="true">
+                            Escolares
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('publicitarios')">
+                        <a class="nav-link {{(bloqueos.publicitarios) ? 'disabled' : ''}} {{(validar.publicitarios) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="publicitariosTab" data-toggle="pill" href="#publicitarios" role="tab" aria-controls="publicitarios"
+                            aria-selected="true">
+                            Publicitarios
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('cuenta')">
+                        <a class="nav-link {{(bloqueos.cuenta) ? 'disabled' : ''}} {{(validar.cuenta) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="cuentaTab" data-toggle="pill" href="#cuenta" role="tab" aria-controls="cuenta" aria-selected="true">
+                            Cuenta
+                        </a>
+                    </li>
+                    <li class="nav-item" (click)="validarInscripcion('fiscales')" *ngIf="inscripcion.cuenta.IVA">
+                        <a class="nav-link {{(bloqueos.facturacion) ? 'disabled' : ''}} {{(validar.facturacion) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="fiscalesTab" data-toggle="pill" href="#fiscales" role="tab" aria-controls="fiscales" aria-selected="true">
+                            Fiscales
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="alumno" role="tabpanel" aria-labelledby="alumnoTab">
+                        <app-alumno-datos [listas]="{sexos: listas.sexos}" [datos]="inscripcion.alumno" (emitidor)="inscripcion.alumno = $event; validarInscripcion('grupo');"></app-alumno-datos>
+                    </div>
+                    <!--<div class="tab-pane fade show" id="grupo" role="tabpanel" aria-labelledby="grupoTab">
+                        <app-inscripcion-datos [listas]="listas" [ventas]="esVentas" [datos]="inscripcion.inscripcion" (siguiente)="inscripcion.inscripcion = $event; validarInscripcion('domicilio');"></app-inscripcion-datos>
+                    </div>
+                    <div class="tab-pane fade show" id="domicilio" role="tabpanel" aria-labelledby="domicilioTab">
+                        <app-componente-domicilio [listas]="listas" (emitidor)="inscripcion.domicilio = $event; validarInscripcion('tutor');"></app-componente-domicilio>
+                    </div>
+                    <div class="tab-pane fade show" id="tutor" role="tabpanel" aria-labelledby="tutorTab">
+                        <app-componente-tutor (emitidor)="inscripcion.tutor = $event; validarInscripcion('escolares');"></app-componente-tutor>
+                    </div>
+                    <div class="tab-pane fade show" id="escolares" role="tabpanel" aria-labelledby="escolaresTab">
+                        <app-componente-escolares [listas]="listas" [grupo]="inscripcion.inscripcion" (emitidor)="inscripcion.escolares = $event; validarInscripcion('publicitarios');"></app-componente-escolares>
+                    </div>
+                    <div class="tab-pane fade show" id="publicitarios" role="tabpanel" aria-labelledby="publicitariosTab">
+                        <app-componente-publicitarios [listas]="listas" [grupo]="inscripcion.inscripcion" (emitidor)="inscripcion.publicitarios = $event; validarInscripcion('cuenta');"></app-componente-publicitarios>
+                    </div>
+                    <div class="tab-pane fade show" id="cuenta" role="tabpanel" aria-labelledby="cuentaTab">
+                        <app-componente-cuenta [grupo]="inscripcion.inscripcion" [listas]="listas" (emitidor)="inscripcion.cuenta = $event; validarInscripcion('fiscales')"></app-componente-cuenta>
+                    </div>
+                    <div class="tab-pane fade show" id="fiscales" role="tabpanel" aria-labelledby="fiscalesTab">
+                        <app-componente-fiscales (emitidor)="inscripcion.fiscales = $event; emitir()"></app-componente-fiscales>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

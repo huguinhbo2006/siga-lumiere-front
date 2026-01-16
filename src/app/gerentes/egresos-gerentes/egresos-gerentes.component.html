@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Egresos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-6">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Egreso</button>
+                </div>
+                <div class="col-sm-6">
+                    <app-checktimes [texto]="'Buscar'" [activo]="search" (emitidor)="search = $event;"></app-checktimes>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event; exit = true;"></app-datatable>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined && exit" (emitidor)="exit = false;">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Egreso</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Egreso</button>
+    <button class="btn btn-info" (click)="imprimir();">Imprimir Egreso</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Egreso</button>
+    <button class="btn btn-primary" (click)="modal('voucher')">Cargar Voucher</button>
+    <button class="btn btn-info" (click)="verImagen();">Ver Voucher</button>
+    <button class="btn btn-info" (click)="modal('fecha');">Modificar Fecha</button>
+</app-botones>
+<app-busquedas *ngIf="search" (emitidor)="search = false;">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-input [etiqueta]="'Dias'" (emitidor)="busqueda.dias = $event; gerentes();"></app-input>
+        </div>
+    </div>
+</app-busquedas>
+<app-modal [ngSwitch]="vista">
+    <app-modal-egreso-directivos *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-egreso-directivos>
+    <app-modal-egreso-directivos *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-egreso-directivos>
+    <app-modal-voucher-egresos-directivos *ngSwitchCase="'voucher'" (emitidor)="voucher($event);"></app-modal-voucher-egresos-directivos>
+    <img *ngSwitchCase="'imagen'" src="{{imagen}}" alt="">
+</app-modal>

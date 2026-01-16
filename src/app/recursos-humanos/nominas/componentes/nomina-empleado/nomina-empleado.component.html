@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Nivel'" [datos]="listas.niveles" [dato]="dato.idNivel" (emitidor)="dato.idNivel = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Departamento'" [datos]="listas.departamentos" [dato]="dato.idDepartamento" (emitidor)="dato.idDepartamento = $event; buscarPuestos();"></app-select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Puesto'" [datos]="puestos" [dato]="dato.idPuesto" (emitidor)="dato.idPuesto = $event; buscarEmpleados();"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Empleado'" [datos]="empleados" [dato]="dato.idEmpleado" (emitidor)="dato.idEmpleado = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Numero de quincena'" [validacion]="'numero'" [valor]="dato.quincena" (emitidor)="dato.quincena = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de inicio'" [tipo]="'date'" [valor]="dato.inicio" (emitidor)="dato.inicio = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de fin'" [tipo]="'date'" [valor]="dato.fin" (emitidor)="dato.fin = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de expedicion'" [tipo]="'date'" [valor]="dato.expedicion" (emitidor)="dato.expedicion = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
+    </div>
+    <div class="col-sm-4" *ngIf="dato.idDepartamento.toString() !== '1'">
+        <app-select [etiqueta]="'Banco'" [datos]="listas.bancos" [dato]="dato.idBanco" (emitidor)="dato.idBanco = $event;"></app-select>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+    </div>
+</div>

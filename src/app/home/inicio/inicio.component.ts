@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { Router } from '@angular/router';
 declare function mostrarMenu(): void;
 declare function ocultarMenu(): void;
 declare function menuEstatus(): boolean;
@@ -15,8 +16,11 @@ export class InicioComponent {
   abierto = false;
   sucursales: any;
   sucursal: any;
+  search: any;
+  click = false;
   constructor(private generales: GeneralesService,
-              private usuarios: UsuariosService){}
+              private usuarios: UsuariosService,
+              private router: Router){}
 
   ngOnInit(): void {
     this.traerInformacion();
@@ -48,5 +52,13 @@ export class InicioComponent {
     mostrarMenu();
   }
 
-  
+  menu(){
+    console.log('Menu');
+    this.abierto = menuEstatus();
+    (this.abierto) ? ocultarMenu() : mostrarMenu();
+  }
+
+  busqueda(){
+    this.router.navigate(['admin/busqueda', this.search]);
+  }
 }

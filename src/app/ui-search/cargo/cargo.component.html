@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Concpeto'" [datos]="lista" [dato]="cargo.idConcepto" (emitidor)="cargo.idConcepto = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-input [obligatorio]="true" [etiqueta]="'Monto'" [validacion]="'decimal'" [valor]="cargo.monto" (emitidor)="cargo.monto = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <button class="btn btn-success btn-line" (click)="cargo.concepto = generales.nombre(lista, cargo.idConcepto); emitir();">Agregar</button>
+    </div>
+</div>

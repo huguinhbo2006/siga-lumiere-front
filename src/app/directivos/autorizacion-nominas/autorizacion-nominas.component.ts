@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
 import { NominasService } from '../../servicios/nominas.service';
-import { SucursalesService } from '../../servicios/sucursales.service';
 import { PdfService } from '../../servicios/pdf.service';
 
 @Component({
@@ -61,6 +60,8 @@ export class AutorizacionNominasComponent {
       this.generales.delay(500).then(fun => {
         this.buscar();
       });
+      this.datos = this.generales.eliminarDatoArray(this.datos, this.seleccion);
+      this.seleccion = undefined;
     },
     error => {
       this.cargando = false;

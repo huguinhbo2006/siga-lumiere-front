@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos personales</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Nombre'" [valor]="dato.nombre" (emitidor)="dato.nombre = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Estado civil'" [valor]="dato.estadoCivil" (emitidor)="dato.estadoCivil = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [tipo]="'date'" [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Fecha de nacimiento'" [valor]="dato.fechaNacimiento" (emitidor)="dato.fechaNacimiento = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Telefono'" [validacion]="'numero'" [cantidad]="10" [valor]="dato.telefono" (emitidor)="dato.telefono = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [obligatorio]="true" [etiqueta]="'Celular'" [validacion]="'numero'" [cantidad]="10" [valor]="dato.celular" (emitidor)="dato.celular = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Correo electronico'" [valor]="dato.correo" (emitidor)="dato.correo = $event;"></app-input>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cerrar()">Anterior</button>
+    </div>
+</div>

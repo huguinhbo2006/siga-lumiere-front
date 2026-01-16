@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">{{ficha.folio}}</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="btn btn-info" (click)="seleccion = 0;">Datos de Inscripcion</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-info" (click)="seleccion = 1;">Estado de cuenta</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" *ngIf="seleccion === 0 && charge">
+                    <app-datos-ficha-principal [datos]="datos" [listas]="listas" (siguiente)="actualizar($event);"></app-datos-ficha-principal>
+                </div>
+                <div class="col-sm-12" *ngIf="seleccion === 1">
+                    <app-estado-cuenta-principal [ficha]="id"></app-estado-cuenta-principal>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

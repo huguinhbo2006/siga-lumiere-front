@@ -1,0 +1,28 @@
+<div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
+    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Comision</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <app-select [des]="modificar" [etiqueta]="'Calendarios'" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+            </div>
+            <div class="col-sm-3">
+                <app-select [des]="modificar" [etiqueta]="'Curso'" [datos]="listas.cursos" [dato]="dato.idCurso" (emitidor)="dato.idCurso = $event;"></app-select>
+            </div>
+            <div class="col-sm-3">
+                <app-select [etiqueta]="'Tipo de comision'" [datos]="tipos" [dato]="dato.tipo" (emitidor)="dato.tipo = $event;"></app-select>
+            </div>
+            <div class="col-sm-3">
+                <app-input [etiqueta]="'Comision'" [validacion]="'decimal'" [valor]="dato.comision" (emitidor)="dato.comision = $event;"></app-input>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

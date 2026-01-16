@@ -36,7 +36,7 @@ export class PdfService {
     }
   };
   constructor(private servicio: DatosPDFService, private generales: GeneralesService) {
-    (window as any).pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    (window as any).pdfMake.vfs = pdfFonts.vfs;
   }
 
 
@@ -591,7 +591,7 @@ export class PdfService {
     let whatsapp = this.generales.whatsapp;
     let face = this.generales.face;
     this.servicio.reciboPago(recibo).subscribe((respuesta: any) => {
-      let logo = this.generales.logo;
+      let logo = this.generales.logos;
 
       const pdf = new PdfMakeWrapper();
       pdf.pageMargins([ 20, 20, 20, 20 ]);
@@ -1616,7 +1616,7 @@ export class PdfService {
 
   async pdfBoletaAlumno(alumno: any){
     this.servicio.boletaAlumno(alumno).subscribe((respuesta: any) => {
-      let logo = this.generales.logo;
+      let logo = this.generales.logos;
       const pdf = new PdfMakeWrapper();
       pdf.pageMargins([ 20, 20, 20, 20 ]);
       pdf.pageSize('A4');
@@ -1767,5 +1767,14 @@ export class PdfService {
     error => {
       this.generales.interpretarError(error);
     });
+  }
+
+  pdfPrueba(){
+    const pdf = new PdfMakeWrapper();
+    pdf.pageMargins([ 20, 20, 20, 20 ]);
+    pdf.pageSize('A4');
+
+    pdf.add('Hola Mundo');
+    pdf.create().open();
   }
 }

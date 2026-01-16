@@ -4803,7 +4803,7 @@ fieldset:disabled .btn {
     --bs-card-cap-padding-x: 1rem;
     --bs-card-cap-bg: #fff;
     --bs-card-cap-color: ;
-    --bs-card-height: ;
+    --bs-card-height: auto;
     --bs-card-color: ;
     --bs-card-bg: #fff;
     --bs-card-img-overlay-padding: 1rem;
@@ -19950,7 +19950,7 @@ hr.horizontal.gray-light {
     overflow-y: auto;
     padding: 0;
     box-shadow: none;
-    z-index: 9999;
+    z-index: 1049;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-collapse {

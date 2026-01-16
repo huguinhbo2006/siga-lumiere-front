@@ -1,7 +1,9 @@
 import { Injectable, ɵɵpureFunctionV } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from'sweetalert2';
+declare function activarTab(tab: string): any;
 declare function modal(accion: string): any;
+declare function year(fechaNacimiento: any): any;
 
 
 @Injectable({
@@ -30,18 +32,67 @@ export class GeneralesService {
     { id: 11, nombre: 'Noviembre' },
     { id: 12, nombre: 'Diciembre' },
   ];
+  
   constructor(private router: Router) { }
 
   getUrl() {
     if (this.produccion === 0) {
-      return 'https://admin.taqueriamary.com/server/';
+      return 'https://api.lumieresiga.com/';
     } else if(this.produccion === 1){
-      return 'https://prueba.taqueriamary.com/server/';
+      return 'https://apip.lumieresiga.com/';
     } else if(this.produccion === 2){
       return 'http://localhost:3200/';
     }else {
       return '';
     }
+  }
+
+  existentesLista(totales: any,agregados: any) {
+    const idsAgregados = new Set(agregados.map((c: any) => c.idCurso));
+  
+    return totales.map((curso: any) => ({
+      ...curso,
+      existe: idsAgregados.has(curso.id)
+    }));
+  }
+
+  filtrarExistentes(lista: any){
+    return lista.filter((item: any) => item.existe === true);
+  }
+
+  getUrlApp() {
+    if (this.produccion === 0) {
+      return 'https://quizes.cursoslumiere.com/';
+    } else if(this.produccion === 1){
+      return 'https://quizes.cursoslumiere.com/';
+    } else if(this.produccion === 2){
+      return 'http://localhost:3300/';
+    }else {
+      return '';
+    }
+  }
+
+  seleccionarTab(tab: string) {
+    this.delay(100).then(fun => {
+      activarTab(tab);
+    });
+  }
+
+  combianrArrays(array1: any, array2: any){
+    let final: Array<any> = new Array<any>();
+    for (let index = 0; index < array1.length; index++) {
+      let objeto1 = array1[index];
+      let objeto2 = array2[index];
+      let resultado: any = {};
+      for (const clave of Object.keys(objeto1)) {
+          resultado[clave] = objeto1[clave];
+      }
+      for (const clave of Object.keys(objeto2)) {
+          resultado[clave] = objeto2[clave];
+      }
+      final.push(resultado);
+    }
+    return final;
   }
 
   async delay(ms: number){
@@ -139,7 +190,7 @@ export class GeneralesService {
 
   esNumero(numero: string) {
     let es = parseFloat(numero);
-    return isNaN(es);
+    return !isNaN(es);
   }
 
   hoy() {
@@ -206,7 +257,6 @@ export class GeneralesService {
     lista.forEach((elemento: any) => {
       let coincide = false;
       encabezados.forEach((encabezado: any) => {
-        console.log(elemento[encabezado].toString().includes(busqueda.toString()))
         if(elemento[encabezado].toString().includes(busqueda.toString())){
           coincide = true;
         }
@@ -264,7 +314,6 @@ export class GeneralesService {
       let coincide = true;
       lista.forEach((registro: any) => {
         if(elemento.id.toString() === registro[llave].toString()){
-          console.log("Entre");
           coincide = false;
         }
       });
@@ -311,6 +360,44 @@ export class GeneralesService {
     return final;
   }
 
+  sublistaMultiplesExterna(lista: any, busqueda: any, listado: any, llave: any){
+    let final: Array<any> = new Array<any>();
+    let keys = Object.keys(busqueda);
+    lista.forEach((elemento: any) => {
+      let coincide = true;
+      keys.forEach((key: any) => {
+        if(elemento[key].toString() !== busqueda[key].toString()){
+          coincide = false;
+        }
+      });
+      if(coincide){
+        listado.forEach((registro: any) => {
+          if(registro.id.toString() === elemento[llave].toString() && !final.includes(registro)){
+            final.push(registro);
+          }
+        });
+      }
+    });
+    return final;
+  }
+
+  registroSeleccionado(lista: any, busqueda: any){
+    let keys = Object.keys(busqueda);
+    let seleccion: any;
+    lista.forEach((elemento: any) => {
+      let coincide = true;
+      keys.forEach((key: any) => {
+        if(elemento[key].toString() !== busqueda[key].toString()){
+          coincide = false;
+        }
+      });
+      if(coincide){
+        seleccion = elemento;
+      }
+    });
+    return seleccion;
+  }
+
   calendariosActuales(lista: any){
     let now = new Date();
     let arreglo = new Array();
@@ -321,5 +408,62 @@ export class GeneralesService {
       }
     });
     return arreglo;
+  }
+
+  edad(fechaNacimiento: any){
+    return year(fechaNacimiento);
+  }
+
+  nombre(lista: any, id: any){
+    let nombre = '';
+    lista.forEach((element: any) => {
+      if(element.id.toString() === id.toString()){
+        nombre = element.nombre;
+      }
+    });
+    return nombre;
+  }
+
+  registros(lista: any, dato: any, llave: any){
+    let final: Array<any> = new Array<any>();
+    lista.forEach((registro: any) => {
+      if(dato === registro[llave]){
+        final.push(registro);
+      }
+    });
+    return final;
+  }
+
+  getMesNombre(mes: any){
+    switch(mes){
+      case 1:
+        return 'Enero';
+      case 2:
+        return 'Febrero';
+      case 3:
+          return 'Marzo';
+      case 4:
+        return 'Abril';
+      case 5:
+        return 'Mayo';
+      case 6:
+        return 'Junio';
+      case 7:
+        return 'Julio';
+      case 8:
+        return 'Agosto';
+      case 9:
+        return 'Septiembre';
+      case 10:
+        return 'Octubre';
+      case 11:
+        return 'Noviembre';
+      case 12:
+        return 'Diciembre';
+        break;
+      default:
+        'No existe ese mes';
+    }
+    return 0;
   }
 }

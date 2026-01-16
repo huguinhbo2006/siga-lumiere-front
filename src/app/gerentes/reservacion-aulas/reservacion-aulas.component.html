@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Reservaciones de aulas</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('aulas');">Reservaciones de aulas</button>
+    <button class="btn btn-yellow" (click)="modal('profesores');">Reservaciones de profesores</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-reservacion-aulas *ngSwitchCase="'aulas'" [lista]="listas.aulas" [grupo]="seleccion"></app-modal-reservacion-aulas>
+</app-modal>

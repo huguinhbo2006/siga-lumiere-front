@@ -1,0 +1,176 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-cargo-principal [lista]="listas.conceptoscargos" (emitidor)="nuevoCargo($event);" *ngIf="opcion === 1"></app-cargo-principal>
+                    <app-abono-principal [listas]="listas" (emitidor)="nuevoAbono($event);" *ngIf="opcion === 2"></app-abono-principal>
+                    <app-descuento-principal [lista]="listas.conceptosdescuentos" (emitidor)="nuevoDescuento($event);" *ngIf="opcion === 3"></app-descuento-principal>
+                    <app-devolucion-principal [lista]="listas.conceptosdevoluciones" [bancos]="listas.bancos" [formas]="listas.formas" (emitidor)="nuevoDevolucion($event);" *ngIf="opcion === 4"></app-devolucion-principal>
+                    <app-extra-principal [lista]="listas.conceptosextras" (emitidor)="nuevoExtra($event);" *ngIf="opcion === 5"></app-extra-principal>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'Concepto'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'Monto'"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'Forma de pago'"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'Metodo de pago'"></app-titulo>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-titulo [color]="'blue'" [titulo]="'Cargos'"></app-titulo>
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cuenta.cargos">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="item.concepto"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'$' + generales.milesNumeros(item.monto)"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [color]="'red'" [titulo]="'eliminar'" (click)="quitarCargo(item)" class="amo"></app-titulo>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-titulo [color]="'blue'" [titulo]="'Abonos'"></app-titulo>
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cuenta.abonos">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.conceptosabonos, item.idConcepto)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'$' + generales.milesNumeros(item.monto)"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.formas, item.idFormaPago)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="generales.nombre(listas.metodos, item.idMetodoPago)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [color]="'red'" [titulo]="'eliminar'" (click)="quitarAbono(item)" class="amo"></app-titulo>
+                    <app-titulo [color]="'info'" [titulo]="'imprimir'" (click)="imprimir(item.id)" class="amo"></app-titulo>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-titulo [color]="'blue'" [titulo]="'Descuentos'"></app-titulo>
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cuenta.descuentos">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.conceptosdescuentos, item.idConcepto)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'$' + generales.milesNumeros(item.monto)"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [color]="'red'" [titulo]="'eliminar'" (click)="quitarDescuento(item)" class="amo"></app-titulo>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-titulo [color]="'blue'" [titulo]="'Devoluciones'"></app-titulo>
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cuenta.devoluciones">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.conceptosdevoluciones, item.idConcepto)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'$' + generales.milesNumeros(item.monto)"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.formas, item.idFormaPago)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [color]="'red'" [titulo]="'eliminar'" (click)="quitarDevolucion(item)" class="amo"></app-titulo>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-titulo [color]="'blue'" [titulo]="'Extras'"></app-titulo>
+                </div>
+            </div>
+            <div class="row" *ngFor="let item of cuenta.extras">
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="generales.nombre(listas.conceptosdevoluciones, item.idConcepto)"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'$' + generales.milesNumeros(item.monto)"></app-titulo>
+                </div>
+                <div class="col-sm-3">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [titulo]="'-'"></app-titulo>
+                </div>
+                <div class="col-sm-2">
+                    <app-titulo [color]="'red'" [titulo]="'eliminar'" (click)="quitarExtra(item)" class="amo"></app-titulo>
+                </div>
+            </div>
+            <div class="row text-end">
+                <div class="col-cm-12">
+                    <app-titulo [titulo]="'Total: $' + generales.milesNumeros(total.toString())"></app-titulo>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="opcion = 1">Cargos</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="opcion = 2">Abonos</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="opcion = 3">Descuentos</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="opcion = 4">Devoluciones</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" (click)="opcion = 5">Extras</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-cargando *ngIf="cargando"></app-cargando>
+</div>

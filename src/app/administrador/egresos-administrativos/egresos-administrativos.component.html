@@ -22,8 +22,8 @@
 <app-cargando *ngIf="cargando"></app-cargando>
 <app-botones *ngIf="seleccion !== undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Egreso</button>
-    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Egreso</button>
-    <button class="btn btn-danger" (click)="eliminar();">Eliminar Egreso</button>
+    <!--<button class="btn btn-yellow" (click)="modal('modificar');">Modificar Egreso</button>-->
+    <!--<button class="btn btn-danger" (click)="eliminar();">Eliminar Egreso</button>-->
 </app-botones>
 <app-modal [ngSwitch]="vista">
     <app-modal-egreso-directivos *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-egreso-directivos>

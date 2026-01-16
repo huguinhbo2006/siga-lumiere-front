@@ -1,0 +1,79 @@
+<div class="card {{ficha.fondo}}">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-texto [texto]="ficha.folio"></app-texto>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="bg-transparent rounded-circle manita" (click)="emitirSeleccionar()">
+                    <img src="{{ficha.icono}}" alt="icono" style="width: 50px; height: 50px;">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-texto [texto]="'Nivel: '+ ficha.nivel"></app-texto>
+            </div>
+            <div class=" col-sm-4 ">
+                <app-texto [texto]=" 'Subnivel: '+ ficha.subnivel "></app-texto>
+            </div>
+            <div class="col-sm-4 ">
+                <app-texto [texto]=" 'Calendario: ' + ficha.calendario "></app-texto>
+            </div>
+            <div class="col-sm-4">
+                <app-texto [texto]="'Modalidad: '+ficha.modalidad"></app-texto>
+            </div>
+            <div class="col-sm-4">
+                <app-texto [texto]="'Categoria: '+ficha.categoria"></app-texto>
+            </div>
+            <div class="col-sm-4">
+                <app-texto [texto]="'Turno: '+ficha.turno"></app-texto>
+            </div>
+            <div class="col-sm-8">
+                <app-texto [texto]="'Horario: '+ficha.horario "></app-texto>
+            </div>
+            <div class="col-sm-4">
+                <app-texto [texto]="'Curso: '+ficha.curso"></app-texto>
+            </div>
+            <div class="col-sm-4 ">
+                <app-texto [texto]=" 'Inicio: '+ficha.inicio "></app-texto>
+            </div>
+            <div class="col-sm-4 ">
+                <app-texto [texto]=" 'Final: '+ficha.fin "></app-texto>
+            </div>
+            <div class="col-sm-4 ">
+                <app-texto [texto]=" 'Limite: '+ficha.limitePago "></app-texto>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 amo ">
+                <app-texto [texto]=" 'Numero de registro UDG: '+ficha.numeroRegistro " (click)="emitirRegistro();"></app-texto>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 amo">
+                <app-texto [texto]="'Estatus: '+ficha.estatusActual" (click)="emitirEstatus();"></app-texto>
+            </div>
+            <div class="col-sm-12 amo">
+                <app-texto [texto]="'Calificaciones'" (click)="emitirCalificaciones();"></app-texto>
+            </div>
+            <div class="col-sm-12 amo">
+                <app-texto [texto]="'Datos de aspiracion'" (click)="emitirAspiracion();"></app-texto>
+            </div>
+            <div class="col-sm-12 amo">
+                <app-texto [texto]="'Datos publicitarios'" (click)="emitirPublicitarios()"></app-texto>
+            </div>
+            <div class="col-sm-12 amo">
+                <app-texto [texto]="'Boleta'" (click)="emitirBoleta();"></app-texto>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 text-end ">
+                <app-texto [texto]=" '$'+generales.milesNumeros(ficha.precio) "></app-texto>
+                <app-texto *ngIf="ficha.congelado " [texto]=" '$'+generales.milesNumeros(ficha.montoCongelado) "></app-texto>
+            </div>
+        </div>
+    </div>
+</div>

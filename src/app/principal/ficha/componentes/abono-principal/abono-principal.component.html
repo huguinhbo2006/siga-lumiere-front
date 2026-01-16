@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Concepto'" [datos]="listas.conceptosabonos" [dato]="dato.idConcepto" (emitidor)="dato.idConcepto = $event;"></app-select>
+    </div>
+    <div class="col-sm-3">
+        <app-select [des]="true" [etiqueta]="'Metodo de pago'" [datos]="listas.metodos" [dato]="dato.idMetodoPago"></app-select>
+    </div>
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Forma de pago'" [datos]="listas.formas" [dato]="dato.idFormaPago" (emitidor)="dato.idFormaPago = $event;"></app-select>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Monto'" [validacion]="'decimal'" [valor]="dato.monto" (emitidor)="dato.monto = $event;"></app-input>
+    </div>
+</div>
+<div class="row" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.imagen" [valor]="dato.imagen" (emitidor)="dato.imagen = $event;"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Nombre de propietario'" [valor]="dato.propietario" (emitidor)="dato.propietario = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Numero de referencia'" [valor]="dato.referencia" (emitidor)="dato.referencia = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Banco'" [datos]="listas.bancos" [dato]="dato.idBanco" (emitidor)="dato.idBanco = $event;"></app-select>
+    </div>
+</div>
+<div class="row" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Cuenta'" [datos]="listas.cuentas" [dato]="dato.idCuenta" (emitidor)="dato.idCuenta = $event;"></app-select>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Fecha'" [tipo]="'date'" [valor]="dato.fecha" (emitidor)="dato.fecha = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-checktimes [activo]="dato.iva" [texto]="'IVA'" (emitidor)="dato.iva = $event;"></app-checktimes>
+        <app-checktimes [activo]="dato.comision" [texto]="'Comision'" (emitidor)="dato.comision = $event;"></app-checktimes>
+
+    </div>
+    <div class="col-sm-3" *ngIf="dato.comision">
+        <app-input [etiqueta]="'Cantidad de comision'" [validacion]="'decimal'" [valor]="dato.cantidad" (emitidor)="dato.cantidad = $event;"></app-input>
+    </div>
+</div>
+<div class="row text-end">
+    <div class="col-sm-12">
+        <button class="btn btn-success" (click)="emitir();">Agregar</button>
+    </div>
+</div>

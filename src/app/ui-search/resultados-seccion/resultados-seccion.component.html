@@ -1,0 +1,9 @@
+<h3>{{seccion.seccion}}</h3>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [validacion]="'numero'" [etiqueta]="'Aciertos'" [valor]="seccion.aciertos" (emitidor)="seccion.aciertos = $event"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [validacion]="'numero'" [etiqueta]="'Errores'" [valor]="seccion.errores" (emitidor)="seccion.errores = $event"></app-input>
+    </div>
+</div>

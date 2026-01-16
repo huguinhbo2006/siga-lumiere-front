@@ -22,7 +22,8 @@ export class DatatableComponent {
     { id: 5, nombre: 5},
     { id: 10, nombre: 10},
     { id: 25, nombre: 25},
-    { id: 50, nombre: 50}
+    { id: 50, nombre: 50},
+    { id: 0, nombre: 'All'}
   ]
   numeroFilas = 5;
   numeroPaginas = 0;
@@ -44,7 +45,6 @@ export class DatatableComponent {
     if(icono !== null && icono !== undefined){
       incluye = (icono.toString().includes('fas fa') || icono.toString().includes('fab fa'));
     }
-    console.log(incluye + icono);
     return incluye
   }
 
@@ -52,6 +52,14 @@ export class DatatableComponent {
     let incluye = false;
     if(color !== undefined && color !== null){
       incluye = (color.toString().includes('text-'));  
+    }
+    return incluye;
+  }
+
+  esHay(item: any){
+    let incluye = false;
+    if(item !== undefined && item !== null){
+      incluye = (item.toString().includes('hay'));  
     }
     return incluye;
   }
@@ -68,6 +76,7 @@ export class DatatableComponent {
   }
 
   configurarPaginacion(){
+    this.numeroFilas = (this.numeroFilas.toString() === '0') ? this.datos.length : this.numeroFilas;
     let totalDatos = (this.datos !== undefined) ? this.datos.length : 0;
     let resultado = totalDatos / this.numeroFilas;
     let total = parseInt(resultado.toString());

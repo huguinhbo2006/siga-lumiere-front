@@ -56,6 +56,9 @@
         <div class="col-sm-12">
             <button class="btn btn-info" (click)="buscar();">Buscar</button>
         </div>
+        <div class="col-sm-12">
+            <app-input [etiqueta]="'Dias'" (emitidor)="busqueda.dias = $event; gerentes();"></app-input>
+        </div>
     </div>
 </app-busquedas>
 <app-modal [ngSwitch]="vista">
@@ -63,5 +66,5 @@
     <app-modal-egreso-directivos *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-egreso-directivos>
     <app-modal-voucher-egresos-directivos *ngSwitchCase="'voucher'" (emitidor)="voucher($event);"></app-modal-voucher-egresos-directivos>
     <img *ngSwitchCase="'imagen'" src="{{imagen}}" alt="">
-    <app-modal-modificar-fecha-egreso-directivos *ngSwitchCase="'fecha'" (click)="fecha($event);"></app-modal-modificar-fecha-egreso-directivos>
+    <app-modal-modificar-fecha-egreso-directivos *ngSwitchCase="'fecha'" (emitidor)="fecha($event);"></app-modal-modificar-fecha-egreso-directivos>
 </app-modal>

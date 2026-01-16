@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Metas por mes</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Meta por mes</button>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-2">
+                    <app-select [datos]="listas.calendarios" [etiqueta]="'Calendario'" (emitidor)="busqueda.idCalendario= $event; buscar()"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [datos]="listas.niveles" [etiqueta]="'Nivel'" (emitidor)="busqueda.idNivel= $event; buscar()"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [datos]="listas.subniveles" [etiqueta]="'Subnivel'" (emitidor)="busqueda.idSubnivel= $event; buscar()"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [datos]="listas.sucursales" [etiqueta]="'Sucursal'" (emitidor)="busqueda.idSucursal= $event; buscar()"></app-select>
+                </div>
+                <div class="col-sm-2">
+                    <app-select [datos]="generales.meses" [etiqueta]="'Mes'" (emitidor)="busqueda.mes = $event; buscar()"></app-select>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Meta por mes</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Meta por mes</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Meta por mes</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-meta-mes-ventas *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-meta-mes-ventas>
+    <app-modal-meta-mes-ventas *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-meta-mes-ventas>
+</app-modal>

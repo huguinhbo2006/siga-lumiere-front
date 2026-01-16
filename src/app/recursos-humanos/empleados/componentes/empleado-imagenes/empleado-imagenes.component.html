@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Imagenes</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.actaNacimiento" [valor]="dato.actaNacimiento" (emitidor)="dato.actaNacimiento"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.comprobanteDomicilio" [valor]="dato.comprobanteDomicilio" (emitidor)="dato.comprobanteDomicilio"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.curp" [valor]="dato.curp" (emitidor)="dato.curp"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.ifef" [valor]="dato.ifef" (emitidor)="dato.ifef"></app-imagen>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.ifet" [valor]="dato.ifet" (emitidor)="dato.ifet"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.rfc" [valor]="dato.rfc" (emitidor)="dato.rfc"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.carta1" [valor]="dato.carta1" (emitidor)="dato.carta1"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.carta2" [valor]="dato.carta2" (emitidor)="dato.carta2"></app-imagen>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.nss" [valor]="dato.nss" (emitidor)="dato.nss"></app-imagen>
+    </div>
+    <div class="col-sm-3">
+        <app-imagen [imagen]="dato.comporbanteEstudios" [valor]="dato.comporbanteEstudios" (emitidor)="dato.comporbanteEstudios"></app-imagen>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Guardar</button>
+        <button class="btn btn-danger" (click)="cerrar()">Anterior</button>
+    </div>
+</div>

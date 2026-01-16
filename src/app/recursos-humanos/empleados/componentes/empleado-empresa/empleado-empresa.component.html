@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos de la empresa</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Sueldo base'" [validacion]="'decimal'" [valor]="dato.sueldoBase" (emitidor)="dato.sueldoBase = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Sueldo fiscal'" [validacion]="'decimal'" [valor]="dato.sueldoFiscal" (emitidor)="dato.sueldoFiscal = $event"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Bono de puntualidad'" [validacion]="'decimal'" [valor]="dato.bono" (emitidor)="dato.bono = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Sucursal'" [datos]="listas.sucursales" [dato]="dato.idSucursal" (emitidor)="dato.idSucursal = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Departamento'" [datos]="listas.departamentos" [dato]="dato.idDepartamento" (emitidor)="dato.idDepartamento = $event; buscarPuestos();"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [obligatorio]="true" [etiqueta]="'Puesto'" [datos]="puestos" [dato]="dato.idPuesto" (emitidor)="dato.idPuesto = $event;"></app-select>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cerrar()">Anterior</button>
+    </div>
+</div>

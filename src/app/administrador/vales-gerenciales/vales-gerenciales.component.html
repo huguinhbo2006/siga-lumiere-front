@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Vales gerenciales</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Vale gerencial</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Vale gerencial</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-vale-gerencial *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-vale-gerencial>
+    <app-modal-vale-gerencial *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-vale-gerencial>
+</app-modal>

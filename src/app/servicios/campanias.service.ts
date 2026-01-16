@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CampaniasService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + this.generales.getSesionToken()
   });
-  uri = this.generales.getUrl()+'/campanias/';
+  uri = environment.url + 'campanias/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

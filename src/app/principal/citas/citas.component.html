@@ -1,0 +1,18 @@
+<div class="col-xl-12 order-xl-1">
+    <div class="card shadow">
+        <div class="card-header bg-lumiere border-0">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <h3 class="mb-0 text-dark">Citas</h3>
+                </div>
+                <div class="col-4" *ngIf="seleccion !== undefined">
+                    <button class="btn btn-primary" (click)="verSeguimiento()"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <app-datatable [datos]="datos" [configuracion]="configuracion" (emitidor)="seleccion = $event"></app-datatable>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

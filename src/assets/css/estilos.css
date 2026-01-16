@@ -98,7 +98,7 @@
 }
 
 .card {
-    min-height: 100vh;
+    min-height: auto;
 }
 
 
@@ -140,4 +140,8 @@
 
 .btn {
     margin-right: 15px;
+}
+
+.btn-line {
+    margin-top: 30px;
 }

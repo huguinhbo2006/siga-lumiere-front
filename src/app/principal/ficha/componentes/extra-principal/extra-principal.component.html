@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [etiqueta]="'Concepto'" [datos]="lista" [dato]="dato.idConcepto" (emitidor)="dato.idConcepto = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-input [etiqueta]="'Monto'" [validacion]="'decimal'" [valor]="dato.monto" (emitidor)="dato.monto = $event;"></app-input>
+        </div>
+        <div class="col-sm-4">
+            <br><button class="btn btn-success" (click)="emitir();">Agregar</button>
+        </div>
+    </div>
+</div>

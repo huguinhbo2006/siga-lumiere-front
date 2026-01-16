@@ -63,7 +63,7 @@ export class CorteCajaComponent {
           )
           return false;
         }
-        if(this.generales.esNumero(login)){
+        if(!this.generales.esNumero(login)){
           swal.showValidationMessage(
             'El valor ingresado no es numerico'
           )
@@ -111,7 +111,7 @@ export class CorteCajaComponent {
           )
           return false;
         }
-        if(this.generales.esNumero(login)){
+        if(!this.generales.esNumero(login)){
           swal.showValidationMessage(
             'El valor ingresado no es numerico'
           )

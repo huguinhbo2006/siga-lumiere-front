@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Empleados</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Empleado</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Empleado</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Empleado</button>
+    <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Empleado</button>
+    <button class="btn btn-success" *ngIf="seleccion.activo" (click)="desactivar();">Desactivar Empleado</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Empleado</button>
+    <button class="btn btn-info" (click)="modal('sucursales')">Sucursales</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-empleado *ngSwitchCase="'nuevo'"></app-modal-empleado>
+    <app-modal-sucursales-empleado *ngSwitchCase="'sucursales'" [usuario]="seleccion"></app-modal-sucursales-empleado>
+</app-modal>

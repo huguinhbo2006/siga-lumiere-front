@@ -1,0 +1,3 @@
+<app-generales-alumno-principal [datos]="datos.generales" (emitidor)="personales($event);"></app-generales-alumno-principal>
+<app-padre-alumno-principal [datos]="datos.tutor" (emitidor)="tutor($event);"></app-padre-alumno-principal>
+<app-domicilio-alumno-principal [datos]="datos.domicilio" [estados]="listas.estados" [municipios]="listas.municipios" (emitidor)="domicilio($event);"></app-domicilio-alumno-principal>

@@ -1,0 +1,59 @@
+<div class="card card-stats mb-4 mb-lg-0 amo" (click)="emitir();">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-auto">
+                <div class="bg-white rounded-circle shadow">
+                    <img src="{{grupo.icono}}" alt="icono" style="width: 75px; height: 75px;">
+                </div>
+            </div>
+            <div class="col">
+                <app-titulo [color]="'primary'" [titulo]="grupo.curso" [fuente]="'info'"></app-titulo>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.nivel" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.subnivel" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.modalidad" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.categoria" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.turno" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.horario" [fuente]="'info'"></app-titulo>
+            </div> <br>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="'Inicio:'" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="'Fin:'" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="'Limite:'" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="grupo.inicio" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="grupo.fin" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [color]="'primary'" [titulo]="grupo.fin" [fuente]="'info'"></app-titulo>
+            </div>
+            <br><br><br>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.sede" [fuente]="'info'"></app-titulo>
+            </div>
+            <div class="col-sm-6">
+                <app-titulo [color]="'primary'" [titulo]="grupo.precio" [fuente]="'info'"></app-titulo>
+            </div>
+        </div>
+    </div>
+</div>

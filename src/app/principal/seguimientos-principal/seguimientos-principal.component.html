@@ -1,0 +1,40 @@
+<div class="col-xl-12 order-xl-1">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5 class="card-title">Seguimiento a {{prospecto.nombre}} {{prospecto.apellidoPaterno}} {{prospecto.apellidoMaterno}}</h5>
+                        <h5 class="card-title">
+                            Número: {{prospecto.celular}}
+                        </h5>
+                        <a href="https://wa.me/52{{prospecto.celular}}" target="_blank"><i class="fab fa-whatsapp text-success"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="tel:+{{prospecto.celular}}"><i class="fas fa-mobile-alt text-red"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{{prospecto.linkFacebook}}" target="_blank" *ngIf="prospecto.linkFacebook.length > 0"><i class="fab fa-facebook text-primary"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{{prospecto.linkInstagram}}" target="_blank" *ngIf="prospecto.linkInstagram.length > 0"><i class="fab fa-instagram text-pink"></i></a>
+                    </div>
+                    <div class="col-sm-3" *ngIf="seguimiento.estatus.toString() !== '2'">
+                        <br>
+                        <button class="btn btn-success" (click)="modal('nuevo');" title="Nuevo Seguimiento"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" (click)="modal('cita')" title="Nueva Cita"><i class="fas fa-calendar-plus"></i></button>
+                        <button class="btn btn-success" (click)="esVentas()" title="Inscribir Alumno"><i class="fas fa-file-alt"></i></button>
+                    </div>
+                    <div class="col-sm-3" *ngIf="seguimiento.estatus.toString() !== '2'">
+                        <app-select [datos]="listaEstatus" (emitidor)="confirmarModificarEstatus($event)"></app-select>
+                    </div>
+                </div>
+                <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                    <app-descripcion-seguimientos *ngFor="let item of descripciones" [descripcion]="item" (emitidorEstatusCita)="modificarEstatusCita($event)"></app-descripcion-seguimientos>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-nuevo-seguimiento *ngSwitchCase="'nuevo'" (emitidor)="guardarSeguimiento($event)"></app-modal-nuevo-seguimiento>
+    <app-modal-citas *ngSwitchCase="'cita'" (emitidor)="guardarCita($event)"></app-modal-citas>
+    <app-modal-inscripcion-sguimiento *ngSwitchCase="'inscripcion'" [alumno]="alumno" [grupo]="inscripcion" [esVentas]="false" [listas]="listas" (emitidor)="inscribir($event)"></app-modal-inscripcion-sguimiento>
+    <app-modal-inscripcion-sguimiento *ngSwitchCase="'inscripcionVentas'" [alumno]="alumno" [grupo]="inscripcion" [esVentas]="true" [listas]="listas" (emitidor)="inscribir($event)"></app-modal-inscripcion-sguimiento>
+    <app-modal-asignar-ficha (emitidor)="asignarFicha($event)" *ngSwitchCase="'asignar'"></app-modal-asignar-ficha>
+</app-modal>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
-import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatosPDFService {
-  uri = this.generales.getUrl() + '/pdf/';
+  constructor(private http: HttpClient, private generales: GeneralesService) { }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
-    Authorization : 'bearer ' + this.generales.getSesionToken()
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  constructor(private http: HttpClient, private generales: GeneralesService) { }
+  uri = environment.url+'pdf/';
 
   fichaInscripcion(ficha: any) {
     const url = this.uri + 'fichaInscripcion';

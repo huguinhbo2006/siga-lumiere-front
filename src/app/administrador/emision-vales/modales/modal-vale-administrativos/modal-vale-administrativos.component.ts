@@ -9,10 +9,14 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class ModalValeAdministrativosComponent {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
-    nombre: '',
+    monto: '',
+    observaciones: '',
+    idCalendario: 0,
+    idNivel: 0
   };
+  @Input() listas: any;
   @Input() modificar = false;
-  constructor(private generales: GeneralesService) { }
+  constructor(public generales: GeneralesService) { }
   
   ngOnInit(): void {
   }

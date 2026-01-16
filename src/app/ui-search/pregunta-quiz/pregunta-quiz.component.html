@@ -1,0 +1,29 @@
+<div class="row">
+    {{texto}}
+</div><br>
+<div class="row">
+    <div class="col-sm-1">
+        <div class="round">
+            <input type="radio" id="checkboxA{{numero}}" name="pregunta{{numero}}" (click)="valor = 'A'; emitir()" [checked]="valor === 'A'" />
+            <label for="checkboxA{{numero}}">A</label>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="round">
+            <input type="radio" id="checkboxB{{numero}}" name="pregunta{{numero}}" (click)="valor = 'B'; emitir()" [checked]="valor === 'B'" />
+            <label for="checkboxB{{numero}}">B</label>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="round">
+            <input type="radio" id="checkboxC{{numero}}" name="pregunta{{numero}}" (click)="valor = 'C'; emitir()" [checked]="valor === 'C'" />
+            <label for="checkboxC{{numero}}">C</label>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="round">
+            <input type="radio" id="checkboxD{{numero}}" name="pregunta{{numero}}" (click)="valor = 'D'; emitir()" [checked]="valor === 'D'" />
+            <label for="checkboxD{{numero}}">D</label>
+        </div>
+    </div>
+</div>

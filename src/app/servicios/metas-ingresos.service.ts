@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,13 @@ export class MetasIngresosService {
   constructor(private http: HttpClient, private generales: GeneralesService) { }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
-    Authorization : 'bearer ' + this.generales.getSesionToken()
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  uri = this.generales.getUrl()+'/metasIngresos/';
+  uri = environment.url+'metasIngresos/';
   
   mostrar() {
     const url = this.uri + 'mostrar';
-    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
   nuevo(body: any) {
@@ -40,8 +41,20 @@ export class MetasIngresosService {
   }
   
   validar(dato: any){
-    if(this.generales.validarString(dato.nombre)){
-      this.generales.mensajeError('No se ha ingresado el nombre');
+    if(this.generales.validarEntero(dato.idCalendario)){
+      this.generales.mensajeError('No se ha seleccionado un calendario');
+      return false;
+    }
+    if(this.generales.validarEntero(dato.idSucursal)){
+      this.generales.mensajeError('No se ha seleccionado una sucursal');
+      return false;
+    }
+    if(this.generales.validarEntero(dato.mes)){
+      this.generales.mensajeError('No se ha seleccionado un mes');
+      return false;
+    }
+    if(this.generales.validarString(dato.meta)){
+      this.generales.mensajeError('No se ha ingresado la meta');
       return false;
     }
     return true;

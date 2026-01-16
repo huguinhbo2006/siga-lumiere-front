@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-6" *ngFor="let ficha of datos">
+        <app-inscripcion [ficha]="ficha" (registro)="dato = $event; modal('registro');" (estatus)="dato = $event; modal('estatus');" (boleta)="imprimirBoleta($event);" (publicitarios)="dato = $event; modal('publicitarios');" (aspiracion)="dato = $event; modal('aspiracion');"
+            (seleccionar)="abrirFicha($event);"></app-inscripcion>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+    <app-modal-numero-registro-principal *ngSwitchCase="'registro'" [dato]="dato" (emitidor)="registro($event);"></app-modal-numero-registro-principal>
+    <app-modal-estatus-ficha-principal *ngSwitchCase="'estatus'" [dato]="dato" (emitidor)="estatus($event);"></app-modal-estatus-ficha-principal>
+    <app-modal-datos-publicitarios-principal *ngSwitchCase="'publicitarios'" [datos]="dato.publicitarios" [listas]="listas.publicitarios" (emitidor)="publicitarios($event);"></app-modal-datos-publicitarios-principal>
+    <app-modal-datos-aspiracion-principal *ngSwitchCase="'aspiracion'" [dato]="dato.aspiracion" [listas]="listas.aspiracion" (emitidor)="aspiraciones($event);"></app-modal-datos-aspiracion-principal>
+</app-modal>

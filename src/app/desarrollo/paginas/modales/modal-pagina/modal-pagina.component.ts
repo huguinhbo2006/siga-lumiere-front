@@ -9,8 +9,7 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class ModalPaginaComponent {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
-    nombre: '',
-    url: ''
+    nombre: ''
   };
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }

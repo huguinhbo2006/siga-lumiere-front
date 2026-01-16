@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <app-select [etiqueta]="'Concepto'" [datos]="lista" [dato]="dato.idConcepto" (emitidor)="dato.idConcepto = $event;"></app-select>
+        </div>
+        <div class="col-sm-3">
+            <app-select [etiqueta]="'Forma de pago'" [datos]="formas" [dato]="dato.idFormaPago" (emitidor)="dato.idFormaPago = $event;"></app-select>
+        </div>
+        <div class="col-sm-2">
+            <app-input [etiqueta]="'Monto'" [validacion]="'decimal'" [valor]="dato.monto" (emitidor)="dato.monto = $event;"></app-input>
+        </div>
+        <div class="col-sm-2" *ngIf="dato.idFormaPago > 1">
+            <app-select [etiqueta]="'Banco'" [datos]="bancos" [dato]="dato.idBanco" (emitidor)="dato.idBanco = $event;"></app-select>
+        </div>
+        <div class="col-sm-2">
+            <br>
+            <button class="btn btn-success" (click)="emitir();">Agregar</button>
+        </div>
+    </div>
+</div>

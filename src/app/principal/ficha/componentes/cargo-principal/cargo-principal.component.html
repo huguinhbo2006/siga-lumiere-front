@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Concepto'" [datos]="lista" (emitidor)="dato.idConcepto = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Monto'" [validacion]="'decimal'" (emitidor)="dato.monto = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <br><button class="btn btn-success" (click)="emitir();">Guardar</button>
+    </div>
+</div>

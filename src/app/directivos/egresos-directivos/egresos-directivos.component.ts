@@ -12,7 +12,7 @@ import { PdfService } from '../../servicios/pdf.service';
 export class EgresosDirectivosComponent {
   configuracion: datatableConfig = {
     alias: ['Nivel', 'Calendario', 'Folio', 'Fecha', 'Rubro', 'Tipo', 'Concepto', 'Pago', 'Monto'],
-    encabezados: ['nivel', 'calendario', 'folio', 'fecha', 'rubro', 'tipo', 'concepto', 'pago', 'monto'],
+    encabezados: ['nivel', 'calendario', 'folio', 'fecha', 'rubro', 'tipo', 'concepto', 'forma', 'monto'],
     busqueda: true
   };
   datos: any;
@@ -27,7 +27,8 @@ export class EgresosDirectivosComponent {
     idSucursal: 0,
     idFormaPago: 0,
     referencia: 0,
-    idNivel: 0
+    idNivel: 0,
+    dias: ''
   };
   listas = {
     calendarios: [],
@@ -59,6 +60,18 @@ export class EgresosDirectivosComponent {
       this.cargando = false;
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
+    },
+    error => {
+      this.cargando = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  gerentes(){
+    this.cargando = true;
+    this.servicio.gerentes(this.busqueda).subscribe((respuesta: any) => {
+      this.cargando = false;
+      this.datos = respuesta;
     },
     error => {
       this.cargando = false;

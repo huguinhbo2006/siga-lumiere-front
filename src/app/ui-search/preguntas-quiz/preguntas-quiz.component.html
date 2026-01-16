@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="width: 100%; overflow:scroll">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item" [ngClass]="{active: validarPregunta(pregunta)}" *ngFor="let pregunta of preguntas;let indice = index">
+                            <a class="page-link" (click)="seleccionarPregunta(indice); emitirMemoria();">{{indice + 1}}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div><br><br>
+    <div *ngIf="preguntaSeleccionada.indice > 0">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <b>Pregunta {{preguntaSeleccionada.indice}}</b>
+            </div>
+            <div class="col-sm-4"></div>
+        </div><br><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-input [etiqueta]="'Pregunta'" [valor]="preguntaSeleccionada.pregunta" (emitidor)="preguntaSeleccionada.pregunta = $event"></app-input>
+            </div>
+            <div class="col-sm-6">
+                <app-select [etiqueta]="'Lectura'" [datos]="listaLecturas" [dato]="preguntaSeleccionada.idLectura!" (emitidor)="preguntaSeleccionada.idLectura = $event"></app-select>
+            </div>
+            <div class="col-sm-6">
+                <app-pregunta-quiz [texto]="'Respuesta Correcta'" [numero]="0 " [valor]="preguntaSeleccionada.correcta" (emitidor)="preguntaSeleccionada.correcta = $event"></app-pregunta-quiz>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-pregunta-quiz [texto]="'Respuestas'" [numero]="preguntaSeleccionada.indice" (emitidor)="ver = $event"></app-pregunta-quiz>
+            </div>
+            <div class="col-sm-12" *ngIf="ver === 'A'">
+                <app-input [etiqueta]="'Respuesta A'" [valor]="preguntaSeleccionada.respuestaA" (emitidor)="preguntaSeleccionada.respuestaA = $event"></app-input>
+            </div>
+            <div class="col-sm-12" *ngIf="ver === 'B'">
+                <app-input [etiqueta]="'Respuesta B'" [valor]="preguntaSeleccionada.respuestaB" (emitidor)="preguntaSeleccionada.respuestaB = $event"></app-input>
+            </div>
+            <div class="col-sm-12" *ngIf="ver === 'C'">
+                <app-input [etiqueta]="'Respuesta C'" [valor]="preguntaSeleccionada.respuestaC" (emitidor)="preguntaSeleccionada.respuestaC = $event"></app-input>
+            </div>
+            <div class="col-sm-12" *ngIf="ver === 'D'">
+                <app-input [etiqueta]="'Respuesta D'" [valor]="preguntaSeleccionada.respuestaD" (emitidor)="preguntaSeleccionada.respuestaD = $event"></app-input>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-textarea [etiqueta]="'Solucion'" [valor]="preguntaSeleccionada.explicacion!" (emitidor)="preguntaSeleccionada.explicacion = $event"></app-textarea>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <button class="btn btn-success" (click)="emitir()">Guardar</button>
+        </div>
+    </div>
+</div>

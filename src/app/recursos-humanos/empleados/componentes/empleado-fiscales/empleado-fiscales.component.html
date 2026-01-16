@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Fiscales</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'Numero de seguro social'" [validacion]="'numero'" [cantidad]="11" [valor]="dato.nss" (emitidor)="dato.nss = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'RFC'" [validacion]="'rfc'" [valor]="dato.rfc" (emitidor)="dato.rfc = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [obligatorio]="true" [etiqueta]="'CURP'" [validacion]="'curp'" [valor]="dato.curp" (emitidor)="dato.curp = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [mayusculas]="true" [etiqueta]="'Numero de cuenta bancaria'" [valor]="dato.cuentaBancaria" (emitidor)="dato.cuentaBancaria = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [tipo]="'date'" [etiqueta]="'Fecha de alta al IMMS'" [valor]="dato.fechaAltaImms" (emitidor)="dato.fechaAltaImms = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [tipo]="'date'" [etiqueta]="'Fecha de ingreso'" [valor]="dato.fechaIngreso" (emitidor)="dato.fechaIngreso = $event;"></app-input>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="emitir()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cerrar()">Anterior</button>
+    </div>
+</div>

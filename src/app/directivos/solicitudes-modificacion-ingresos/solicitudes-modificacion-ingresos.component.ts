@@ -10,8 +10,8 @@ import { IngresosService } from '../../servicios/ingresos.service';
 })
 export class SolicitudesModificacionIngresosComponent {
   configuracion: datatableConfig = {
-    alias: ['Nombre'],
-    encabezados: ['nombre'],
+    alias: ['Folio', 'Empleado', 'Fecha de modificacion', 'Rubro', 'Tipo', 'Forma de pago', 'Metodo de pago', 'Cuenta', 'Banco', 'Concepto', 'Monto', 'Observaciones'],
+    encabezados: ['folio', 'empleado', 'fecha', 'rubro', 'tipo', 'forma', 'metodo', 'cuenta', 'banco', 'concepto', 'monto', 'observaciones'],
     busqueda: true
   };
   datos: any;

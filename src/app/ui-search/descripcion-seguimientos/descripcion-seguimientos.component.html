@@ -1,0 +1,28 @@
+<div class="vertical-timeline-item vertical-timeline-element">
+    <div>
+        <span class="vertical-timeline-element-icon bounce-in"><i class="{{descripcion.logo}}"></i></span>
+        <div class="vertical-timeline-element-content bounce-in">
+            <h4 class="timeline-title">{{descripcion.usuario}} - <span class="{{descripcion.colorEstatusSeguimiento}}">{{descripcion.nombreEstatusSeguimiento}}</span></h4>
+            <p>
+                {{descripcion.comentario}}
+            </p>
+            <p *ngIf="mostrarCita()">
+                Con Motivo: {{descripcion.motivoCita}}<br> Al Plantel: {{descripcion.plantelCita}}
+            </p>
+            <p *ngIf="descripcion.tipo.toString() === '2'">
+                Descuento: {{descripcion.descripcionDescuento}}<br> Caducidad: {{descripcion.caducidad}}
+            </p>
+            <a class="amo" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="mostrarCita()">
+                <h5 class="card-title text-uppercase text-muted mb-0 manita">
+                    {{descripcion.estatusCita}}
+                </h5>
+            </a>
+            <div class="dropdown-menu amo" aria-labelledby="dropdownMenuButton" *ngIf="descripcion.mostrarDatosCita">
+                <a class="dropdown-item" (click)="emitirEstatusCita(2)">Finalizada</a>
+                <a class="dropdown-item" (click)="emitirEstatusCita(3)">Cancelada</a>
+                <a class="dropdown-item" (click)="emitirEstatusCita(4)">No Asistio</a>
+            </div>
+            <span class="vertical-timeline-element-date">{{descripcion.fecha}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="imagen-seleccionable" [class.seleccionada]="dato.existe" (click)="toggle()" role="button" tabindex="0" (keydown.enter)="toggle()" (keydown.space)="toggle(); $event.preventDefault()" [attr.aria-pressed]="dato.existe">
+    <div class="cuadro">
+        <img [src]="dato.icono" [alt]="dato.nombre || 'imagen seleccionable'" />
+    </div>
+    <h6>{{dato.nombre}}</h6>
+</div>

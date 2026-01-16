@@ -1,0 +1,53 @@
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-info border-0">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <h3 class="mb-0 text-white">Calificador</h3>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-info" title="Recargar" (click)="mostrar();"><i class="fas fa-redo-alt"></i></button>
+                </div>
+                <div class="col-sm-4">
+                    <app-checktimes [activo]="verBuscar" (emitidor)="verBuscar = $event;"></app-checktimes>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-white">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let item of datos">
+                    <app-mostrar-grupos [grupo]="item" (emitidor)="calificar($event)"></app-mostrar-grupos>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-busquedas *ngIf="verBuscar" (emitidor)="verBuscar = $event;">
+    <div class="col-sm-12">
+        <app-select [datos]="listas.calendarios" [etiqueta]="'Calendarios'" (emitidor)="busqueda.idCalendario = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.niveles" [etiqueta]="'Niveles'" (emitidor)="busqueda.idNivel = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.subniveles" [etiqueta]="'Subniveles'" (emitidor)="busqueda.idSubnivel = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.modalidades" [etiqueta]="'Modalidad'" (emitidor)="busqueda.idModalidad = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.cursos" [etiqueta]="'Cursos'" (emitidor)="busqueda.idCurso = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.categorias" [etiqueta]="'Categorias'" (emitidor)="busqueda.idCategoria = $event; buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listas.turnos" [etiqueta]="'Turno'" (emitidor)="busqueda.idTurno = $event; traerHorarios(); buscar();"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <app-select [datos]="listaHorarios" [etiqueta]="'Horario'" (emitidor)="busqueda.idHorario = $event; buscar();"></app-select>
+    </div>
+</app-busquedas>
+<app-modal-generico [ngSwitch]="vista">
+</app-modal-generico>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -2,16 +2,20 @@ $(document).on("click", ".close", function() {
     $("#modal").modal('hide');
 });
 
+function activarTab(tab) {
+    $('#tab a[href="#' + tab + '"]').tab('show')
+}
+
 function mostrarMenu() {
     var body = document.body;
-    body.classList.add("g-sidenav-pinned");
-    body.classList.add("loco");
+    body.classList.add("g-sidenav-hide");
+    body.classList.remove("g-sidenav-show");
 }
 
 function ocultarMenu() {
     var body = document.body;
-    body.classList.remove("g-sidenav-pinned");
-    body.classList.remove("loco");
+    body.classList.remove("g-sidenav-hide");
+    body.classList.add("g-sidenav-show");
 }
 
 function menuEstatus() {
@@ -19,6 +23,13 @@ function menuEstatus() {
     var hasClase2 = body.classList.contains('g-sidenav-pinned');
     var hasClase2 = body.classList.contains('loco');
     return hasClase2;
+}
+
+function year(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    return edad;
 }
 
 function modal(accion) {

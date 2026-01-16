@@ -9,6 +9,15 @@ import { CatalogosModule } from '../catalogos/catalogos.module';
 import { DesarrolloModule } from '../desarrollo/desarrollo.module';
 import { DirectivosModule } from '../directivos/directivos.module';
 import { AdministradorModule } from '../administrador/administrador.module';
+import { AuditoriasModule } from '../auditorias/auditorias.module';
+import { ReportesModule } from '../reportes/reportes.module';
+import { RecursosHumanosModule } from '../recursos-humanos/recursos-humanos.module';
+import { VentasModule } from '../ventas/ventas.module';
+import { GerentesModule } from '../gerentes/gerentes.module';
+import { WebModule } from '../web/web.module';
+import { PrincipalModule } from '../principal/principal.module';
+import { LumiereSocialModule } from '../lumiere-social/lumiere-social.module';
+import { AplicacionModule } from '../aplicacion/aplicacion.module';
 
 
 @NgModule({
@@ -23,7 +32,16 @@ import { AdministradorModule } from '../administrador/administrador.module';
     CatalogosModule,
     DesarrolloModule,
     DirectivosModule,
-    AdministradorModule
+    AdministradorModule,
+    AuditoriasModule,
+    ReportesModule,
+    RecursosHumanosModule,
+    VentasModule,
+    GerentesModule,
+    WebModule,
+    PrincipalModule,
+    LumiereSocialModule,
+    AplicacionModule
   ]
 })
 export class HomeModule { }

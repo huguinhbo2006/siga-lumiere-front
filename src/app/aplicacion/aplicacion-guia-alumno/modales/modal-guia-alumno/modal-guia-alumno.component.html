@@ -1,0 +1,39 @@
+<div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
+    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Guia de alumno</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-input [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [titulo]="'Miniatura'"></app-titulo>
+                <app-imagen [imagen]="dato.miniatura" [valor]="dato.miniatura" (emitidor)="dato.miniatura = $event;"></app-imagen>
+            </div>
+            <div class="col-sm-4">
+                <app-titulo [titulo]="'Banner'"></app-titulo>
+                <app-imagen [imagen]="dato.banner" [valor]="dato.banner" (emitidor)="dato.banner = $event;"></app-imagen>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <app-select [etiqueta]="'Tipo'" [datos]="opciones" [dato]="dato.tipo" (emitidor)="dato.tipo = $event;"></app-select>
+            </div>
+            <div class="col-sm-10" *ngIf="dato.tipo.toString() === '1'">
+                <app-textarea [etiqueta]="'Contenido'" [valor]="dato.contenido" (emitidor)="dato.contenido = $event;"></app-textarea>
+            </div>
+            <div class="col-sm-10" *ngIf="dato.tipo.toString() === '2'">
+                <app-titulo [titulo]="'Contenido'"></app-titulo>
+                <app-imagen [imagen]="dato.contenido" [valor]="dato.contenido" (emitidor)="dato.contenido = $event;"></app-imagen>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

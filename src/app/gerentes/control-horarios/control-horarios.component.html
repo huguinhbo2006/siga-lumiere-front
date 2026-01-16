@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Control de horarios</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-checktimes [texto]="'Buscar'" [activo]="search" (emitidor)="search = $event"></app-checktimes>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-busquedas *ngIf="search" (emitidor)="search = false">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-select [datos]="listas.calendarios" [etiqueta]="'Calendarios'" (emitidor)="busqueda.idCalendario = $event;"></app-select>
+        </div>
+        <div class="col-sm-12">
+            <app-select [datos]="listas.sucursales" [etiqueta]="'Sucursales'" (emitidor)="busqueda.idSucursal = $event;"></app-select>
+        </div>
+        <div class="col-sm-12">
+            <app-select [datos]="listas.paridades" [etiqueta]="'Paridades'" (emitidor)="busqueda.idParidad = $event;"></app-select>
+        </div>
+        <div class="col-sm-12">
+            <button class="btn btn-info" (click)="traer();">Buscar</button>
+        </div>
+    </div>
+</app-busquedas>

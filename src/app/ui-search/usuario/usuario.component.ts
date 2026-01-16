@@ -8,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrl: './usuario.component.css'
 })
 export class UsuarioComponent {
+  user: any;
   constructor(private generales: GeneralesService,
               private router: Router){}
 
   ngOnInit(): void {
+    this.user = localStorage.getItem('nombre')?.toString();
   }
 
   cerrarSesion(){

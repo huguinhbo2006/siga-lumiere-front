@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">{{dato.nombre}}</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-info" (click)="vista = 0;">Datos</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-info" (click)="vista = 1">Inscripciones</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-success" (click)="modal('inscripcion');">Nueva Inscripcion</button>
+                </div>
+            </div>
+            <app-datos-alumno-principal *ngIf="vista === 0" [alumno]="dato.id" (emitidor)="dato.nombre = $event;"></app-datos-alumno-principal>
+            <app-fichas-alumno-principal *ngIf="vista === 1" [alumno]="dato.id"></app-fichas-alumno-principal>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="ventana">
+    <app-modal-inscripcion-principal [idAlumno]="dato.id" [codigos]="codigos" [grupos]="grupos" [cupos]="cupos" [listas]="listas" (emitidor)="inscripcion($event);" *ngSwitchCase="'inscripcion'"></app-modal-inscripcion-principal>
+</app-modal>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-percepcion-rh *ngIf="vista === 1" [conceptos]="listas.percepciones" [idDepartamento]="departamento" (emitidor)="nuevaPercepcion($event);"></app-percepcion-rh>
+                <app-deduccion-rh *ngIf="vista === 2" [conceptos]="listas.deducciones" [idDepartamento]="departamento" (emitidor)="nuevaDeduccion($event);"></app-deduccion-rh>
+            </div>
+        </div><br><br>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Concepto</h6>
+            </div>
+            <div class="col-sm-2">
+                <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor Unitario</h6>
+            </div>
+            <div class="col-sm-1">
+                <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cantidad</h6>
+            </div>
+            <div class="col-sm-2">
+                <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto</h6>
+            </div>
+            <div class="col-sm-2">
+                <h6 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Forma de pago</h6>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row text-success" *ngFor="let item of percepciones">
+            <div class="col-sm-3">{{generales.nombre(listas.percepciones, item.idConcepto)}}</div>
+            <div class="col-sm-2">{{'$' + generales.milesNumeros(item.valorUnitario.toString())}}</div>
+            <div class="col-sm-1">{{item.cantidad}}</div>
+            <div class="col-sm-2">{{'$' + generales.milesNumeros(item.monto)}}</div>
+            <div class="col-sm-2">{{generales.nombre(formas, item.idFormaPago)}}</div>
+            <div class="col-sm-1">
+                <i class="fas fa-times text-danger" (click)="quitarPercepcion(item);"></i>
+            </div>
+        </div>
+        <div class="row text-danger" *ngFor="let item of deducciones">
+            <div class="col-sm-3">{{generales.nombre(listas.deducciones, item.idConcepto)}}</div>
+            <div class="col-sm-2">{{'$' + generales.milesNumeros(item.valorUnitario.toString())}}</div>
+            <div class="col-sm-1">{{item.cantidad}}</div>
+            <div class="col-sm-2">{{'$' + generales.milesNumeros(item.monto)}}</div>
+            <div class="col-sm-2">{{generales.nombre(formas, item.idFormaPago)}}</div>
+            <div class="col-sm-1">
+                <i class="fas fa-times text-danger" (click)="quitarDeduccion(item);"></i>
+            </div>
+        </div>
+        <div class="row text-end">
+            <div class="col-sm-12">
+                ${{generales.milesNumeros(total)}}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-info" (click)="vista = 1">Percepciones</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-info" (click)="vista = 2">Deducciones</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

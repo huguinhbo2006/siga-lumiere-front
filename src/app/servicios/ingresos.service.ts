@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class IngresosService {
   constructor(private http: HttpClient, private generales: GeneralesService) { }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
-    Authorization : 'bearer ' + this.generales.getSesionToken()
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  uri = this.generales.getUrl()+'/ingresos/';
+  uri = environment.url+'ingresos/';
   
   mostrar(body: any) {
     const url = this.uri + 'mostrar';
@@ -49,6 +50,11 @@ export class IngresosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  gerentes(body: any){
+    const url = this.uri + 'gerentes';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   cargar(body: any){
     const url = this.uri + 'cargar';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
@@ -71,6 +77,11 @@ export class IngresosService {
 
   rechazar(body: any){
     const url = this.uri + 'rechazar';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  solicitar(body: any){
+    const url = this.uri + 'solicitar';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
@@ -131,7 +142,7 @@ export class IngresosService {
       this.generales.mensajeError('No se ha seleccionado una cuenta');
       return false;
     }
-    if (parseInt(dato.idFormaPago) !== 1 && this.generales.validarString(dato.imagen)) {
+    if (!dato.modificar && parseInt(dato.idFormaPago) !== 1 && this.generales.validarString(dato.imagen)) {
       this.generales.mensajeError('No se ha seleccionado una imagen');
       return false;
     }

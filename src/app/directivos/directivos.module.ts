@@ -17,6 +17,10 @@ import { PermisosComponent } from './permisos/permisos.component';
 import { AutorizacionNominasComponent } from './autorizacion-nominas/autorizacion-nominas.component';
 import { RecepcionValesComponent } from './recepcion-vales/recepcion-vales.component';
 import { SolicitudesModificacionIngresosComponent } from './solicitudes-modificacion-ingresos/solicitudes-modificacion-ingresos.component';
+import { SolicitudesModificacionEgresosComponent } from './solicitudes-modificacion-egresos/solicitudes-modificacion-egresos.component';
+import { SolicitudesNominasComponent } from './solicitudes-nominas/solicitudes-nominas.component';
+import { TransferenciasComponent } from './transferencias/transferencias.component';
+import { ModalTransferenciaComponent } from './transferencias/modales/modal-transferencia/modal-transferencia.component';
 
 
 
@@ -37,14 +41,22 @@ import { SolicitudesModificacionIngresosComponent } from './solicitudes-modifica
     PermisosComponent,
     AutorizacionNominasComponent,
     RecepcionValesComponent,
-    SolicitudesModificacionIngresosComponent
+    SolicitudesModificacionIngresosComponent,
+    SolicitudesModificacionEgresosComponent,
+    SolicitudesNominasComponent,
+    TransferenciasComponent,
+    ModalTransferenciaComponent
   ],
   imports: [
     CommonModule,
     UiSearchModule
   ],
   exports: [
-    ModalEgresoDirectivosComponent
+    ModalEgresoDirectivosComponent,
+    ModalIngresoDirectivosComponent,
+    ModalVoucherDirectivosComponent,
+    ModalVoucherEgresosDirectivosComponent,
+    ModalVoucherDirectivosComponent
   ]
 })
 export class DirectivosModule { }

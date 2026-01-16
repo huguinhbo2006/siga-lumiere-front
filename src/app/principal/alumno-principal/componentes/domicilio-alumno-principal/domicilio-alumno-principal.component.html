@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-sm-12">
+        <app-checktimes [activo]="datos.modificar" (emitidor)="datos.modificar= $event;" [texto]="'Domicilio'"></app-checktimes>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Calle'" [mayusculas]="true" [valor]="datos.calle" [activo]="!datos.modificar" (emitidor)="datos.calle = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Numero exterior'" [mayusculas]="true" [valor]="datos.numeroExterior" [activo]="!datos.modificar" (emitidor)="datos.numeroExterior = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Numero interior'" [mayusculas]="true" [valor]="datos.numeroInterior" [activo]="!datos.modificar" (emitidor)="datos.numeroInterior = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Colonia'" [mayusculas]="true" [valor]="datos.colonia" [activo]="!datos.modificar" (emitidor)="datos.colonia = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-input [etiqueta]="'Codigo postal'" [validacion]="'numero'" [cantidad]="5" [valor]="datos.codigoPostal" [activo]="!datos.modificar" (emitidor)="datos.codigoPostal = $event;"></app-input>
+    </div>
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Estado'" [datos]="estados" [dato]="datos.idEstado" [des]="!datos.modificar" (emitidor)="datos.idEstado = $event; datos.idMunicipio = 0; buscar();"></app-select>
+    </div>
+    <div class="col-sm-3">
+        <app-select [etiqueta]="'Municipio'" [datos]="lista" [dato]="datos.idMunicipio" [des]="!datos.modificar" (emitidor)="datos.idMunicipio = $event;"></app-select>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-12 text-end" *ngIf="datos.modificar">
+        <button class="btn btn-success" (click)="emitir();">Guardar</button>
+    </div>
+</div>

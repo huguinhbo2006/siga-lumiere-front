@@ -8,12 +8,12 @@
         <div class="container">
             <div class="row" *ngIf="seleccion === undefined">
                 <div class="col-sm-12">
-                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Municipio</button>
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Vale</button>
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-sm-12">
-                    <app-select [datos]="lista" [etiqueta]="''" (emitidor)="busqueda = $event; buscar()"></app-select>
+                    <app-select [datos]="listas.calendarios" [etiqueta]="'Calendario'" (emitidor)="busqueda = $event; buscar()"></app-select>
                 </div>
             </div><br>
             <div class="row">
@@ -28,9 +28,7 @@
 <app-botones *ngIf="seleccion !== undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Vale</button>
     <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Vale</button>
-    <button class="btn btn-danger" (click)="eliminar();">Eliminar Vale</button>
 </app-botones>
 <app-modal [ngSwitch]="vista">
-    <app-modal-vale-administrativos *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-vale-administrativos>
-    <app-modal-vale-administrativos *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-vale-administrativos>
+    <app-modal-vale-administrativos *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-vale-administrativos>
 </app-modal>

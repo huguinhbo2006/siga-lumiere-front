@@ -8,6 +8,19 @@ import { EgresosAdministrativosComponent } from './egresos-administrativos/egres
 import { DirectivosModule } from "../directivos/directivos.module";
 import { EmisionValesComponent } from './emision-vales/emision-vales.component';
 import { ModalValeAdministrativosComponent } from './emision-vales/modales/modal-vale-administrativos/modal-vale-administrativos.component';
+import { IngresosAdministrativosComponent } from './ingresos-administrativos/ingresos-administrativos.component';
+import { InscripcionesComponent } from './inscripciones/inscripciones.component';
+import { ModalInscripcionComponent } from './inscripciones/modales/modal-inscripcion/modal-inscripcion.component';
+import { AlumnoDatosComponent } from './inscripciones/componentes/alumno-datos/alumno-datos.component';
+import { InscripcionDatosComponent } from './inscripciones/componentes/inscripcion-datos/inscripcion-datos.component';
+import { DomicilioDatosComponent } from './inscripciones/componentes/domicilio-datos/domicilio-datos.component';
+import { TutorDatosComponent } from './inscripciones/componentes/tutor-datos/tutor-datos.component';
+import { EscolaresDatosComponent } from './inscripciones/componentes/escolares-datos/escolares-datos.component';
+import { PublicitariosDatosComponent } from './inscripciones/componentes/publicitarios-datos/publicitarios-datos.component';
+import { CuentaDatosComponent } from './inscripciones/componentes/cuenta-datos/cuenta-datos.component';
+import { TransferenciaSucursalesComponent } from './transferencia-sucursales/transferencia-sucursales.component';
+import { ValesGerencialesComponent } from './vales-gerenciales/vales-gerenciales.component';
+import { ModalValeGerencialComponent } from './vales-gerenciales/modales/modal-vale-gerencial/modal-vale-gerencial.component';
 
 
 
@@ -19,12 +32,35 @@ import { ModalValeAdministrativosComponent } from './emision-vales/modales/modal
        CursosCongeladosComponent,
        EgresosAdministrativosComponent,
        EmisionValesComponent,
-       ModalValeAdministrativosComponent
+       ModalValeAdministrativosComponent,
+       IngresosAdministrativosComponent,
+       InscripcionesComponent,
+       ModalInscripcionComponent,
+       AlumnoDatosComponent,
+       InscripcionDatosComponent,
+       DomicilioDatosComponent,
+       TutorDatosComponent,
+       EscolaresDatosComponent,
+       PublicitariosDatosComponent,
+       CuentaDatosComponent,
+       TransferenciaSucursalesComponent,
+       ValesGerencialesComponent,
+       ModalValeGerencialComponent
   ],
   imports: [
     CommonModule,
     UiSearchModule,
     DirectivosModule
-]
+],
+exports: [
+  AlumnoDatosComponent,
+  CuentaDatosComponent,
+  DomicilioDatosComponent,
+  EscolaresDatosComponent,
+  InscripcionDatosComponent,
+  PublicitariosDatosComponent,
+  TutorDatosComponent,
+  ModalInscripcionComponent
+]  
 })
 export class AdministradorModule { }

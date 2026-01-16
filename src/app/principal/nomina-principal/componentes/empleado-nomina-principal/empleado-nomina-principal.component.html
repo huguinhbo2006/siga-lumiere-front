@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Nivel'" [datos]="listas.niveles" [dato]="dato.idNivel" [des]="true"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="dato.idCalendario" [des]="true"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Departamento'" [datos]="listas.departamentos" [dato]="dato.idDepartamento" [des]="true"></app-select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Puesto'" [datos]="listas.puestos" [dato]="dato.idPuesto" [des]="true"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-select [etiqueta]="'Empleado'" [datos]="listas.empleados" [dato]="dato.idEmpleado" [des]="true"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Numero de quincena'" [validacion]="'numero'" [valor]="dato.quincena" (emitidor)="dato.quincena = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de inicio'" [tipo]="'date'" [valor]="dato.fechaInicio" (emitidor)="dato.fechaInicio = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de fin'" [tipo]="'date'" [valor]="dato.fechaFin" (emitidor)="dato.fechaFin = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Fecha de expedicion'" [tipo]="'date'" [valor]="dato.fechaExpedicion" (emitidor)="dato.fechaExpedicion = $event;"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-end">
+        <button class="btn btn-success" (click)="guardar();">Guardar</button>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

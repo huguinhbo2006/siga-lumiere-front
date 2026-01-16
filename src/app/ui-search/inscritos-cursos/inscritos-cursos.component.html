@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-sm-2">
+        <img src="{{seleccion.imagen}}" alt="img" style="width: 50px; height: 50px;">
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                {{seleccion.sucursal}} {{seleccion.curso}} {{seleccion.inscritos}} de {{seleccion.meta}} Inscritos
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="progress" style="height: 25px;">
+                    <div class="input-group-text">
+                        <input type="checkbox" [(ngModel)]="activo" (change)="seleccionar()" title="Selecciona si deseas ver meta general">
+                    </div>
+                    <div class="progress-bar progress-bar-striped {{bg}} progress-bar-animated" role="progressbar" [style]="'width:' + porcentaje + '%'">
+                        {{porcentaje}}%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

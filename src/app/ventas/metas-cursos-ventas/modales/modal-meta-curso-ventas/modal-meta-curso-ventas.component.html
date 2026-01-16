@@ -1,0 +1,41 @@
+<div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
+    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Meta por curso</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="listas.calendarios" [dato]="dato.idCalendario" [etiqueta]="'Calendario'" (emitidor)="dato.idCalendario = $event; traerNiveles();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="niveles" [dato]="dato.idNivel" [etiqueta]="'Nivel'" (emitidor)="dato.idNivel = $event; traerSubniveles();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="subniveles" [dato]="dato.idSubnivel" [etiqueta]="'Subnivel'" (emitidor)="dato.idSubnivel = $event; traerModalidades();"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="modalidades" [dato]="dato.idModalidad" [etiqueta]="'Modalidad'" (emitidor)="dato.idModalidad = $event; traerCursos();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="cursos" [dato]="dato.idCurso" [etiqueta]="'Curso'" (emitidor)="dato.idCurso = $event;"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [des]="modificar" [datos]="listas.sucursales" [dato]="dato.idSucursal" [etiqueta]="'Sucursal'" (emitidor)="dato.idSucursal = $event;"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-input [valor]="dato.meta" [etiqueta]="'Meta'" (emitidor)="dato.meta = $event"></app-input>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

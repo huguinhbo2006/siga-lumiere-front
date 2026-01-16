@@ -35,7 +35,8 @@ export class IngresosDirectivosComponent {
     idMetodoPago: 0,
     idFormaPago: 0,
     idSucursal: 0,
-    idReferencia: 0
+    idReferencia: 0,
+    dias: ''
   }
   datos: any;
   cargando = false;
@@ -69,8 +70,21 @@ export class IngresosDirectivosComponent {
       this.generales.interpretarError(error);
     });
   }
+
+  gerentes(){
+    this.cargando = true;
+    this.servicio.gerentes(this.busqueda).subscribe((respuesta: any) => {
+      this.cargando = false;
+      this.datos = respuesta;
+    },
+    error => {
+      this.cargando = false;
+      this.generales.interpretarError(error);
+    });
+  }
   
   nuevo(dato: any){
+    dato.modificar = false;
     if(this.servicio.validar(dato)){
       this.cargando = true;
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
@@ -88,6 +102,7 @@ export class IngresosDirectivosComponent {
   }
   
   modificar(dato: any){
+    dato.modificar = true;
     if(this.servicio.validar(dato)){
       this.cargando = true;
       this.servicio.modificar(dato).subscribe((respuesta: any) => {

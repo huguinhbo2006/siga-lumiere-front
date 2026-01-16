@@ -1,0 +1,28 @@
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-info border-0">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <h3 class="mb-0 text-white">Calificar Grupo</h3>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-primary" title="Boleta de Grupo" (click)="boletaGrupo()"><i class="fas fa-file-pdf"></i></button>
+                </div>
+                <div class="col-sm-4" *ngIf="seleccion !== undefined">
+                    <button class="btn btn-success" title="Calificar" (click)="calificar()"><i class="fas fa-file-signature"></i></button>
+                    <button class="btn btn-danger" title="Boleta de Alumno" (click)="boletaAlumno()"><i class="fas fa-file-pdf"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable (emitidor)="seleccion = $event;" [datos]="alumnos" [configuracion]="configuracion"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-calificar-alumno [ficha]="seleccion" *ngSwitchCase="'calificar'"></app-modal-calificar-alumno>
+</app-modal>

@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Comisiones por cursos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Comision</button>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <app-select [datos]="listas.calendarios" [etiqueta]="'Calendarios'" (emitidor)="busqueda = $event; buscar()"></app-select>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Comision</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-comision-curso *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-comision-curso>
+    <app-modal-comision-curso *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-comision-curso>
+</app-modal>

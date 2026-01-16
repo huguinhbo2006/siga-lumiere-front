@@ -1,19 +1,19 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GeneralesService } from './generales.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
+import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
   constructor(private http: HttpClient, private generales: GeneralesService) { }
-  token = '';
   headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'bearer' + this.generales.getSesionToken()
+    'Content-Type' : 'application/json',
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  uri = this.generales.getUrl() + 'usuarios/';
+  uri = environment.url+'usuarios/';
 
   nuevo(usuario: any) {
     const url = this.uri + 'nuevo';
@@ -23,5 +23,10 @@ export class UsuariosService {
   informacion(usuario: string | null) {
     const url = this.uri + 'informacion';
     return this.http.post(url, {usuario}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  modificarPassword(body: any) {
+    const url = this.uri + 'modificarPassword';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 }

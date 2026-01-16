@@ -11,7 +11,7 @@ import { PaginaService } from '../../servicios/pagina.service';
 export class PaginasComponent {
   configuracion: datatableConfig = {
     alias: ['Nombre', 'URL', 'Identificador'],
-    encabezados: ['nombre', 'url', 'id'],
+    encabezados: ['name', 'slug', 'id'],
     busqueda: true
   };
   datos: any;
@@ -35,7 +35,7 @@ export class PaginasComponent {
   
   mostrar(){
     this.cargando = true;
-    this.servicio.traerPaginas().subscribe((respuesta: any) => {
+    this.servicio.mostrar().subscribe((respuesta: any) => {
       this.cargando = false;
       this.datos = respuesta;
     },
@@ -46,27 +46,11 @@ export class PaginasComponent {
   }
   
   nuevo(dato: any){
-    if(this.servicio.validarPagina(dato)){
+    if(this.servicio.validar(dato)){
       this.cargando = true;
-      this.servicio.nuevaPagina(dato).subscribe((respuesta: any) => {
+      this.servicio.nuevo(dato).subscribe((respuesta: any) => {
         this.cargando = false;
         this.generales.mensajeCorrecto('Pagina agregado correctamente');
-        this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
-        this.generales.cerrarModal();
-      },
-      error => {
-        this.cargando = false;
-        this.generales.interpretarError(error);
-      });
-    }
-  }
-  
-  modificar(dato: any){
-    if(this.servicio.validarPagina(dato)){
-      this.cargando = true;
-      this.servicio.modificarPagina(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
-        this.generales.mensajeCorrecto('Pagina modificado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       },

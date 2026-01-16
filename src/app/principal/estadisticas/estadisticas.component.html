@@ -1,0 +1,87 @@
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-white shadow">
+        <div class="card-header bg-info border-0">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <h3 class="mb-0 text-white">ESTADISTICAS</h3>
+                    <button class="btn btn-info" title="Recargar" (click)="recargar()"><i class="fas fa-undo-alt"></i></button>
+                </div>
+                <div class="col-sm-4">
+                    <app-progress-bar [existe]="false" [meta]="metaGeneralLicenciatura" *ngIf="metaGeneralLicenciatura !== undefined"></app-progress-bar>
+                </div>
+                <div class="col-sm-4">
+                    <app-progress-bar [existe]="false" [meta]="metaGeneralPrepa" *ngIf="metaGeneralPrepa !== undefined"></app-progress-bar>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <app-select (emitidor)="busqueda.idCalendario = $event; buscar()" [datos]="listaCalendarios" [etiqueta]="'Calendario'"></app-select>
+                </div>
+                <div class="col-sm-3">
+                    <app-select (emitidor)="busqueda.idNivel = $event; buscar()" [datos]="listaNiveles" [etiqueta]="'Nivel'"></app-select>
+                </div>
+                <div class="col-sm-3">
+                    <app-select (emitidor)="busqueda.idSubnivel = $event; buscar()" [datos]="listaSubniveles" [etiqueta]="'Subnivel'"></app-select>
+                </div>
+                <div class="col-sm-3">
+                    <app-select (emitidor)="busqueda.idCategoria = $event; buscar()" [datos]="listaCategorias" [etiqueta]="'Categoria'"></app-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" *ngIf="existe">
+                    <canvas id="grafica" width="400" height="400"></canvas>
+                    <div class="col-sm-12" *ngIf="sucursalSeleccionada === 1">
+                        <app-select [datos]="listaSucursales" (emitidor)="sucursalOtras = $event;"></app-select>
+                    </div>
+                    <div *ngFor="let meta of metasCategorias, let i = index" class="col-sm-12">
+                        <div *ngFor="let goal of meta;">
+                            <ng-template [ngIf]="goal.id.toString() === sucursalOtras.toString()">
+                                <app-progress-bar [titulo]="goal.categoria" [meta]="goal" [existe]="true"></app-progress-bar>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <app-card [encabezado]="'Inscripcion por Sucursales'" [color]="'info'" [colorLetra]="'white'">
+                        <app-circulo-etiqueta [sucursal]="sucursales[indice]" [indice]="indice" [descripcion]="item" *ngFor="let item of datos, let indice = index"></app-circulo-etiqueta>
+                    </app-card>
+                </div>
+            </div>
+            <hr>
+            <div class="row" *ngIf="sucursalSeleccionada === 1  || sucursalSeleccionada === 7">
+                <div *ngFor="let metas of metasMes, let i = index" class="col-sm-6">
+                    <div *ngFor="let meta of metas">
+                        <ng-template [ngIf]="meta.meta > 0">
+                            <app-progress-bar [titulo]="' ' + generales.getMesNombre(meta.mes) + ' ' + meta.nivel + ' ' + meta.subnivel" [meta]="meta" [existe]="true"></app-progress-bar>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="sucursalSeleccionada !== 1 && sucursalSeleccionada !== 7">
+                <div *ngFor="let metas of metasMes, let i = index" class="col-sm-6">
+                    <div *ngFor="let meta of metas">
+                        <ng-template [ngIf]="meta.id.toString() === sucursalSeleccionada.toString()">
+                            <app-progress-bar [titulo]="' ' + generales.getMesNombre(meta.mes) + ' ' + meta.nivel + ' ' + meta.subnivel" [meta]="meta" [existe]="true"></app-progress-bar>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div *ngFor="let metas of metasCursos" class="col-sm-6">
+                    <h3 class="text-center">
+                        {{metas.key}}
+                    </h3>
+                    <div *ngFor="let meta of metas.datos">
+                        <ng-template [ngIf]="meta.id.toString() === sucursalOtras.toString()">
+                            <app-inscritos-cursos [meta]="meta" [existe]="true"></app-inscritos-cursos>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Ingresos</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row" *ngIf="seleccion === undefined">
+                <div class="col-sm-6">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Ingreso</button>
+                </div>
+                <div class="col-sm-6">
+                    <app-checktimes [texto]="'Buscar'" [activo]="search" (emitidor)="search = $event;"></app-checktimes>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-busquedas *ngIf="search" (emitidor)="search = false;">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-input [etiqueta]="'Dias'" (emitidor)="busqueda.dias = $event; gerentes();"></app-input>
+        </div>
+    </div>
+</app-busquedas>
+<app-botones *ngIf="seleccion !== undefined">
+    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Ingreso</button>
+    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Ingreso</button>
+    <button class="btn btn-danger" (click)="eliminar();">Eliminar Ingreso</button>
+    <button class="btn btn-info" (click)="imprimir();">Imprimir</button>
+    <button class="btn btn-primary" (click)="modal('voucher');" *ngIf="seleccion.idFormaPago.toString() !== '1'">Cargar Voucher</button>
+    <button class="btn btn-purple" (click)="verImagen();">Ver Voucher</button>
+</app-botones>
+<app-modal [ngSwitch]="vista">
+    <app-modal-ingreso-directivos *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-ingreso-directivos>
+    <app-modal-ingreso-directivos *ngSwitchCase="'modificar'" [modificar]="true" [listas]="listas" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-ingreso-directivos>
+    <app-modal-voucher-directivos *ngSwitchCase="'voucher'" (emitidor)="voucher($event);"></app-modal-voucher-directivos>
+    <img src="{{imagen}}" alt="voucher" *ngSwitchCase="'imagen'">
+</app-modal>

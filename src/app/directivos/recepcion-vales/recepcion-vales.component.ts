@@ -10,8 +10,8 @@ import { ValesService } from '../../servicios/vales.service';
 })
 export class RecepcionValesComponent {
   configuracion: datatableConfig = {
-    alias: ['Calendario', 'Monto', 'Sucursal de Emision', 'Fecha'],
-    encabezados: ['calendario', 'montoFormato', 'sucursal', 'fechaFormato'],
+    alias: ['Folio', 'Calendario', 'Monto', 'Sucursal de Emision', 'Fecha'],
+    encabezados: ['folio', 'calendario', 'montoFormato', 'sucursal', 'fechaFormato'],
     busqueda: true
   };
   datos: any;

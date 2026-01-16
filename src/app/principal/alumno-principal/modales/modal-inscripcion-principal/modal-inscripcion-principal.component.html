@@ -1,0 +1,10 @@
+<div class="modal-header bg-success">
+    <h4 class="text-white">Inscripcion - {{texto}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <app-inscripcion-datos [ventas]="ventas" [listas]="listas.inscripcion" [datos]="ficha.inscripcion" [grupos]="grupos" [cupos]="cupos" (siguiente)="asignarInscripcion($event)" *ngIf="paso === 1"></app-inscripcion-datos>
+    <app-escolares-alumno-principal [datos]="ficha.escolares" [listas]="listas.escolares" (anterior)="paso = 1; asignarTexto();" (siguiente)="asignarEscolares($event);" *ngIf="paso === 2"></app-escolares-alumno-principal>
+    <app-publicitarios-datos [datos]="ficha.publicitarios" [listas]="listas.publicitarios" [idNivel]="ficha.inscripcion.idNivel" (anterior)="paso = 2; asignarTexto();" (siguiente)="asignarPublicitarios($event);" *ngIf="paso === 3"></app-publicitarios-datos>
+    <app-cuenta-datos [listas]="listas.cuenta" [costoCurso]="ficha.inscripcion.precio" [idCurso]="ficha.inscripcion.idCurso" (anterior)="paso = 3; asignarCuenta($event, true); asignarTexto();" (siguiente)="asignarCuenta($event, false);" *ngIf="paso === 4"></app-cuenta-datos>
+</div>

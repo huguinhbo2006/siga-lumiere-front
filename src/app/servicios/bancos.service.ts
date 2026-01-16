@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
-import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BancosService {
-  uri = this.generales.getUrl() + '/bancos/';
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + this.generales.getSesionToken()
   });
+  uri = environment.url + 'bancos/';
   constructor(private http: HttpClient, private generales: GeneralesService) { }
   
   mostrar() {

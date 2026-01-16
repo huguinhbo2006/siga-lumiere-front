@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Balance de cuentas</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let cuenta of cuentas">
+                    <app-card [encabezado]="cuenta.nombre">
+                        <div class="row">
+                            <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.total_ingresos)}}</b></div>
+                            <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.total_egresos)}}</b></div>
+                            <div class="col-sm-12 {{(cuenta.total_final > 0) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.total_final)}}</b></div>
+                        </div>
+                    </app-card>
+                </div>
+            </div><br><br>
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let sucursal of sucursales">
+                    <app-card [encabezado]="sucursal.nombre">
+                        <div class="row">
+                            <div class="col-sm-12"><b>Efectivo: ${{generales.milesNumeros(sucursal.total_final)}}</b></div>
+                            <div class="col-sm-12"><b>Vale Administrativo: ${{generales.milesNumeros(sucursal.total_vales)}}</b></div>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

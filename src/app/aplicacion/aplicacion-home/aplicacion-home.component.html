@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Datos del home</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <app-titulo [titulo]="'Video'"></app-titulo>
+                    <app-imagen [imagen]="datos.video" [valor]="datos.video" (emitidor)="datos.video = $event;"></app-imagen>
+                </div>
+                <div class="col-sm-4">
+                    <app-input [tipo]="'datetime-local'" [etiqueta]="'Fecha de examen'" [valor]="datos.fecha" (emitidor)="datos.fecha = $event;"></app-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-input [etiqueta]="'Instagram'" [valor]="datos.instagram" (emitidor)="datos.instagram = $event;"></app-input>
+                </div>
+                <div class="col-sm-12">
+                    <app-input [etiqueta]="'Facebook'" [valor]="datos.facebook" (emitidor)="datos.facebook = $event;"></app-input>
+                </div>
+                <div class="col-sm-12">
+                    <app-input [etiqueta]="'Tiktok'" [valor]="datos.tiktok" (emitidor)="datos.tiktok = $event;"></app-input>
+                </div>
+                <div class="col-sm-12">
+                    <app-input [etiqueta]="'Youtube'" [valor]="datos.youtube" (emitidor)="datos.youtube = $event;"></app-input>
+                </div>
+                <div class="col-sm-12">
+                    <app-input [etiqueta]="'Web'" [valor]="datos.web" (emitidor)="datos.web = $event;"></app-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-end">
+                    <button class="btn btn-success" (click)="modificar();">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

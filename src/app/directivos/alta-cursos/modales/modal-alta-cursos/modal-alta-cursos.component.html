@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <app-select [etiqueta]="'Calendarios'" [des]="modificar" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+                <app-select [etiqueta]="'Calendarios'" [des]="modificar" [datos]="calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
             </div>
             <div class="col-sm-4">
                 <app-select [etiqueta]="'Nivel'" [des]="modificar" [datos]="listas.niveles" [dato]="dato.idNivel" (emitidor)="dato.idNivel = $event;"></app-select>

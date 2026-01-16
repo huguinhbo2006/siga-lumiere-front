@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Medio de contacto'" [datos]="listas.contacto" [dato]="datos.idMedioContacto" (emitidor)="datos.idMedioContacto = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Medio publicitario'" [datos]="listas.medios" [dato]="datos.idMedioPublicitario" (emitidor)="datos.idMedioPublicitario = $event; traerVias(false);"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Via publicitaria'" [datos]="vias" [dato]="datos.idViaPublicitaria" (emitidor)="datos.idViaPublicitaria = $event;"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" *ngIf="idNivel.toString() !== '2'">
+            <app-select [obligatorio]="true" [etiqueta]="'Motivo de incripcion'" [datos]="listas.motivos" [dato]="datos.idMotivoInscripcion" (emitidor)="datos.idMotivoInscripcion = $event;"></app-select>
+        </div>
+        <div class="col-sm-4" *ngIf="idNivel.toString() === '2'">
+            <app-select [obligatorio]="true" [etiqueta]="'Motivo de terminar bachillerato'" [datos]="listas.bachillerato" [dato]="datos.idMotivoBachillerato" (emitidor)="datos.idMotivoBachillerato = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Campaña'" [datos]="listas.campanias" [dato]="datos.idCampania" (emitidor)="datos.idCampania = $event;"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <br>
+            <app-checktimes [texto]="'Ha tomado algun curso antes'" [activo]="datos.curso" (emitidor)="datos.curso = $event;"></app-checktimes>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Empresa'" [datos]="listas.empresas" [dato]="datos.idEmpresa" (emitidor)="datos.idEmpresa = $event;" *ngIf="datos.curso"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 text-start">
+            <button class="btn btn-success" (click)="emitirAnterior();">Anterior</button>
+        </div>
+        <div class="col-sm-6 text-end">
+            <button class="btn btn-success" (click)="emitirSiguiente();">Siguiente</button>
+        </div>
+    </div>
+</div>

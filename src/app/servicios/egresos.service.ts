@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class EgresosService {
   constructor(private http: HttpClient, private generales: GeneralesService) { }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
-    Authorization : 'bearer ' + this.generales.getSesionToken()
+    Authorization : 'bearer ' + localStorage.getItem('token')
   });
-  uri = this.generales.getUrl()+'/egresos/';
+  uri = environment.url+'egresos/';
   
   mostrar(body: any) {
     const url = this.uri + 'mostrar';
@@ -39,6 +40,11 @@ export class EgresosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  gerentes(body: any){
+    const url = this.uri + 'gerentes';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   actualizarVoucher(body: any){
     const url = this.uri + 'actualizarVoucher';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
@@ -56,6 +62,21 @@ export class EgresosService {
 
   solicitarModificacion(body: any){
     const url = this.uri + 'solicitarModificacion';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  mostrarSolicitudes(){
+    const url = this.uri + 'mostrarSolicitudes';
+    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  aceptarModificacion(body: any){
+    const url = this.uri + 'aceptarModificacion';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  rechazarModificacion(body: any){
+    const url = this.uri + 'rechazarModificacion';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   

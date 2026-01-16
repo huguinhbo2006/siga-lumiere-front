@@ -18,7 +18,7 @@ export class ModalHorariosComponent {
   @Input() dato = {
     id: 0,
   };
-  grupo = {
+  @Input() grupo = {
     idAltaCurso: 0,
     idHorario: 0,
     idTurno: 0
@@ -34,7 +34,7 @@ export class ModalHorariosComponent {
               private servicio: GruposService) { }
   
   ngOnInit(): void {
-    this.grupo.idAltaCurso = this.dato.id
+    this.grupo.idAltaCurso = this.dato.id;
     this.mostrar();
   }
 
@@ -56,7 +56,6 @@ export class ModalHorariosComponent {
   nuevo(){
     this.servicio.nuevo(this.grupo).subscribe((respuesta:any) => {
       this.listas.grupos = this.generales.agregarDatoArray(this.listas.grupos, respuesta);
-      this.grupo.idTurno = 0;
       this.grupo.idHorario = 0;
       this.buscar();
     },

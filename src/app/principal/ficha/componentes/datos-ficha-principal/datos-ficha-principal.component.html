@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row" *ngIf="reservacion.hay">
+        <div class="col-sm-4">
+            <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cupos:{{reservacion.cupo}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">inscritos: {{reservacion.inscritos}}</p>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row" *ngIf="!reservacion.hay">
+        <div class="col-sm-12">
+            <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No se ha reservado aula</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [des]="true" [obligatorio]="true" [etiqueta]="'Calendario'" [datos]="calendarios" [dato]="datos.idCalendario" (emitidor)="asignar(1, $event); traerNiveles();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [des]="true" [obligatorio]="true" [etiqueta]="'Nivel'" [datos]="niveles" [dato]="datos.idNivel" (emitidor)="asignar(2, $event); traerSubniveles();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [des]="true" [obligatorio]="true" [etiqueta]="'Subnivel'" [datos]="subniveles" [dato]="datos.idSubnivel" (emitidor)="asignar(3, $event); traerCategorias();"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Categoria'" [datos]="categorias" [dato]="datos.idCategoria" (emitidor)="asignar(4, $event); traerModalidades();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Modalidad'" [datos]="modalidades" [dato]="datos.idModalidad" (emitidor)="asignar(5, $event); traerCursos();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Curso'" [datos]="cursos" [dato]="datos.idCurso" (emitidor)="asignar(6, $event); traerSedes();"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Sede'" [datos]="sedes" [dato]="datos.idSede" (emitidor)="asignar(7, $event); traerTurnos(); traerSucursales();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Turno'" [datos]="turnos" [dato]="datos.idTurno" (emitidor)="asignar(8, $event); traerHorarios();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Horarios'" [datos]="horarios" [dato]="datos.idHorario" (emitidor)="asignar(9, $event); traerGrupo();"></app-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-select [des]="true" [obligatorio]="true" [etiqueta]="'Sucursal de inscripcion'" [datos]="sucursales" [dato]="datos.idSucursalInscripcion" (emitidor)="asignar(10, $event); traerCupo();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-select [obligatorio]="true" [etiqueta]="'Sucursal de imparticion'" [datos]="sucursales" [dato]="datos.idSucursalImparticion" (emitidor)="asignar(10, $event); traerCupo();"></app-select>
+        </div>
+        <div class="col-sm-4">
+            <app-input [mayusculas]="true" [etiqueta]="'Observaciones'" [valor]="datos.observaciones" (emitidor)="datos.observaciones = $event;"></app-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-success" (click)="emitirSiguiente();">Guardar</button>
+        </div>
+    </div>
+</div>
