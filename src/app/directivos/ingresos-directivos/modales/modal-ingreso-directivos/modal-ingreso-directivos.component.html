@@ -32,19 +32,19 @@
             <div class="col-sm-4">
                 <app-select [des]="modificar" [etiqueta]="'Nivel'" [dato]="dato.idNivel" [datos]="listas.niveles" (emitidor)="dato.idNivel = $event;"></app-select>
             </div>
-            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0' && dato.idFormaPago.toString() !== '6'">
                 <app-select [etiqueta]="'Banco'" [dato]="dato.idBanco" [datos]="listas.bancos" (emitidor)="dato.idBanco = $event;"></app-select>
             </div>
-            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0' && dato.idFormaPago.toString() !== '6'">
                 <app-select [etiqueta]="'Cuenta'" [dato]="dato.idCuenta" [datos]="listas.cuentas" (emitidor)="dato.idCuenta = $event;"></app-select>
             </div>
-            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0' && dato.idFormaPago.toString() !== '6'">
                 <app-input [valor]="dato.numeroReferencia" [etiqueta]="'Numero de Referencia'" (emitidor)="dato.numeroReferencia = $event"></app-input>
             </div>
-            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0' && dato.idFormaPago.toString() !== '6'">
                 <app-input [valor]="dato.nombreCuenta" [etiqueta]="'Propietario de la Cuenta'" (emitidor)="dato.nombreCuenta = $event"></app-input>
             </div>
-            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0'">
+            <div class="col-sm-4" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '0' && dato.idFormaPago.toString() !== '6'">
                 <app-imagen [imagen]="dato.imagen" [valor]="dato.imagen" (emitidor)="dato.imagen = $event;"></app-imagen>
             </div>
             <div class="col-sm-4">
