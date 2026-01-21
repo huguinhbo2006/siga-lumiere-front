@@ -126,23 +126,23 @@ export class IngresosService {
       this.generales.mensajeError('No se ha seleccionado un calendario');
       return false;
     }
-    if (parseInt(dato.idFormaPago) !== 1 && this.generales.validarString(dato.nombreCuenta)) {
+    if (parseInt(dato.idFormaPago) !== 1 && parseInt(dato.idFormaPago) !== 6 && this.generales.validarString(dato.nombreCuenta)) {
       this.generales.mensajeError('No se ha ingresado el nombre del propietario de la cuenta');
       return false;
     }
-    if (parseInt(dato.idFormaPago) !== 1 && this.generales.validarString(dato.numeroReferencia)) {
+    if (parseInt(dato.idFormaPago) !== 1 && parseInt(dato.idFormaPago) !== 6 && this.generales.validarString(dato.numeroReferencia)) {
       this.generales.mensajeError('No se ha ingresado el numero de referencia de la transaccion');
       return false;
     }
-    if (parseInt(dato.idFormaPago) !== 1 && this.generales.validarEntero(dato.idBanco)) {
+    if (parseInt(dato.idFormaPago) !== 1 && parseInt(dato.idFormaPago) !== 6 && this.generales.validarEntero(dato.idBanco)) {
       this.generales.mensajeError('No se ha seleccionado el banco');
       return false;
     }
-    if (parseInt(dato.idFormaPago) !== 1 && this.generales.validarEntero(dato.idCuenta)) {
+    if (parseInt(dato.idFormaPago) !== 1 && parseInt(dato.idFormaPago) !== 6 && this.generales.validarEntero(dato.idCuenta)) {
       this.generales.mensajeError('No se ha seleccionado una cuenta');
       return false;
     }
-    if (!dato.modificar && parseInt(dato.idFormaPago) !== 1 && this.generales.validarString(dato.imagen)) {
+    if (!dato.modificar && parseInt(dato.idFormaPago) !== 1 && parseInt(dato.idFormaPago) !== 6 && this.generales.validarString(dato.imagen)) {
       this.generales.mensajeError('No se ha seleccionado una imagen');
       return false;
     }
