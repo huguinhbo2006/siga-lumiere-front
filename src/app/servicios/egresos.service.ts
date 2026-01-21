@@ -105,7 +105,7 @@ export class EgresosService {
       this.generales.mensajeError('No se ha seleccionado una forma de pago');
       return false;
     }
-    if(dato.idFormaPago.toString() !== '1' && this.generales.validarEntero(dato.idCuenta)){
+    if(dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '6' && this.generales.validarEntero(dato.idCuenta)){
       this.generales.mensajeError('No se ha seleccionado una cuenta');
       return false;
     }
