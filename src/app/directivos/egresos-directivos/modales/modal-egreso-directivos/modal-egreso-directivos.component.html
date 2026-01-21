@@ -27,7 +27,7 @@
                 <app-select [datos]="listas.niveles" [dato]="dato.idNivel" [etiqueta]="'Niveles'" (emitidor)="dato.idNivel = $event;"></app-select>
             </div>
             <div class="col-sm-4">
-                <app-select [datos]="listas.cuentas" [dato]="dato.idCuenta" [etiqueta]="'Cuenta'" (emitidor)="dato.idCuenta = $event;" *ngIf="dato.idFormaPago.toString() !== '1'"></app-select>
+                <app-select [datos]="listas.cuentas" [dato]="dato.idCuenta" [etiqueta]="'Cuenta'" (emitidor)="dato.idCuenta = $event;" *ngIf="dato.idFormaPago.toString() !== '1' && dato.idFormaPago.toString() !== '6'"></app-select>
             </div>
             <div class="col-sm-8">
                 <app-textarea [valor]="dato.observaciones" [etiqueta]="'Observaciones'" (emitidor)="dato.observaciones = $event;"></app-textarea>
