@@ -17,6 +17,15 @@
             <div class="col-sm-4" *ngIf="dato.tipo.toString() === '2'">
                 <app-imagen [valor]="dato.contenido" [imagen]="dato.contenido" (emitidor)="dato.contenido = $event;"></app-imagen>
             </div>
+            <div class="col-sm-4">
+                <app-select [datos]="listas.secciones" [dato]="dato.idSeccion" [etiqueta]="'Seccion'" (emitidor)="dato.idSeccion = $event; traerTemas();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [datos]="listaTemas" [dato]="dato.idTema" [etiqueta]="'Tema'" (emitidor)="dato.idTema = $event; traerSubtemas();"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [datos]="listaSubtemas" [dato]="dato.idSubtema" [etiqueta]="'Subtema'" (emitidor)="dato.idSubtema = $event;"></app-select>
+            </div>
         </div>
         <div class="row justify-content-end">
             <div class="col-sm-12 d-md-flex justify-content-md-end">

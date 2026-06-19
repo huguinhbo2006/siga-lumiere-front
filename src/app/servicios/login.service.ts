@@ -19,7 +19,7 @@ export class LoginService {
       usuario: usuario,
       password: password
     };
-    const url = this.uri + 'nuevo';
+    const url = this.uri + 'token';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 }

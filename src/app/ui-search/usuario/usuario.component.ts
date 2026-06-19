@@ -13,7 +13,9 @@ export class UsuarioComponent {
               private router: Router){}
 
   ngOnInit(): void {
-    this.user = localStorage.getItem('nombre')?.toString();
+    this.generales.delay(4000).then(fun => {
+      this.user = localStorage.getItem('nombre')?.toString();
+    });
   }
 
   cerrarSesion(){

@@ -18,7 +18,11 @@ export class LecturasComponent {
   cargando = false;
   seleccion: any;
   vista: any;
-  
+  listas = {
+    secciones: [],
+    temas: [],
+    subtemas: []
+  }
   constructor(private generales: GeneralesService, private servicio: AplicacionLecturasService){}
   
   ngOnInit(): void {
@@ -37,7 +41,8 @@ export class LecturasComponent {
     this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
       this.cargando = false;
-      this.datos = respuesta;
+      this.datos = respuesta.datos;
+      this.listas = respuesta.listas;
     },
     error => {
       this.cargando = false;

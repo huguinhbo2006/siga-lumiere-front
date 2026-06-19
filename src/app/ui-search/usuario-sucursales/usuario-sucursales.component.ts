@@ -24,7 +24,6 @@ export class UsuarioSucursalesComponent {
   }
 
   buscar(){
-    console.log('Buscando');
     this.generales.delay(500).then(fun => {
       if(localStorage.getItem('entre')?.toString() === '1'){
         this.seleccionar(localStorage.getItem('sucursal'));

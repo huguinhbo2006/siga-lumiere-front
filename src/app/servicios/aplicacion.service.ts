@@ -13,7 +13,7 @@ export class AplicacionService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + 'A7bF2qLm9ZpXc4Wv3rTg5NnYjHk8sQdE1uR0tVoPwMiBlGySaDz'
   });
-  uri = environment.url + 'aplicacion/';
+  uri = environment.urlQuizes + 'aplicacion/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

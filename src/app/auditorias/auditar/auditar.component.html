@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Balance de cuentas</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <app-select [datos]="lista_bancos" [etiqueta]="'Banco'" (emitidor)="busqueda_posibles.idCuenta = $event;"></app-select>
+                </div>
+                <div class="col-sm-6">
+                    <br>
+                    <input type="file" (change)="onFileSelected($event);">
+                </div>
+                <div class="col-sm-2">
+                    <br>
+                    <button class="btn btn-success" (click)="posibles();">Buscar</button>
+                </div>
+            </div><br>
+            <div class="row">
+                <app-dato-estado-cuenta *ngFor="let item of transaccionesIngresos" [dato]="item" (confirmar)="confirmar($event);"></app-dato-estado-cuenta>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>

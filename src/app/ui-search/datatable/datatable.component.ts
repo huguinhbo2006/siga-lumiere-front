@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { elementAt } from 'rxjs';
+declare function exportCSVFile(headers: any, items: any, filename: string): void;
 
 @Component({
   selector: 'app-datatable',
@@ -38,6 +39,10 @@ export class DatatableComponent {
     if(this.datos !== undefined && this.datos.length > 0){
       this.configurar();
     }
+  }
+
+  toExcel() {
+    exportCSVFile(null, this.datos, 'Prueba');
   }
 
   esIcono(icono: any): boolean{

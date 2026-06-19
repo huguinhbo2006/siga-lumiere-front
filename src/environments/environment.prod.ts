@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  url: 'https://api.lumieresiga.com/'
+  url: 'https://api.lumieresiga.com/',
+  urlQuizes: 'https://quizes.cursoslumiere.com/'
 };

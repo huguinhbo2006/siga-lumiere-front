@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 import { InscripcionesService } from '../../../../servicios/inscripciones.service';
+import { CuponesService } from '../../../../servicios/cupones.service';
 
 @Component({
   selector: 'app-cuenta-datos',
@@ -30,8 +31,9 @@ export class CuentaDatosComponent {
   @Output() anterior = new EventEmitter<any>();
   total = 0;
   agregar = 0
+  cupon: any;
   
-  constructor(public generales: GeneralesService, private servicio: InscripcionesService){}
+  constructor(public generales: GeneralesService, private servicio: InscripcionesService, private cupones: CuponesService){}
   
   ngOnInit(){
     let cargo = {
@@ -153,5 +155,33 @@ export class CuentaDatosComponent {
 
   emitirSiguiente(){
     this.siguiente.emit(this.cuenta);
+  }
+
+  canjear(){
+    const body = {
+      cupon: this.cupon
+    }
+
+    this.cupones.canjear(body).subscribe((respuesta: any) => {
+      let dato = {
+        idConcepto: 0,
+        cantidad: '1',
+        idTipo: 1,
+        monto: respuesta.monto,
+        idCupon: respuesta.id,
+        id: this.cuenta.descuentos.length + 1
+      }
+
+      if(!this.servicio.validarDescuento(dato)){
+        return ;
+      }
+      this.cuenta.descuentos.push(dato);
+      this.recargar(2);
+      this.calcular();
+    }, (error: any) => {
+      this.generales.interpretarError(error);
+    });
+
+    
   }
 }

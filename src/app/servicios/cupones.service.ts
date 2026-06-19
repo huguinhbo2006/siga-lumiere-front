@@ -19,4 +19,9 @@ export class CuponesService {
     const url = this.uri + 'cursosCongelados';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
+
+  canjear(body: any) {
+    const url = this.uri + 'canjear';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
 }

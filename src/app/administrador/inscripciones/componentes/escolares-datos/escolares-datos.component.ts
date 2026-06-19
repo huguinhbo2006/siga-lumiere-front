@@ -27,12 +27,14 @@ export class EscolaresDatosComponent {
     centros: [],
     carreras: []
   }
+  @Input() idCalendario: any;
   @Output() siguiente = new EventEmitter<any>();
   @Output() anterior = new EventEmitter<any>();
   escuelas: any;
   municipios: any;
   centros: any;
   carreras: any;
+  @Input() nivel = 0;
   constructor(private generales: GeneralesService){}
   
   ngOnInit(){
@@ -45,8 +47,10 @@ export class EscolaresDatosComponent {
   }
 
   traerEscuelas(inicio: boolean){
+    const busqueda = (this.nivel === 1) ? 1 : 2;
     this.datos.idEscuela = (inicio) ? this.datos.idEscuela : 0;
     this.escuelas = this.generales.sublista(this.listas.escuelas, this.datos.idTipoEscuela, 'idTipo');
+    this.escuelas = this.generales.sublista(this.escuelas, this.nivel, 'grado');
   }
 
   traerMunicipios(inicio: boolean){
@@ -62,6 +66,7 @@ export class EscolaresDatosComponent {
   traerCarreras(inicio: boolean){
     this.datos.idCarrera = (inicio) ? this.datos.idCarrera : 0;
     this.carreras = this.generales.sublista(this.listas.carreras, this.datos.idCentroUniversitario, 'idCentroUniversitario');
+    this.carreras = this.generales.sublista(this.carreras, this.idCalendario, 'idCalendario');
   }
 
   emitirAnterior(){

@@ -14,10 +14,15 @@ export class RecepcionValesComponent {
     encabezados: ['folio', 'calendario', 'montoFormato', 'sucursal', 'fechaFormato'],
     busqueda: true
   };
+  recepciones = [
+    { id: 1, nombre: 'Coorporativo' },
+    { id: 10, nombre: 'Direccion' }
+  ]
   datos: any;
   cargando = false;
   seleccion: any;
   vista: any;
+  receptor = 0;
   
   constructor(private generales: GeneralesService, private servicio: ValesService){}
   
@@ -39,10 +44,12 @@ export class RecepcionValesComponent {
   
   aceptar(){
     this.cargando = true;
+    this.seleccion.idRecepcion = this.receptor;
     this.servicio.aceptar(this.seleccion).subscribe((respuesta: any) => {
       this.cargando = false;
       this.generales.mensajeCorrecto('Vale aceptado correctamente');
       this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
+      this.receptor = 0;
     },
     error => {
       this.cargando = false;

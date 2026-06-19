@@ -14,6 +14,7 @@ export class ModalEgresoDirectivosComponent {
     observaciones: '',
     idRubro: 0,
     idTipo: 0,
+    idSucursalGasto: 0,
     idCalendario: 0,
     idFormaPago: 0,
     idNivel: 0,
@@ -40,6 +41,10 @@ export class ModalEgresoDirectivosComponent {
       this.buscarTipos();
     }
     this.calendarios = this.generales.calendariosActuales(this.listas.calendarios);
+    const sucursalStr = localStorage.getItem('sucursal');
+
+    const sucursal = sucursalStr ? parseInt(sucursalStr) : 0;
+    this.dato.idSucursalGasto = (this.generales.validarEntero(this.dato.idSucursalGasto)) ? sucursal : this.dato.idSucursalGasto;
   }
 
   buscarTipos(){

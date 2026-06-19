@@ -121,6 +121,8 @@ import { AplicacionHomeComponent } from '../aplicacion/aplicacion-home/aplicacio
 import { AplicacionGuiaAlumnoComponent } from '../aplicacion/aplicacion-guia-alumno/aplicacion-guia-alumno.component';
 import { AplicacionCursosComponent } from '../aplicacion/aplicacion-cursos/aplicacion-cursos.component';
 import { BalanceCuentasComponent } from '../auditorias/balance-cuentas/balance-cuentas.component';
+import { AuditarComponent } from '../auditorias/auditar/auditar.component';
+import { ReporteVentasComponent } from '../reportes/reporte-ventas/reporte-ventas.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -234,6 +236,8 @@ const routes: Routes = [
     { path: 'aplicacionGuiasAlumno', canActivate: [auntenticacionGuard], component: AplicacionGuiaAlumnoComponent },
     { path: 'aplicacionCursos', canActivate: [auntenticacionGuard], component: AplicacionCursosComponent },
     { path: 'balanceCuentas', canActivate: [auntenticacionGuard], component: BalanceCuentasComponent },
+    { path: 'auditar', canActivate: [auntenticacionGuard], component: AuditarComponent },
+    { path: 'reporteVentas', canActivate: [auntenticacionGuard], component: ReporteVentasComponent },
     { path: 'temas/:id/:nombre', canActivate: [auntenticacionGuard], component: TemasComponent },
     { path: 'subtemas/:id/:nombre', canActivate: [auntenticacionGuard], component: SubtemasComponent },
     { path: 'quizes/:id/:nombre', canActivate: [auntenticacionGuard], component: QuizesComponent },

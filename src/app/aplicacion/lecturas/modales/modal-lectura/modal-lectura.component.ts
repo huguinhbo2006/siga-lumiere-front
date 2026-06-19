@@ -11,9 +11,19 @@ export class ModalLecturaComponent {
   @Input() dato = {
     nombre: '',
     tipo: 0,
-    contenido: ''
+    contenido: '',
+    idSeccion: 0,
+    idTema: 0,
+    idSubtema: 0
   };
   @Input() modificar = false;
+  @Input() listas = {
+    secciones: [],
+    temas: [],
+    subtemas: []
+  }
+  listaTemas: any;
+  listaSubtemas: any;
   tipos = [
     { id: 1, nombre: 'Lectura' },
     { id: 2, nombre: 'Imagen' },
@@ -21,6 +31,17 @@ export class ModalLecturaComponent {
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {
+  }
+
+  traerTemas(){
+    this.dato.idTema = 0;
+    this.dato.idSubtema = 0;
+    this.listaTemas = this.generales.sublista(this.listas.temas, this.dato.idSeccion, 'idSeccion');
+  }
+
+  traerSubtemas(){
+    this.dato.idSubtema = 0;
+    this.listaSubtemas = this.generales.sublista(this.listas.subtemas, this.dato.idTema, 'idTema');
   }
   
   emitir() {

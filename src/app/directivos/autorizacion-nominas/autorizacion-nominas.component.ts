@@ -3,6 +3,7 @@ import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
 import { NominasService } from '../../servicios/nominas.service';
 import { PdfService } from '../../servicios/pdf.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-autorizacion-nominas',
@@ -24,7 +25,7 @@ export class AutorizacionNominasComponent {
   }
   listado: any
   idSucursal = 0;
-  constructor(private generales: GeneralesService, private servicio: NominasService, private pdf: PdfService){}
+  constructor(private generales: GeneralesService, private servicio: NominasService, private pdf: PdfService, private router: Router){}
   
   ngOnInit(): void {
     this.mostrar();
@@ -70,7 +71,7 @@ export class AutorizacionNominasComponent {
   }
 
   modificar(){
-
+    this.router.navigate(['/admin/nomina', this.seleccion[0].id]);
   }
 
   imprimir(){

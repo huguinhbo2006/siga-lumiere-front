@@ -44,4 +44,9 @@ export class BalancesService {
     const url = this.uri + 'cuentas';
     return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
+
+  nuevoCorte(body: any){
+    const url = this.uri + 'nuevoCorte';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
 }

@@ -1,0 +1,226 @@
+<div class="card mb-3">
+
+    <div class="card-header cursor-pointer" (click)="toggle()">
+
+        <!-- FILA 1 -->
+
+        <div class="row align-items-center">
+
+            <div class="col">
+
+                <h6 class="mb-0">
+                    Fila CSV #{{ dato.numeroFila }}
+                </h6>
+
+            </div>
+
+            <div class="col-auto">
+
+                <span *ngIf="dato.coincidencias?.length" class="badge bg-success">
+
+                    {{ dato.coincidencias.length }}
+                    coincidencia(s)
+
+                </span>
+
+                <span *ngIf="!dato.coincidencias?.length && !dato.auditado" class="badge bg-danger">
+
+                    Sin coincidencias
+
+                </span>
+
+                <span *ngIf="!dato.coincidencias?.length && dato.auditado" class="badge bg-success">
+
+                    CONFIRMADO
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- FILA 2 -->
+
+        <div class="row mt-3">
+
+            <div class="col-md-4">
+
+                <small class="text-muted d-block">
+                    Monto
+                </small>
+
+                <strong>
+                    {{ dato.monto | currency:'MXN' }}
+                </strong>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <small class="text-muted d-block">
+                    Referencia
+                </small>
+
+                <strong>
+                    {{ dato.numeroReferencia || '-' }}
+                </strong>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <small class="text-muted d-block">
+                    Fecha
+                </small>
+
+                <strong>
+                    {{ dato.fecha || '-' }}
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- FILA 3 -->
+
+        <div class="mt-3">
+
+            <small class="text-muted d-block">
+                Concepto
+            </small>
+
+            <strong>
+                {{ dato.concepto }}
+            </strong>
+
+        </div>
+
+        <div *ngIf="dato.auditado">
+
+            <span class="badge bg-success">
+                Confirmado
+            </span>
+
+            <span class="ms-2">
+                Folio {{ dato.folioConfirmado }}
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card-body" *ngIf="abierto && !dato.auditado">
+
+        <div *ngIf="!dato.coincidencias?.length">
+
+            <div class="alert alert-warning mb-0">
+                No se encontraron posibles ingresos.
+            </div>
+
+        </div>
+
+        <div *ngFor="let ingreso of dato.coincidencias" class="border rounded p-3 mb-3">
+
+            <!-- FILA 1 -->
+
+            <div class="row align-items-center">
+
+                <div class="col">
+
+                    <h6 class="mb-0">
+                        Folio {{ ingreso.folio }}
+                    </h6>
+
+                </div>
+
+                <div class="col-auto">
+
+                    <span class="badge" [ngClass]="getBadgeClass(ingreso.porcentaje)">
+
+                        {{ ingreso.porcentaje }}%
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- FILA 2 -->
+
+            <div class="row mt-3">
+
+                <div class="col-md-4">
+
+                    <small class="text-muted d-block">
+                        Monto
+                    </small>
+
+                    <strong [class.text-success]="coincideMonto(ingreso)" [class.text-danger]="!coincideMonto(ingreso)">
+
+                        {{ ingreso.monto | currency:'MXN' }}
+
+                    </strong>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <small class="text-muted d-block">
+                        Referencia
+                    </small>
+
+                    <strong [class.text-success]="coincideReferencia(ingreso)" [class.text-danger]="!coincideReferencia(ingreso)">
+
+                        {{ ingreso.numeroReferencia || '-' }}
+
+                    </strong>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <small class="text-muted d-block">
+                        Fecha
+                    </small>
+
+                    <strong [class.text-success]="coincideFecha(ingreso)" [class.text-danger]="!coincideFecha(ingreso)">
+
+                        {{ ingreso.fecha || '-' }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <!-- FILA 3 -->
+
+            <div class="mt-3">
+
+                <small class="text-muted d-block">
+                    Concepto
+                </small>
+
+                <strong [class.text-success]="coincideConcepto(ingreso)" [class.text-danger]="!coincideConcepto(ingreso)">
+
+                    {{ ingreso.concepto }}
+
+                </strong>
+
+            </div>
+            <span *ngIf="dato.auditado" class="badge bg-success">
+
+                Confirmado
+
+            </span>
+            <div class="text-end mt-3">
+
+                <button *ngIf="!dato.auditado" class="btn btn-success btn-sm" (click)="confirmarIngreso(ingreso)">Confirmar</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

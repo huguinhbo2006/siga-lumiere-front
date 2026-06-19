@@ -13,7 +13,7 @@ export class AplicacionLecturasService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + 'A7bF2qLm9ZpXc4Wv3rTg5NnYjHk8sQdE1uR0tVoPwMiBlGySaDz'
   });
-  uri = environment.url + 'lecturas/';
+  uri = environment.urlQuizes + 'lecturas/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

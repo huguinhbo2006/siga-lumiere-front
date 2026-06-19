@@ -26,7 +26,9 @@ export class ReporteEgresosComponent {
               'Tipo',
               'Concepto',
               'Pago',
-              'Monto'
+              'Cuenta',
+              'Monto',
+              'Estatus'
             ];
   listaNiveles: any;
   listaCalendarios: any;

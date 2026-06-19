@@ -66,6 +66,17 @@ export class ModalInscripcionComponent {
   @Input() ventas = false;
   @Output() emitidor = new EventEmitter<any>();
   paso = 1;
+  ultimoPasoDisponible = 1;
+
+  tabs = [
+    { id: 1, texto: 'Alumno' },
+    { id: 2, texto: 'Curso' },
+    { id: 3, texto: 'Domicilio' },
+    { id: 4, texto: 'Tutor' },
+    { id: 5, texto: 'Escolares' },
+    { id: 6, texto: 'Publicidad' },
+    { id: 7, texto: 'Cuenta' }
+  ];
   ficha = {
     alumno: {
       nombre: '',
@@ -140,21 +151,39 @@ export class ModalInscripcionComponent {
   ngOnInit(): void {
   }
 
+  cambiarPaso(paso: number): void {
+    if (paso <= this.ultimoPasoDisponible) {
+      this.paso = paso;
+      this.asignarTexto();
+    }
+  }
+  
+  desbloquearPaso(paso: number): void {
+    if (paso > this.ultimoPasoDisponible) {
+      this.ultimoPasoDisponible = paso;
+    }
+  }
+
   asignarAlumno(datos: any): any{
     if(!this.servicio.validarAlumno(datos)){
       return 0;
     }
     this.ficha.alumno = datos;
+
+    this.desbloquearPaso(2);
+    
     this.paso = 2;
     this.asignarTexto();
-    console.log(this.paso);
   }
 
   asignarInscripcion(datos: any): any{
     if(!this.servicio.validarInscripcion(datos)){
       return 0;
     }
-    this.ficha.inscripcion = datos
+    this.ficha.inscripcion = datos;
+
+    this.desbloquearPaso(3);
+    
     this.paso = 3;
     this.asignarTexto();
   }
@@ -164,6 +193,9 @@ export class ModalInscripcionComponent {
       return 0;
     }
     this.ficha.domicilio = datos;
+    
+    this.desbloquearPaso(4);
+    
     this.paso = 4;
     this.asignarTexto();
   }
@@ -173,6 +205,9 @@ export class ModalInscripcionComponent {
       return 0;
     }
     this.ficha.tutor = datos;
+
+    this.desbloquearPaso(5);
+    
     this.paso = 5;
     this.asignarTexto();
   }
@@ -182,6 +217,9 @@ export class ModalInscripcionComponent {
       return 0;
     }
     this.ficha.escolares = datos;
+
+    this.desbloquearPaso(6);
+    
     this.paso = 6;
     this.asignarTexto();
   }
@@ -192,6 +230,9 @@ export class ModalInscripcionComponent {
       return 0;
     }
     this.ficha.publicitarios = datos;
+
+    this.desbloquearPaso(7);
+    
     this.paso = 7;
     this.asignarTexto();
   }

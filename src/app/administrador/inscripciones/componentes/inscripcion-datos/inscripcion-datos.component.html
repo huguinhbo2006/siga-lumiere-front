@@ -50,10 +50,10 @@
     </div>
     <div class="row">
         <div class="col-sm-4" *ngIf="ventas">
-            <app-select [obligatorio]="true" [etiqueta]="'Sucursal de inscripcion'" [datos]="sucursales" [dato]="datos.idSucursalInscripcion" (emitidor)="asignar(10, $event); traerCupo();"></app-select>
+            <app-select [obligatorio]="true" [etiqueta]="'Sucursal de inscripcion'" [datos]="sucursales" [dato]="datos.idSucursalInscripcion" (emitidor)="this.datos.idSucursalInscripcion = $event; traerCupo();"></app-select>
         </div>
         <div class="col-sm-4">
-            <app-select [obligatorio]="true" [etiqueta]="'Sucursal de imparticion'" [datos]="sucursales" [dato]="datos.idSucursalImparticion" (emitidor)="asignar(10, $event); traerCupo();"></app-select>
+            <app-select [obligatorio]="true" [etiqueta]="'Sucursal de imparticion'" [datos]="sucursales" [dato]="datos.idSucursalImparticion" (emitidor)="this.datos.idSucursalImparticion = $event; traerCupo();"></app-select>
         </div>
         <div class="col-sm-4">
             <app-input [mayusculas]="true" [etiqueta]="'Observaciones'" [valor]="datos.observaciones" (emitidor)="datos.observaciones = $event;"></app-input>

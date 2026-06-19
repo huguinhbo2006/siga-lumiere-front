@@ -7,13 +7,22 @@
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
-                    "standalone": false
+                    "standalone": false,
+                    "skipTests": true
                 },
                 "@schematics/angular:directive": {
-                    "standalone": false
+                    "standalone": false,
+                    "skipTests": true
                 },
                 "@schematics/angular:pipe": {
-                    "standalone": false
+                    "standalone": false,
+                    "skipTests": true
+                },
+                "@schematics/angular:service": {
+                    "skipTests": true
+                },
+                "@schematics/angular:guard": {
+                    "skipTests": true
                 }
             },
             "root": "",
@@ -64,9 +73,10 @@
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.pruebas.ts"
                             }],
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "sourceMap": false,
+                            "outputHashing": "all"
                         },
                         "development": {
                             "optimization": false,

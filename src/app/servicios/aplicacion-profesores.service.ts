@@ -13,7 +13,7 @@ export class AplicacionProfesoresService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + 'A7bF2qLm9ZpXc4Wv3rTg5NnYjHk8sQdE1uR0tVoPwMiBlGySaDz'
   });
-  uri = environment.url + 'profesores/';
+  uri = environment.urlQuizes + 'profesores/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

@@ -49,6 +49,7 @@ import { ImageCropperComponent } from "ngx-image-cropper";
 import { WordTextoComponent } from './word-texto/word-texto.component';
 import { ImagenTextoComponent } from './imagen-texto/imagen-texto.component';
 import { ImagenSeleccionableComponent } from './imagen-seleccionable/imagen-seleccionable.component';
+import { DatoEstadoCuentaComponent } from './dato-estado-cuenta/dato-estado-cuenta.component';
 
 
 
@@ -99,6 +100,7 @@ import { ImagenSeleccionableComponent } from './imagen-seleccionable/imagen-sele
     WordTextoComponent,
     ImagenTextoComponent,
     ImagenSeleccionableComponent,
+    DatoEstadoCuentaComponent,
   ],
   imports: [
     CommonModule,
@@ -151,7 +153,8 @@ import { ImagenSeleccionableComponent } from './imagen-seleccionable/imagen-sele
     PreguntaQuizComponent,
     WordTextoComponent,
     ImagenTextoComponent,
-    ImagenSeleccionableComponent
+    ImagenSeleccionableComponent,
+    DatoEstadoCuentaComponent
   ]
 })
 export class UiSearchModule { }

@@ -97,11 +97,11 @@ export class InscripcionDatosComponent {
       idSede: (paso > 6) ? (paso === 7) ? dato : this.datos.idSede : 0,
       idTurno: (paso > 7) ? (paso === 8) ? dato : this.datos.idTurno : 0,
       idHorario: (paso > 8) ? (paso === 9) ? dato : this.datos.idHorario : 0,
-      idSucursalImparticion: (paso > 9) ? (paso === 10) ? dato : this.datos.idSucursalImparticion : 0,
-      idSucursalInscripcion: (paso > 9) ? (paso === 10) ? dato : this.datos.idSucursalInscripcion : 0,
+      idSucursalImparticion: this.datos.idSucursalImparticion,
+      idSucursalInscripcion: this.datos.idSucursalInscripcion,
       observaciones: this.datos.observaciones,
-      idGrupo: (paso === 10) ? this.datos.idGrupo : 0,
-      precio: (paso === 10) ? this.datos.precio : '',
+      idGrupo: (paso === 9) ? this.datos.idGrupo : 0,
+      precio: (paso === 9) ? this.datos.precio : '',
     }
   }
 

@@ -16,6 +16,7 @@
 </div>
 <app-cargando *ngIf="cargando"></app-cargando>
 <app-botones *ngIf="seleccion !== undefined">
-    <button class="btn btn-success" (click)="aceptar();">Aceptar</button>
+    <app-select [datos]="recepciones" [dato]="0" (emitidor)="receptor = $event;" [etiqueta]="'Sucursal'"></app-select>
+    <button class="btn btn-success" (click)="aceptar();" *ngIf="receptor > 0">Aceptar</button>
     <button class="btn btn-danger" (click)="rechazar()">Rechazar</button>
 </app-botones>

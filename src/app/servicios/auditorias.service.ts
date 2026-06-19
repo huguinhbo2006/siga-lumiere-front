@@ -54,4 +54,9 @@ export class AuditoriasService {
     const url = this.uri + 'voucherIngreso';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
+
+  posiblesIngresos(body: any){
+    const url = this.uri + 'posiblesIngresos';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
 }

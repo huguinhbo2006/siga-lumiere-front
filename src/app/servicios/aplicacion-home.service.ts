@@ -13,7 +13,7 @@ export class AplicacionHomeService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + 'A7bF2qLm9ZpXc4Wv3rTg5NnYjHk8sQdE1uR0tVoPwMiBlGySaDz'
   });
-  uri = environment.url + 'home/';
+  uri = environment.urlQuizes + 'home/';
   
   mostrar() {
     const url = this.uri + 'mostrar';

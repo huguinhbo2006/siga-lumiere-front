@@ -9,18 +9,15 @@ import swal from'sweetalert2';
   styleUrl: './balance-gerentes.component.css'
 })
 export class BalanceGerentesComponent {
-  ingresos: any;
-    egresos: any;
     cargando = false;
     total: any;
     administrativo: any;
-    listas = {
-      sucursales: []
-    }
     busqueda = localStorage.getItem('sucursal')?.toString();
     existe = false;
     monto: any;
-    constructor(private generales: GeneralesService, private servicios: BalancesService){
+    mostrarTotal = false;
+    cuentas: any;
+    constructor(public generales: GeneralesService, private servicios: BalancesService){
       this.mostrar();
     }
 
@@ -32,12 +29,13 @@ export class BalanceGerentesComponent {
       this.cargando = true;
       this.servicios.mostrar({id: this.busqueda}).subscribe((respuesta: any) => {
         this.cargando = false;
-        this.ingresos = respuesta.ingresos;
-        this.egresos = respuesta.egresos;
         this.total = respuesta.total;
         this.administrativo = respuesta.administrativo;
-      this.existe = respuesta.existe;
-        this.listas = respuesta.listas;
+        this.existe = respuesta.existe;
+        this.cuentas = respuesta.cuentas;
+        this.generales.delay(2000).then(fun => {
+          this.mostrarTotal = true;
+        });
       },
       error => {
         this.cargando = false;

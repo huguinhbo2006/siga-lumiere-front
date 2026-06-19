@@ -32,9 +32,9 @@ export class TemasComponent {
   ){}
   
   ngOnInit(): void {
-    this.mostrar();
     this.idSeccion = this.rutaActiva.snapshot.params['id'];
     this.nombreSeccion = this.rutaActiva.snapshot.params['nombre'];
+    this.mostrar();
   }
 
   ir(){
@@ -55,7 +55,7 @@ export class TemasComponent {
   
   mostrar(){
     this.cargando = true;
-    this.servicio.mostrar().subscribe((respuesta: any) => {
+    this.servicio.mostrar({id: this.idSeccion}).subscribe((respuesta: any) => {
       this.cargando = false;
       this.listado = respuesta.datos;
       this.lista = respuesta.lista;

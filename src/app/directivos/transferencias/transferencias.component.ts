@@ -10,8 +10,8 @@ import { TransferenciasService } from '../../servicios/transferencias.service';
 })
 export class TransferenciasComponent {
   configuracion: datatableConfig = {
-    alias: ['Calendario', 'Monto', 'Sucursal', 'Fecha'],
-    encabezados: ['calendario', 'montoFormato', 'sucursal', 'fechaFormato'],
+    alias: ['Calendario', 'Monto', 'Sucursal', 'Fecha', 'Emitido'],
+    encabezados: ['calendario', 'formato', 'entrada', 'date', 'salida'],
     busqueda: true
   };
   datos: any;

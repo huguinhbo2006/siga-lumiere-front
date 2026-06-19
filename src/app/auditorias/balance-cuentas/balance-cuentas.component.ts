@@ -29,4 +29,19 @@ export class BalanceCuentasComponent {
       this.generales.interpretarError(error);
     });
   }
+
+  crear(cuenta: any){
+    const body = {
+      idCuenta: cuenta
+    }
+    this.servicios.nuevoCorte(body).subscribe((respuesta: any) => {
+      this.cargando = false;
+      this.generales.mensajeCorrecto('Corte creado correctamente');
+      this.mostrar();
+    },
+    error => {
+      this.cargando = false;
+      this.generales.interpretarError(error);
+    });
+  }
 }

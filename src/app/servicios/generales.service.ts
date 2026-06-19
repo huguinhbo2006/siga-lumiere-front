@@ -130,6 +130,7 @@ export class GeneralesService {
   }
 
   interpretarError(error: any) {
+    console.log(error);
     if(error.status === 500){
       const mensaje = {
         archivo: error.error.file,
@@ -143,6 +144,7 @@ export class GeneralesService {
     else if(error.status === 400){
       this.mensajeError(error.error);
     }else if(error.status === 401) {
+      console.log('Aqui');
       this.mensajeError('Su sesión ha caducado');
       this.cerrarSesion();
       window.location.reload();
@@ -150,6 +152,7 @@ export class GeneralesService {
       this.mensajeCorrecto('La respuesta no es un error pero asi es interpretada');
     }
     else {
+      console.log(error);
       this.mensajeError('Error con codigo -' + error.status);
     }
   }

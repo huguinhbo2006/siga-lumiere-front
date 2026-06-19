@@ -10,9 +10,10 @@
                 <div class="col-sm-4" *ngFor="let cuenta of cuentas">
                     <app-card [encabezado]="cuenta.nombre">
                         <div class="row">
-                            <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.total_ingresos)}}</b></div>
-                            <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.total_egresos)}}</b></div>
-                            <div class="col-sm-12 {{(cuenta.total_final > 0) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.total_final)}}</b></div>
+                            <div class="col-sm-12"><button class="btn btn-info" (click)="crear(cuenta.id)">REINICIAR</button></div>
+                            <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b></div>
+                            <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b></div>
+                            <div class="col-sm-12 {{(cuenta.total_final > 0) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
                         </div>
                     </app-card>
                 </div>

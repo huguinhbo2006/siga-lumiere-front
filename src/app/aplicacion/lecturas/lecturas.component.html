@@ -28,6 +28,6 @@
     <button class="btn btn-danger" (click)="eliminar();">Eliminar Lectura</button>
 </app-botones>
 <app-modal [ngSwitch]="vista">
-    <app-modal-lectura *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-lectura>
-    <app-modal-lectura *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-lectura>
+    <app-modal-lectura *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-lectura>
+    <app-modal-lectura *ngSwitchCase="'modificar'" [listas]="listas" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-lectura>
 </app-modal>

@@ -5,6 +5,7 @@ import { UiSearchModule } from '../ui-search/ui-search.module';
 import { ModalFinancierosComponent } from './ingresos-auditorias/modales/modal-financieros/modal-financieros.component';
 import { ModalObservacionesIngresoComponent } from './ingresos-auditorias/modales/modal-observaciones-ingreso/modal-observaciones-ingreso.component';
 import { BalanceCuentasComponent } from './balance-cuentas/balance-cuentas.component';
+import { AuditarComponent } from './auditar/auditar.component';
 
 
 
@@ -13,7 +14,8 @@ import { BalanceCuentasComponent } from './balance-cuentas/balance-cuentas.compo
     IngresosAuditoriasComponent,
     ModalFinancierosComponent,
     ModalObservacionesIngresoComponent,
-    BalanceCuentasComponent
+    BalanceCuentasComponent,
+    AuditarComponent
   ],
   imports: [
     CommonModule,

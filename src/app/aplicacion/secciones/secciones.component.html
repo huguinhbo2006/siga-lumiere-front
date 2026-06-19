@@ -6,29 +6,12 @@
     </div>
     <div class="card-body">
         <div class="container">
-            <div class="row" *ngIf="seleccion === undefined">
-                <div class="col-sm-12">
-                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Seccion</button>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;" (doble)="seleccion = $event; ir();"></app-datatable>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <app-cargando *ngIf="cargando"></app-cargando>
-<app-botones *ngIf="seleccion !== undefined">
-    <button class="btn btn-success" (click)="modal('nuevo');">Agregar Seccione</button>
-    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Seccione</button>
-    <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Seccione</button>
-    <button class="btn btn-success" *ngIf="seleccion.activo" (click)="desactivar();">Desactivar Seccione</button>
-    <button class="btn btn-danger" (click)="eliminar();">Eliminar Seccione</button>
-    <button class="btn btn-info" (click)="ir()">Ir</button>
-</app-botones>
-<app-modal [ngSwitch]="vista">
-    <app-modal-seccion *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-seccion>
-    <app-modal-seccion *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-seccion>
-</app-modal>

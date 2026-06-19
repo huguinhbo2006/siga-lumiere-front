@@ -7,30 +7,19 @@
     <div class="card-body">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <app-card [color]="'green'" [colorLetra]="'white'" [encabezado]="'Ingresos'">
+                <div class="col-sm-4" *ngFor="let cuenta of cuentas">
+                    <app-card [encabezado]="cuenta.nombre">
                         <div class="row">
-                            <div class="col-sm-3" *ngFor="let ingreso of ingresos">
-                                <app-circulo [cantidad]="ingreso.cantidad" [forma]="ingreso.forma"></app-circulo>
-                            </div>
+                            <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b></div>
+                            <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b></div>
+                            <div class="col-sm-12 {{(cuenta.total_final > 0) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
                         </div>
                     </app-card>
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-sm-12">
-                    <app-card [color]="'red'" [colorLetra]="'white'" [encabezado]="'Egresos'">
-                        <div class="row">
-                            <div class="col-sm-3" *ngFor="let egreso of egresos">
-                                <app-circulo [cantidad]="egreso.cantidad" [forma]="egreso.forma"></app-circulo>
-                            </div>
-                        </div>
-                    </app-card>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-sm-12">
-                    <app-card [color]="'lumiere'" [colorLetra]="'white'" [encabezado]="'Efectivo en Sucursal'">
+                    <app-card [color]="'lumiere'" [colorLetra]="'white'" [encabezado]="'Efectivo en Sucursal'" *ngIf="mostrarTotal">
                         <div class="row flex-nowrap overflow-auto">
                             <div class="col-sm-3">
                                 <app-circulo [cantidad]="total" [forma]="'Total'"></app-circulo>

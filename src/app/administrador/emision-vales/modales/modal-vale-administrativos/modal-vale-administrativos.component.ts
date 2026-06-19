@@ -14,6 +14,7 @@ export class ModalValeAdministrativosComponent {
     idCalendario: 0,
     idNivel: 0
   };
+  
   @Input() listas: any;
   @Input() modificar = false;
   constructor(public generales: GeneralesService) { }

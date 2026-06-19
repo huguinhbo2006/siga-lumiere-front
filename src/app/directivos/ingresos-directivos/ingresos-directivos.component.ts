@@ -12,7 +12,7 @@ import { PdfService } from '../../servicios/pdf.service';
 export class IngresosDirectivosComponent {
   configuracion: datatableConfig = {
     alias: ['Calendario', 'Nivel', 'Folio', 'Fecha y Hora', 'Rubro', 'Concepto', 'Forma de pago', 'Cuenta', 'Monto', 'Vocuher'],
-    encabezados: ['calendario', 'nivel', 'folio', 'fecha', 'rubro', 'concepto', 'forma', 'cuenta', 'montoFormato', 'hayVoucher'],
+    encabezados: ['calendario', 'nivel', 'folio', 'fechaFormato', 'rubro', 'concepto', 'forma', 'cuenta', 'montoFormato', 'hayVoucher'],
     busqueda: true
   };
   listas = {

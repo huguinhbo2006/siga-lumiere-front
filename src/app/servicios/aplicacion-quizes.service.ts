@@ -14,11 +14,11 @@ export class AplicacionQuizesService {
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + 'A7bF2qLm9ZpXc4Wv3rTg5NnYjHk8sQdE1uR0tVoPwMiBlGySaDz'
   });
-  uri = environment.url + 'quizes/';
+  uri = environment.urlQuizes + 'quizes/';
   
-  mostrar() {
+  mostrar(body: any) {
     const url = this.uri + 'mostrar';
-    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
   nuevo(body: any) {
