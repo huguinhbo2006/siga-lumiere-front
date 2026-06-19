@@ -3,6 +3,15 @@
     <app-descuento [lista]="listas.descuentos" (emitidor)="agregarDescuento($event);" *ngIf="agregar === 2"></app-descuento>
     <app-abono [bancos]="listas.bancos" [conceptos]="listas.abonos" [cuentas]="listas.cuentas" [formas]="listas.formas" [metodos]="listas.metodos" [total]="total" (emitidor)="agregarAbono($event);" *ngIf="agregar === 3"></app-abono>
     <div class="row">
+        <div class="col-sm-2">
+            <app-input [etiqueta]="'Cupon'" [mayusculas]="true" [valor]="cupon" (emitidor)="cupon = $event"></app-input>
+        </div>
+        <div class="col-sm-2">
+            <br>
+            <button class="btn btn-info" (click)="canjear()">Canjear</button>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-4">
             <button class="btn btn-info" (click)="agregar = 1">Agregar cargo</button>
         </div>
@@ -11,14 +20,6 @@
         </div>
         <div class="col-sm-4">
             <button class="btn btn-info" (click)="agregar = 3">Agregar abono</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <app-input [etiqueta]="'Cupon'" [mayusculas]="true" [valor]="cupon" (emitidor)="cupon = $event"></app-input>
-        </div>
-        <div class="col-sm-6">
-            <button class="btn btn-info" (click)="canjear()">Canjear</button>
         </div>
     </div>
     <div class="row">
