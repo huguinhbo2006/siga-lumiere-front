@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <app-select [obligatorio]="true" [etiqueta]="'Categoria'" [datos]="categorias" [dato]="datos.idCategoria" (emitidor)="asignar(4, $event); traerModalidades();"></app-select>
+            <app-select [obligatorio]="true" [etiqueta]="'Categoriassss'" [datos]="categorias" [dato]="datos.idCategoria" (emitidor)="asignar(4, $event); traerModalidades();"></app-select>
         </div>
         <div class="col-sm-4">
             <app-select [obligatorio]="true" [etiqueta]="'Modalidad'" [datos]="modalidades" [dato]="datos.idModalidad" (emitidor)="asignar(5, $event); traerCursos();"></app-select>
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4" *ngIf="ventas">
+        <div class="col-sm-4">
             <app-select [obligatorio]="true" [etiqueta]="'Sucursal de inscripcion'" [datos]="sucursales" [dato]="datos.idSucursalInscripcion" (emitidor)="this.datos.idSucursalInscripcion = $event; traerCupo();"></app-select>
         </div>
         <div class="col-sm-4">

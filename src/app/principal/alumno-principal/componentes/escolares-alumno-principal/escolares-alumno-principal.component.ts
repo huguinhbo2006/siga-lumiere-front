@@ -18,6 +18,7 @@ export class EscolaresAlumnoPrincipalComponent {
     idCentroUniversitario: 0,
     idCarrera: 0,
   }
+  @Input() idCalendario: any;
   @Input() listas = {
     tipos: [],
     escuelas: [],
@@ -48,6 +49,7 @@ export class EscolaresAlumnoPrincipalComponent {
   traerCarreras(inicio: boolean){
     this.datos.idCarrera = (inicio) ? this.datos.idCarrera : 0;
     this.carreras = this.generales.sublista(this.listas.carreras, this.datos.idCentroUniversitario, 'idCentroUniversitario');
+    this.carreras = this.generales.sublista(this.carreras, this.idCalendario, 'idCalendario');
   }
 
   emitirAnterior(){

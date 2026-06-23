@@ -37,6 +37,7 @@ import { ModalInscripcionSguimientoComponent } from './seguimientos-principal/mo
 import { ModalNuevoSeguimientoComponent } from './seguimientos-principal/modales/modal-nuevo-seguimiento/modal-nuevo-seguimiento.component';
 import { CitasComponent } from './citas/citas.component';
 import { ModalInscripcionPrincipalComponent } from './alumno-principal/modales/modal-inscripcion-principal/modal-inscripcion-principal.component';
+import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 
 
 
@@ -76,6 +77,7 @@ import { ModalInscripcionPrincipalComponent } from './alumno-principal/modales/m
     ModalNuevoSeguimientoComponent,
     CitasComponent,
     ModalInscripcionPrincipalComponent,
+    CalificacionesComponent,
   ],
   imports: [
     CommonModule,

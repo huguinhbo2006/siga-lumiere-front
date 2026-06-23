@@ -21,6 +21,8 @@ import { SolicitudesModificacionEgresosComponent } from './solicitudes-modificac
 import { SolicitudesNominasComponent } from './solicitudes-nominas/solicitudes-nominas.component';
 import { TransferenciasComponent } from './transferencias/transferencias.component';
 import { ModalTransferenciaComponent } from './transferencias/modales/modal-transferencia/modal-transferencia.component';
+import { CreditosComponent } from './creditos/creditos.component';
+import { ModalCreditoComponent } from './creditos/modales/modal-credito/modal-credito.component';
 
 
 
@@ -45,7 +47,9 @@ import { ModalTransferenciaComponent } from './transferencias/modales/modal-tran
     SolicitudesModificacionEgresosComponent,
     SolicitudesNominasComponent,
     TransferenciasComponent,
-    ModalTransferenciaComponent
+    ModalTransferenciaComponent,
+    CreditosComponent,
+    ModalCreditoComponent
   ],
   imports: [
     CommonModule,

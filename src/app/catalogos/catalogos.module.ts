@@ -92,6 +92,8 @@ import { TiposIngresosComponent } from './tipos-ingresos/tipos-ingresos.componen
 import { ModalTipoIngresoComponent } from './tipos-ingresos/modales/modal-tipo-ingreso/modal-tipo-ingreso.component';
 import { ViasPublicitariasComponent } from './vias-publicitarias/vias-publicitarias.component';
 import { ModalViaPublicitariaComponent } from './vias-publicitarias/modales/modal-via-publicitaria/modal-via-publicitaria.component';
+import { PrestadoresComponent } from './prestadores/prestadores.component';
+import { ModalPrestadorComponent } from './prestadores/modales/modal-prestador/modal-prestador.component';
 
 
 
@@ -187,7 +189,9 @@ import { ModalViaPublicitariaComponent } from './vias-publicitarias/modales/moda
     TiposIngresosComponent,
     ModalTipoIngresoComponent,
     ViasPublicitariasComponent,
-    ModalViaPublicitariaComponent
+    ModalViaPublicitariaComponent,
+    PrestadoresComponent,
+    ModalPrestadorComponent
   ],
   imports: [
     CommonModule,
