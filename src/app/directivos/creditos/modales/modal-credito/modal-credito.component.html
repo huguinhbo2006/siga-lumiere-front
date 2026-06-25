@@ -12,19 +12,26 @@
                 <app-select [datos]="listas.cuentas" [etiqueta]="'Cuenta'" [dato]="dato.idCuenta" (emitidor)="dato.idCuenta = $event;"></app-select>
             </div>
             <div class="col-sm-4">
-                <app-select [datos]="listas.prestadores" [etiqueta]="'Prestador'" [dato]="dato.idPrestador" (emitidor)="dato.idPrestador = $event;"></app-select>
-            </div>
-            <div class="col-sm-4">
-                <app-select [datos]="listas.sucursales" [etiqueta]="'Sucursal'" [dato]="dato.idSucursal" (emitidor)="dato.idSucursal = $event;"></app-select>
-            </div>
-            <div class="col-sm-4">
                 <app-input [etiqueta]="'Monto'" [validacion]="'decimal'" [valor]="dato.monto" (emitidor)="dato.monto = $event;"></app-input>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-4">
-                <app-select [datos]="listas.calendarios" [etiqueta]="'Calendario'" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+                <app-select [datos]="tipos" [etiqueta]="'Tipo de prestador'" [dato]="dato.tipo" (emitidor)="dato.tipo = $event;"></app-select>
+            </div>
+            <div class="col-sm-4" *ngIf="dato.tipo.toString() === '1'">
+                <app-select [datos]="listas.prestadores" [etiqueta]="'Prestador'" [dato]="dato.idPrestador" (emitidor)="dato.idPrestador = $event;"></app-select>
+            </div>
+            <div class="col-sm-4" *ngIf="dato.tipo.toString() === '2'">
+                <app-select [datos]="listas.antiguos" [etiqueta]="'Calendario'" [dato]="dato.idPrestador" (emitidor)="dato.idPrestador = $event;"></app-select>
             </div>
             <div class="col-sm-4">
                 <app-select [datos]="listas.niveles" [etiqueta]="'Nivel'" [dato]="dato.idNivel" (emitidor)="dato.idNivel = $event;"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [datos]="listas.actuales" [etiqueta]="'Calendario'" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
             </div>
             <div class="col-sm-8">
                 <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>

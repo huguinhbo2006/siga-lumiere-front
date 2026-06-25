@@ -9,5 +9,5 @@
     <app-modal-numero-registro-principal *ngSwitchCase="'registro'" [dato]="dato" (emitidor)="registro($event);"></app-modal-numero-registro-principal>
     <app-modal-estatus-ficha-principal *ngSwitchCase="'estatus'" [dato]="dato" (emitidor)="estatus($event);"></app-modal-estatus-ficha-principal>
     <app-modal-datos-publicitarios-principal *ngSwitchCase="'publicitarios'" [datos]="dato.publicitarios" [listas]="listas.publicitarios" (emitidor)="publicitarios($event);"></app-modal-datos-publicitarios-principal>
-    <app-modal-datos-aspiracion-principal *ngSwitchCase="'aspiracion'" [dato]="dato.aspiracion" [listas]="listas.aspiracion" (emitidor)="aspiraciones($event);"></app-modal-datos-aspiracion-principal>
+    <app-modal-datos-aspiracion-principal *ngSwitchCase="'aspiracion'" [dato]="dato.aspiracion" [idCalendario]="dato.idCalendario" [listas]="listas.aspiracion" (emitidor)="aspiraciones($event);"></app-modal-datos-aspiracion-principal>
 </app-modal>

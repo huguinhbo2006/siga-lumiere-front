@@ -13,7 +13,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-datatable>
+                    <app-datatable [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;" (doble)="ruta()"></app-datatable>
                 </div>
             </div>
         </div>
@@ -22,8 +22,10 @@
 <app-cargando *ngIf="cargando"></app-cargando>
 <app-botones *ngIf="seleccion !== undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Credito</button>
-    <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Credito</button>
+    <button class="btn btn-yellow" (click)="modal('abonos');">Abonos</button>
+    <button class="btn btn-info" (click)="ruta();">Gestionar</button>
 </app-botones>
 <app-modal [ngSwitch]="vista">
     <app-modal-credito *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-credito>
+    <app-modal-abonos *ngSwitchCase="'abonos'" [datos]="seleccion.abonos"></app-modal-abonos>
 </app-modal>

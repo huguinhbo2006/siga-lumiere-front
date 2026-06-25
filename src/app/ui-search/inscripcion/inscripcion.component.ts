@@ -38,7 +38,8 @@ export class InscripcionComponent {
   emitirAspiracion(){
     const body = {
       id: this.ficha.id,
-      aspiracion: this.ficha.aspiracion
+      aspiracion: this.ficha.aspiracion,
+      idCalendario: this.ficha.idCalendario
     }
     this.aspiracion.emit(body);
   }

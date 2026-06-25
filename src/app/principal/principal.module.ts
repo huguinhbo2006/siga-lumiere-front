@@ -38,6 +38,7 @@ import { ModalNuevoSeguimientoComponent } from './seguimientos-principal/modales
 import { CitasComponent } from './citas/citas.component';
 import { ModalInscripcionPrincipalComponent } from './alumno-principal/modales/modal-inscripcion-principal/modal-inscripcion-principal.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
+import { CreditoComponent } from './credito/credito.component';
 
 
 
@@ -78,6 +79,7 @@ import { CalificacionesComponent } from './calificaciones/calificaciones.compone
     CitasComponent,
     ModalInscripcionPrincipalComponent,
     CalificacionesComponent,
+    CreditoComponent,
   ],
   imports: [
     CommonModule,

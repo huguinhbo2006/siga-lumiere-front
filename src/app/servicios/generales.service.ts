@@ -1,4 +1,4 @@
-import { Injectable, ɵɵpureFunctionV } from '@angular/core';
+import { Injectable, signal, ɵɵpureFunctionV } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from'sweetalert2';
 declare function activarTab(tab: string): any;
@@ -32,19 +32,20 @@ export class GeneralesService {
     { id: 11, nombre: 'Noviembre' },
     { id: 12, nombre: 'Diciembre' },
   ];
+
+  private _cargando = signal<boolean>(false);
+  cargando = this._cargando.asReadonly();
+
+  
   
   constructor(private router: Router) { }
 
-  getUrl() {
-    if (this.produccion === 0) {
-      return 'https://api.lumieresiga.com/';
-    } else if(this.produccion === 1){
-      return 'https://apip.lumieresiga.com/';
-    } else if(this.produccion === 2){
-      return 'http://localhost:3200/';
-    }else {
-      return '';
-    }
+  mostrarCargando() {
+    this._cargando.set(true);
+  }
+
+  ocultarCargando() {
+    this._cargando.set(false);
   }
 
   existentesLista(totales: any,agregados: any) {
@@ -58,18 +59,6 @@ export class GeneralesService {
 
   filtrarExistentes(lista: any){
     return lista.filter((item: any) => item.existe === true);
-  }
-
-  getUrlApp() {
-    if (this.produccion === 0) {
-      return 'https://quizes.cursoslumiere.com/';
-    } else if(this.produccion === 1){
-      return 'https://quizes.cursoslumiere.com/';
-    } else if(this.produccion === 2){
-      return 'http://localhost:3300/';
-    }else {
-      return '';
-    }
   }
 
   seleccionarTab(tab: string) {

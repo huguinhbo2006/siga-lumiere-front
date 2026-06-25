@@ -22,6 +22,7 @@
 <app-cargando *ngIf="cargando"></app-cargando>
 <app-botones *ngIf="seleccion !== undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Egreso</button>
+    <button class="btn btn-danger" (click)="imprimir();">PDF</button>
     <!--<button class="btn btn-yellow" (click)="modal('modificar');">Modificar Egreso</button>-->
     <!--<button class="btn btn-danger" (click)="eliminar();">Eliminar Egreso</button>-->
 </app-botones>

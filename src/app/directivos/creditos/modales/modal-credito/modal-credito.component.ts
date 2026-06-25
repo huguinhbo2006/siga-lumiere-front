@@ -17,6 +17,7 @@ export class ModalCreditoComponent {
     idNivel: 0,
     monto: '',
     observaciones: '',
+    tipo: 1
   };
   @Input() listas = {
     cuentas: [],
@@ -24,8 +25,14 @@ export class ModalCreditoComponent {
     prestadores: [],
     sucursales: [],
     calendarios: [],
-    niveles: []
+    niveles: [],
+    antiguos: [],
+    actuales: []
   };
+  tipos = [
+    { id: 1, nombre: 'Proovedor' },
+    { id: 2, nombre: 'Calendario' }
+  ];
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   

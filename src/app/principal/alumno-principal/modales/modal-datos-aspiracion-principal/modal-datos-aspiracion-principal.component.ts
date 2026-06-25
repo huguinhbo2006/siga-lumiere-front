@@ -17,6 +17,7 @@ export class ModalDatosAspiracionPrincipalComponent {
     centros: [], 
     carreras: []
   }
+  @Input() idCalendario: any;
   centros: any;
   carreras: any;
   @Output() emitidor = new EventEmitter();
@@ -34,6 +35,7 @@ export class ModalDatosAspiracionPrincipalComponent {
 
   traerCarreras(){
     this.carreras = this.generales.sublista(this.listas.carreras, this.dato.idCentroUniversitario, 'idCentroUniversitario');
+    this.carreras = this.generales.sublista(this.carreras, this.idCalendario, 'idCalendario');
   }
 
   emitir(){

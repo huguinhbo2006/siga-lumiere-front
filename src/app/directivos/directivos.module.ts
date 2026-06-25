@@ -23,6 +23,7 @@ import { TransferenciasComponent } from './transferencias/transferencias.compone
 import { ModalTransferenciaComponent } from './transferencias/modales/modal-transferencia/modal-transferencia.component';
 import { CreditosComponent } from './creditos/creditos.component';
 import { ModalCreditoComponent } from './creditos/modales/modal-credito/modal-credito.component';
+import { ModalAbonosComponent } from './creditos/modales/modal-abonos/modal-abonos.component';
 
 
 
@@ -49,7 +50,8 @@ import { ModalCreditoComponent } from './creditos/modales/modal-credito/modal-cr
     TransferenciasComponent,
     ModalTransferenciaComponent,
     CreditosComponent,
-    ModalCreditoComponent
+    ModalCreditoComponent,
+    ModalAbonosComponent
   ],
   imports: [
     CommonModule,

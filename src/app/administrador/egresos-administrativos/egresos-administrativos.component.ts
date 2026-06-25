@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
 import { EgresosService } from '../../servicios/egresos.service';
+import { PdfService } from '../../servicios/pdf.service';
 @Component({
   selector: 'app-egresos-administrativos',
   templateUrl: './egresos-administrativos.component.html',
@@ -18,7 +19,7 @@ export class EgresosAdministrativosComponent {
   seleccion: any;
   vista: any;
   listas: any
-  constructor(private generales: GeneralesService, private servicio: EgresosService){}
+  constructor(private generales: GeneralesService, private servicio: EgresosService, private pdf: PdfService){}
   
   ngOnInit(): void {
     this.mostrar();
@@ -89,6 +90,10 @@ export class EgresosAdministrativosComponent {
       this.cargando = false;
       this.generales.interpretarError(error);
     });
+  }
+
+  imprimir(){
+    this.pdf.pdfEgreso(this.seleccion.id);
   }
   
 }

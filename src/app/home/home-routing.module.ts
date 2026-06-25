@@ -125,6 +125,7 @@ import { AuditarComponent } from '../auditorias/auditar/auditar.component';
 import { ReporteVentasComponent } from '../reportes/reporte-ventas/reporte-ventas.component';
 import { PrestadoresComponent } from '../catalogos/prestadores/prestadores.component';
 import { CreditosComponent } from '../directivos/creditos/creditos.component';
+import { CreditoComponent } from '../principal/credito/credito.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -252,6 +253,7 @@ const routes: Routes = [
     { path: 'prospecto/:prospecto', canActivate: [auntenticacionGuard], component: ProspectoPrincipalComponent },
     { path: 'seguimiento/:seguimiento', canActivate: [auntenticacionGuard], component: SeguimientosPrincipalComponent },
     { path: 'calificarGrupo/:grupo', canActivate: [auntenticacionGuard], component: CalificarGrupoComponent},
+    { path: 'credito/:credito', canActivate: [auntenticacionGuard], component: CreditoComponent},
   ]}
 ];
 

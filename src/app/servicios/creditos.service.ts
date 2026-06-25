@@ -19,29 +19,19 @@ export class CreditosService {
     const url = this.uri + 'mostrar';
     return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
+
+  traer(body: any){
+    const url = this.uri + 'traer';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
   
   nuevo(body: any) {
     const url = this.uri + 'nuevo';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
-  
-  modificar(body: any) {
-    const url = this.uri + 'modificar';
-    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-  }
-  
-  eliminar(body: any){
-    const url = this.uri + 'eliminar';
-    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-  }
-  
-  activar(body: any){
-    const url = this.uri + 'activar';
-    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-  }
-  
-  desactivar(body: any){
-    const url = this.uri + 'desactivar';
+
+  abono(body: any){
+    const url = this.uri + 'abono';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
@@ -62,10 +52,6 @@ export class CreditosService {
       this.generales.mensajeError('No se ha seleccionado el prestador');
       return false;
     }
-    if(this.generales.validarEntero(dato.idSucursal)){
-      this.generales.mensajeError('No se ha seleccionado la sucursal');
-      return false;
-    }
     if(this.generales.validarEntero(dato.idCalendario)){
       this.generales.mensajeError('No se ha seleccionado el calendario');
       return false;
@@ -75,5 +61,9 @@ export class CreditosService {
       return false;
     }
     return true;
+  }
+
+  validarAbono(dato: any){
+    
   }
 }

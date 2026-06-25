@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
 import { CreditosService } from '../../servicios/creditos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-creditos',
@@ -24,9 +25,15 @@ export class CreditosComponent {
     prestadores: [],
     sucursales: [],
     calendarios: [],
-    niveles: []
+    niveles: [],
+    antiguos: [],
+    actuales: []
   }
-  constructor(private generales: GeneralesService, private servicio: CreditosService){}
+  constructor(
+    private generales: GeneralesService,
+    private servicio: CreditosService,
+    private router: Router
+  ){}
   
   ngOnInit(): void {
     this.mostrar();
@@ -68,63 +75,8 @@ export class CreditosComponent {
       });
     }
   }
-  
-  modificar(dato: any){
-    if(this.servicio.validar(dato)){
-      this.cargando = true;
-      this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
-        this.generales.mensajeCorrecto('Credito modificado correctamente');
-        this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
-        this.generales.cerrarModal();
-      },
-      (error: any) => {
-        this.cargando = false;
-        this.generales.interpretarError(error);
-      });
-    }
+
+  ruta(){
+    this.router.navigate(['/admin/credito', this.seleccion.id]);
   }
-  
-  activar(){
-    this.cargando = true;
-    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Credito activado correctamente');
-      this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
-      this.seleccion = respuesta;
-    },
-    (error: any) => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
-    });
-  }
-  
-  desactivar(){
-    this.cargando = true;
-    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Credito desactivado correctamente');
-      this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
-      this.seleccion = respuesta;
-    },
-    (error: any) => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
-    });
-  }
-  
-  eliminar(){
-    this.cargando = true;
-    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Credito eliminado correctamente');
-      this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
-      this.seleccion = undefined;
-    },
-    (error: any) => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
-    });
-  }
-    
 }
