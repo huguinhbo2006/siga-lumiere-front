@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CreditosService } from '../../servicios/creditos.service';
 import { GeneralesService } from '../../servicios/generales.service';
-import { UiSearchModule } from "../../ui-search/ui-search.module";
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
@@ -10,7 +9,11 @@ import { datatableConfig } from '../../interfaces/tables.interface';
   templateUrl: './credito.component.html',
   styleUrl: './credito.component.css'
 })
-export class CreditoComponent {
+export class CreditoComponent implements OnInit {
+  private rutaActivada = inject(ActivatedRoute);
+  private servicio = inject(CreditosService);
+  private generales = inject(GeneralesService);
+
   configuracion: datatableConfig = {
     alias: ['Forma de pago', 'Cuenta', 'Monto', 'Empleado', 'Ingreso', 'Egreso'],
     encabezados: ['forma', 'cuenta', 'monto', 'empleado', 'ingreso', 'egreso'],
@@ -28,17 +31,12 @@ export class CreditoComponent {
     { id: 1, nombre: 'Capital' },
     { id: 2, nombre: 'Impuestos' }
   ]
-  abono= {
+  abono = {
     idFormaPago: 0,
     idCuenta: 0,
     monto: '',
     tipo: 0
   }
-  constructor(
-    private rutaActivada: ActivatedRoute,
-    private servicio: CreditosService,
-    private generales: GeneralesService
-  ){}
 
   ngOnInit(){
     this.id = this.rutaActivada.snapshot.params['credito'];
@@ -51,5 +49,28 @@ export class CreditoComponent {
       this.abonos = respuesta.datos.abonos;
       this.listas = respuesta.listas;
     });
+  }
+
+  agregarAbono() {
+    const dato = {
+      tipoPrestador: this.datos.tipo,
+      ...this.abono,
+      ...this.datos
+    };
+    if (this.servicio.validarAbono(dato)) {
+      this.servicio.abono(dato).subscribe((respuesta: any) => {
+        this.generales.mensajeCorrecto('Abono agregado correctamente');
+        this.traer();
+        this.abono = {
+          idFormaPago: 0,
+          idCuenta: 0,
+          monto: '',
+          tipo: 0
+        };
+      },
+      (error: any) => {
+        this.generales.interpretarError(error);
+      });
+    }
   }
 }

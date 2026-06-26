@@ -15,6 +15,9 @@ import { NominaDesgolceComponent } from './nominas/componentes/nomina-desgolce/n
 import { PercepcionRHComponent } from './nominas/componentes/percepcion-rh/percepcion-rh.component';
 import { DeduccionRHComponent } from './nominas/componentes/deduccion-rh/deduccion-rh.component';
 import { ModalSucursalesEmpleadoComponent } from './empleados/modales/modal-sucursales-empleado/modal-sucursales-empleado.component';
+import { PrestamosComponent } from './prestamos/prestamos.component';
+import { ModalPrestamoComponent } from './prestamos/modales/modal-prestamo/modal-prestamo.component';
+import { ModalAbonosPrestamosComponent } from './prestamos/modales/modal-abonos/modal-abonos.component';
 
 
 
@@ -33,7 +36,10 @@ import { ModalSucursalesEmpleadoComponent } from './empleados/modales/modal-sucu
     NominaDesgolceComponent,
     PercepcionRHComponent,
     DeduccionRHComponent,
-    ModalSucursalesEmpleadoComponent
+    ModalSucursalesEmpleadoComponent,
+    PrestamosComponent,
+    ModalPrestamoComponent,
+    ModalAbonosPrestamosComponent
   ],
   imports: [
     CommonModule,

@@ -126,6 +126,7 @@ import { ReporteVentasComponent } from '../reportes/reporte-ventas/reporte-venta
 import { PrestadoresComponent } from '../catalogos/prestadores/prestadores.component';
 import { CreditosComponent } from '../directivos/creditos/creditos.component';
 import { CreditoComponent } from '../principal/credito/credito.component';
+import { PrestamosComponent } from '../recursos-humanos/prestamos/prestamos.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -243,6 +244,7 @@ const routes: Routes = [
     { path: 'reporteVentas', canActivate: [auntenticacionGuard], component: ReporteVentasComponent },
     { path: 'prestadores', canActivate: [auntenticacionGuard], component: PrestadoresComponent },
     { path: 'creditos', canActivate: [auntenticacionGuard], component: CreditosComponent },
+    { path: 'prestamos', canActivate: [auntenticacionGuard], component: PrestamosComponent },
     { path: 'temas/:id/:nombre', canActivate: [auntenticacionGuard], component: TemasComponent },
     { path: 'subtemas/:id/:nombre', canActivate: [auntenticacionGuard], component: SubtemasComponent },
     { path: 'quizes/:id/:nombre', canActivate: [auntenticacionGuard], component: QuizesComponent },

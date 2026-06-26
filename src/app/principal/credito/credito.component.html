@@ -14,7 +14,7 @@
                     <app-select etiqueta="'Tipo de abono'" [datos]="tipos" [dato]="abono.tipo" (emitidor)="abono.tipo = $event;"></app-select>
                 </div>
                 <div class="col-sm-4" *ngIf="abono.idFormaPago > 1">
-                    <app-select [etiqueta]="'Cuentas'" [datos]="listas.cuentas" [dato]="abono.idCuenta" (emitidor)="abono.idCuenta"></app-select>
+                    <app-select [etiqueta]="'Cuentas'" [datos]="listas.cuentas" [dato]="abono.idCuenta" (emitidor)="abono.idCuenta = $event;"></app-select>
                 </div>
 
             </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-sm-3">
                     <br>
-                    <button class="btn btn-success">Agregar abono</button>
+                    <button class="btn btn-success" (click)="agregarAbono()">Agregar abono</button>
                 </div>
             </div>
             <div class="row">

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { GeneralesService } from './generales.service';
@@ -8,7 +8,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class CreditosService {
-  constructor(private http: HttpClient, private generales: GeneralesService) { }
+  private http = inject(HttpClient);
+  private generales = inject(GeneralesService);
+
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type' : 'application/json',
     Authorization : 'bearer ' + localStorage.getItem('token')
@@ -35,35 +37,61 @@ export class CreditosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
-  validar(dato: any){
-    if(this.generales.validarString(dato.monto)){
+  validar(dato: any): boolean {
+    if (this.generales.validarString(dato.monto)) {
       this.generales.mensajeError('No se ha ingresado el monto');
       return false;
     }
-    if(this.generales.validarEntero(dato.idFormaPago)){
+    const montoNum = parseFloat(dato.monto);
+    if (isNaN(montoNum) || montoNum <= 0) {
+      this.generales.mensajeError('El monto debe ser un número mayor a cero');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.idFormaPago)) {
       this.generales.mensajeError('No se ha seleccionado la forma de pago');
       return false;
     }
-    if(this.generales.validarEntero(dato.idCuenta) && dato.idFormaPago > 1){
+    if (this.generales.validarEntero(dato.idCuenta) && dato.idFormaPago > 1) {
       this.generales.mensajeError('No se ha seleccionado la cuenta');
       return false;
     }
-    if(this.generales.validarEntero(dato.idPrestador)){
+    if (this.generales.validarEntero(dato.idPrestador)) {
       this.generales.mensajeError('No se ha seleccionado el prestador');
       return false;
     }
-    if(this.generales.validarEntero(dato.idCalendario)){
+    if (this.generales.validarEntero(dato.idCalendario)) {
       this.generales.mensajeError('No se ha seleccionado el calendario');
       return false;
     }
-    if(this.generales.validarEntero(dato.idNivel)){
+    if (this.generales.validarEntero(dato.idNivel)) {
       this.generales.mensajeError('No se ha seleccionado el nivel');
       return false;
     }
     return true;
   }
 
-  validarAbono(dato: any){
-    
+  validarAbono(dato: any): boolean {
+    if (this.generales.validarString(dato.monto)) {
+      this.generales.mensajeError('No se ha ingresado el monto');
+      return false;
+    }
+    const montoNum = parseFloat(dato.monto);
+    if (isNaN(montoNum) || montoNum <= 0) {
+      this.generales.mensajeError('El monto debe ser un número mayor a cero');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.idFormaPago)) {
+      this.generales.mensajeError('No se ha seleccionado la forma de pago');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.idCuenta) && dato.idFormaPago > 1) {
+      this.generales.mensajeError('No se ha seleccionado la cuenta');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.tipo)) {
+      this.generales.mensajeError('No se ha seleccionado el tipo de abono');
+      return false;
+    }
+    return true;
   }
 }
