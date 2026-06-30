@@ -13,7 +13,7 @@
                             <div class="col-sm-12"><button class="btn btn-info" (click)="crear(cuenta.id)">REINICIAR</button></div>
                             <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b></div>
                             <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b></div>
-                            <div class="col-sm-12 {{(cuenta.total_final > 0) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
+                            <div class="col-sm-12 {{(cuenta.positivo) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
                         </div>
                     </app-card>
                 </div>
