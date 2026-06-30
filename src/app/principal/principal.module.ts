@@ -39,6 +39,7 @@ import { CitasComponent } from './citas/citas.component';
 import { ModalInscripcionPrincipalComponent } from './alumno-principal/modales/modal-inscripcion-principal/modal-inscripcion-principal.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { CreditoComponent } from './credito/credito.component';
+import { PrestamoComponent } from './prestamo/prestamo.component';
 
 
 
@@ -80,6 +81,7 @@ import { CreditoComponent } from './credito/credito.component';
     ModalInscripcionPrincipalComponent,
     CalificacionesComponent,
     CreditoComponent,
+    PrestamoComponent,
   ],
   imports: [
     CommonModule,

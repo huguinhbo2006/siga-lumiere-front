@@ -30,6 +30,11 @@ export class NominasService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  cancelar(body: any) {
+    const url = this.uri + 'cancelar';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   creadas() {
     const url = this.uri + 'creadas';
     return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );

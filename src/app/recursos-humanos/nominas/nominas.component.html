@@ -23,6 +23,7 @@
 <app-botones *ngIf="seleccion !== undefined && exit" (emitidor)="exit = false;">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Nomina</button>
     <button class="btn btn-yellow" (click)="ruta();">Modificar Nomina</button>
+    <button class="btn btn-danger" (click)="cancelar();">Cancelar</button>
     <button class="btn btn-danger" (click)="imprimir();">Imprimir</button>
 </app-botones>
 <app-modal [ngSwitch]="vista">

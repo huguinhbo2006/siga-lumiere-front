@@ -1,35 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { GeneralesService } from '../../servicios/generales.service';
 import { LoginService } from '../../servicios/login.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  private generales = inject(GeneralesService);
+  private login = inject(LoginService);
+  private router = inject(Router);
+
   usuario = '';
   password = '';
-  token = '';
-  select = false;
-  lista: any;
-  constructor(private generales: GeneralesService,
-              private login: LoginService,
-              private router: Router) { }
+  logo = ''; // <-- Variable para el logo
 
   ngOnInit(): void {
     localStorage.clear();
+    // Asignamos el logo desde tu servicio (ya sea el path de assets o el base64)
+    this.logo = this.generales.logo || './../../../assets/img/default.png';
   }
 
   getToken() {
+    if (!this.usuario || !this.password) {
+      this.generales.mensajeError('Por favor, llena todos los campos');
+      return;
+    }
+
     this.login.getToken(this.usuario, this.password).subscribe((respuesta: any) => {
       localStorage.setItem('token', respuesta['token']);
       localStorage.setItem('usuario', this.usuario);
       this.router.navigate(['admin']);
-    },
-    error => {
-      this.generales.interpretarError(error);
     });
   }
 }

@@ -36,7 +36,7 @@
         <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="false">
     <div class="col-sm-12 text-end">
         <button class="btn btn-success" (click)="guardar();">Guardar</button>
     </div>

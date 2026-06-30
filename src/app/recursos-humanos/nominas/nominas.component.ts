@@ -26,8 +26,9 @@ export class NominasComponent {
     percepciones: [],
     bancos: [],
     sucursales: [],
-    formas: [],
-    nominas: []
+    formaspagos: [],
+    nominas: [],
+    actuales: []
   }
   datos: any;
   cargando = false;
@@ -86,6 +87,13 @@ export class NominasComponent {
 
   imprimir(){
     this.pdf.pdfNomina(this.seleccion.id);
+  }
+
+  cancelar(){
+    this.servicio.cancelar(this.seleccion).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Nomina cancelada correctamente');
+      this.mostrar();
+    });
   }
   
 }

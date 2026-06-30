@@ -1,0 +1,45 @@
+/* Fondo de la página con un degradado suave característico de Argon */
+
+.bg-gray-100 {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+
+/* Tarjeta contenedora estilizada */
+
+.card-login {
+    background: #ffffff;
+    border-radius: 1rem !important;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Caja del ícono flotante superior */
+
+.icon-shape {
+    width: 64px;
+    height: 64px;
+    border-radius: 1rem;
+}
+
+.icon-shape i {
+    font-size: 1.5rem;
+}
+
+
+/* Botón con efectos de elevación al pasar el mouse */
+
+.btn-login {
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+}
+
+.btn-login:active {
+    transform: translateY(1px);
+}

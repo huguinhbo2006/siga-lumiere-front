@@ -76,6 +76,7 @@ export class CarrerasComponent {
   }
   
   nuevo(dato: any){
+    console.log(dato);
     if(this.servicio.validar(dato)){
       this.cargando = true;
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
@@ -93,6 +94,7 @@ export class CarrerasComponent {
   }
   
   modificar(dato: any){
+    console.log(dato);
     if(this.servicio.validar(dato)){
       this.cargando = true;
       this.servicio.modificar(dato).subscribe((respuesta: any) => {

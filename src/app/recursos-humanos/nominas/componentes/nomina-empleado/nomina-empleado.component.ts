@@ -31,8 +31,9 @@ export class NominaEmpleadoComponent {
     percepciones: [],
     bancos: [],
     sucursales: [],
-    formas: [],
-    nominas: []
+    formaspagos: [],
+    nominas: [],
+    actuales: []
   }
   @Input() modificar = false;
   puestos: any;

@@ -37,14 +37,19 @@ export class ModalNominaComponent {
     percepciones: [],
     bancos: [],
     sucursales: [],
-    formas: [],
-    nominas: []
+    formaspagos: [],
+    nominas: [],
+    actuales: []
   }
   @Input() modificar = false;
   accion = 1;
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {
+    this.generales.delay(2000).then(fun => {
+      this.dato.empleado.idCalendario = Number(localStorage.getItem('calendario') ?? 0);
+      console.log(this.dato.empleado.idCalendario);
+    });
   }
   
   emitir() {

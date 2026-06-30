@@ -3,7 +3,7 @@
         <app-select [etiqueta]="'Nivel'" [datos]="listas.niveles" [dato]="dato.idNivel" (emitidor)="dato.idNivel = $event;"></app-select>
     </div>
     <div class="col-sm-4">
-        <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+        <app-select [des]="true" [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
     </div>
     <div class="col-sm-4">
         <app-select [etiqueta]="'Departamento'" [datos]="listas.departamentos" [dato]="dato.idDepartamento" (emitidor)="dato.idDepartamento = $event; buscarPuestos();"></app-select>
@@ -32,11 +32,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-12">
         <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
-    </div>
-    <div class="col-sm-4" *ngIf="dato.idDepartamento.toString() !== '1'">
-        <app-select [etiqueta]="'Banco'" [datos]="listas.bancos" [dato]="dato.idBanco" (emitidor)="dato.idBanco = $event;"></app-select>
     </div>
 </div>
 <div class="row justify-content-end">

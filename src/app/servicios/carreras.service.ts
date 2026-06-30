@@ -71,7 +71,7 @@ export class CarrerasService {
       this.generales.mensajeError('No se ha ingresado la cantidad de aspirantes a la carrera');
       return false;
     }
-    if(this.generales.validarString(dato.aceptados)){
+    if(this.generales.validarString(dato.admitidos)){
       this.generales.mensajeError('No se ha ingresado la cantidad de aspirantes aceptados a la carrera');
       return false;
     }

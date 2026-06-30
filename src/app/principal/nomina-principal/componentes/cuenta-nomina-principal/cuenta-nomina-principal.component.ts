@@ -16,7 +16,6 @@ export class CuentaNominaPrincipalComponent {
   departamento: any;
   percepciones: any;
   deducciones: any;
-  cargando = false;
   vista = 0;
   total = '0';
   formas = [
@@ -30,9 +29,7 @@ export class CuentaNominaPrincipalComponent {
   }
 
   mostrar(){
-    this.cargando = true;
     this.servicio.cuenta({id: this.nomina}).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.listas = respuesta.listas;
       this.percepciones = respuesta.datos.percepciones;
       this.deducciones = respuesta.datos.deducciones;
@@ -40,59 +37,50 @@ export class CuentaNominaPrincipalComponent {
       this.calcular();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
 
   nuevaPercepcion(dato: any){
-    this.cargando = true;
     dato.id = this.nomina
     this.servicio.agregarPercepcion(dato).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Solicitud agregada correctamente');
+      this.generales.mensajeCorrecto('Percecpcion agregada correctamente');
+      this.mostrar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
 
   nuevaDeduccion(dato: any){
-    this.cargando = true;
     dato.id = this.nomina
     this.servicio.agregarDeduccion(dato).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Solicitud agregada correctamente');
+      this.mostrar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
 
   quitarPercepcion(dato: any){
-    this.cargando = true;
     dato.idNomina = this.nomina;
     this.servicio.quitarPercepcion(dato).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Solicitud agregada correctamente');
+      this.generales.mensajeCorrecto('Percepcion eliminada correctamente');
+      this.mostrar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
 
   quitarDeduccion(dato: any){
-    this.cargando = true;
     dato.idNomina = this.nomina;
     this.servicio.quitarDeduccion(dato).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Solicitud agregada correctamente');
+      this.mostrar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
