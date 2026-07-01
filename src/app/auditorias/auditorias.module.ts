@@ -6,6 +6,7 @@ import { ModalFinancierosComponent } from './ingresos-auditorias/modales/modal-f
 import { ModalObservacionesIngresoComponent } from './ingresos-auditorias/modales/modal-observaciones-ingreso/modal-observaciones-ingreso.component';
 import { BalanceCuentasComponent } from './balance-cuentas/balance-cuentas.component';
 import { AuditarComponent } from './auditar/auditar.component';
+import { ModalTraspasoComponent } from './balance-cuentas/modales/modal-traspaso/modal-traspaso.component';
 
 
 
@@ -15,7 +16,8 @@ import { AuditarComponent } from './auditar/auditar.component';
     ModalFinancierosComponent,
     ModalObservacionesIngresoComponent,
     BalanceCuentasComponent,
-    AuditarComponent
+    AuditarComponent,
+    ModalTraspasoComponent
   ],
   imports: [
     CommonModule,

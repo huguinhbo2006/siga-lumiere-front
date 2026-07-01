@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 import { BalancesService } from '../../servicios/balances.service';
+import { TraspasosService } from '../../servicios/traspasos.service';
 
 @Component({
   selector: 'app-balance-cuentas',
@@ -11,37 +12,43 @@ export class BalanceCuentasComponent {
   cargando = false;
   cuentas: any;
   sucursales: any;
-  constructor(public generales: GeneralesService, private servicios: BalancesService){}
+  vista = '';
+  seleccion: any;
+  formas: any;
+  constructor(
+    public generales: GeneralesService,
+    private servicios: BalancesService,
+    private traspasos: TraspasosService
+  ){}
 
   ngOnInit(){
     this.mostrar();
   }
 
-  mostrar(){
-    this.cargando = true;
-    this.servicios.cuentas().subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.cuentas = respuesta.cuentas;
-      this.sucursales = respuesta.sucursales;
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
+  modal(){
+    this.vista = '';
+    this.generales.delay(200).then(fun =>{
+      this.vista = 'traspaso';
+      this.generales.abrirModal();
     });
   }
 
-  crear(cuenta: any){
+  mostrar(){
+    this.servicios.cuentas().subscribe((respuesta: any) => {
+      this.cuentas = respuesta.cuentas;
+      this.sucursales = respuesta.sucursales;
+      this.formas = respuesta.formas;
+    })
+  }
+
+  traspaso(datos: any){
     const body = {
-      idCuenta: cuenta
+      egreso: this.seleccion,
+      ingreso: datos
     }
-    this.servicios.nuevoCorte(body).subscribe((respuesta: any) => {
-      this.cargando = false;
-      this.generales.mensajeCorrecto('Corte creado correctamente');
+    this.traspasos.nuevo(body).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Traspaso realizado correctamente');
       this.mostrar();
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
 }

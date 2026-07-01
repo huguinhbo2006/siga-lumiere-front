@@ -10,10 +10,14 @@
                 <div class="col-sm-4" *ngFor="let cuenta of cuentas">
                     <app-card [encabezado]="cuenta.nombre">
                         <div class="row">
-                            <div class="col-sm-12"><button class="btn btn-info" (click)="crear(cuenta.id)">REINICIAR</button></div>
                             <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b></div>
                             <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b></div>
                             <div class="col-sm-12 {{(cuenta.positivo) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-primary" (click)="seleccion = cuenta; modal()">Traspasar</button>
+                            </div>
                         </div>
                     </app-card>
                 </div>
@@ -31,4 +35,6 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+    <app-modal-traspaso *ngSwitchCase="'traspaso'" [formas]="formas" [cuenta]="seleccion" [cuentas]="cuentas" (emitidor)="traspaso($event)"></app-modal-traspaso>
+</app-modal>
