@@ -127,6 +127,8 @@ import { PrestadoresComponent } from '../catalogos/prestadores/prestadores.compo
 import { CreditosComponent } from '../directivos/creditos/creditos.component';
 import { CreditoComponent } from '../principal/credito/credito.component';
 import { PrestamosComponent } from '../recursos-humanos/prestamos/prestamos.component';
+import { ReporteIngresosBasicoComponent } from '../reportes/reporte-ingresos-basico/reporte-ingresos-basico.component';
+import { ReporteEgresosBasicoComponent } from '../reportes/reporte-egresos-basico/reporte-egresos-basico.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -225,6 +227,8 @@ const routes: Routes = [
     { path: 'reporteImpartidos', canActivate: [auntenticacionGuard], component: ReporteAlumnosComponent },
     { path: 'reporteEgresosGenerales', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
     { path: 'reporteIngresosGenerales', canActivate: [auntenticacionGuard], component: ReporteIngresosComponent },
+    { path: 'reporteIngresosBasico', canActivate: [auntenticacionGuard], component: ReporteIngresosBasicoComponent },
+    { path: 'reporteEgresosBasico', canActivate: [auntenticacionGuard], component: ReporteEgresosBasicoComponent },
     { path: 'reporteInscritos', canActivate: [auntenticacionGuard], component: ReporteInscritosComponent },
     { path: 'crm', canActivate: [auntenticacionGuard], component: CRMComponent },
     { path: 'citas', canActivate: [auntenticacionGuard], component: CitasComponent },

@@ -7,6 +7,8 @@ import { ReporteEgresosComponent } from './reporte-egresos/reporte-egresos.compo
 import { ReporteIngresosComponent } from './reporte-ingresos/reporte-ingresos.component';
 import { ReporteInscritosComponent } from './reporte-inscritos/reporte-inscritos.component';
 import { ReporteVentasComponent } from './reporte-ventas/reporte-ventas.component';
+import { ReporteIngresosBasicoComponent } from './reporte-ingresos-basico/reporte-ingresos-basico.component';
+import { ReporteEgresosBasicoComponent } from './reporte-egresos-basico/reporte-egresos-basico.component';
 
 
 
@@ -17,7 +19,9 @@ import { ReporteVentasComponent } from './reporte-ventas/reporte-ventas.componen
     ReporteEgresosComponent,
     ReporteIngresosComponent,
     ReporteInscritosComponent,
-    ReporteVentasComponent
+    ReporteVentasComponent,
+    ReporteIngresosBasicoComponent,
+    ReporteEgresosBasicoComponent
   ],
   imports: [
     CommonModule,

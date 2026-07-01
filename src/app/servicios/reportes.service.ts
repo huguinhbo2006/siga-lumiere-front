@@ -40,6 +40,16 @@ export class ReportesService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta));
   }
 
+  ingresosBasico(body: any) {
+    const url = this.uri + 'ingresosBasico';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta));
+  }
+
+  egresosBasico(body: any) {
+    const url = this.uri + 'egresosBasico';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta));
+  }
+
   inscripciones(calendario: any) {
     const url = this.uri + 'inscripciones';
     return this.http.post(url, {id: calendario}, {headers: this.headers}).pipe( map(respuesta => respuesta));
