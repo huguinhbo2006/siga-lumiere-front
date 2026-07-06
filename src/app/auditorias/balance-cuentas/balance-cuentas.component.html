@@ -16,7 +16,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-primary" (click)="seleccion = cuenta; modal()">Traspasar</button>
+                                <button class="btn btn-primary" (click)="seleccion = cuenta; seleccion.efectivo = false; modal()">Traspasar</button>
                             </div>
                         </div>
                     </app-card>
@@ -28,6 +28,11 @@
                         <div class="row">
                             <div class="col-sm-12"><b>Efectivo: ${{generales.milesNumeros(sucursal.total_final)}}</b></div>
                             <div class="col-sm-12"><b>Vale Administrativo: ${{generales.milesNumeros(sucursal.total_vales)}}</b></div>
+                        </div>
+                        <div class="row" *ngIf="sucursal.id.toString() === '10'">
+                            <div class="col-sm-4">
+                                <button class="btn btn-primary" (click)="efectivo(sucursal)">Traspasar</button>
+                            </div>
                         </div>
                     </app-card>
                 </div>

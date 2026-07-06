@@ -11,7 +11,8 @@ export class ModalTraspasoComponent {
   @Input() dato = {
     monto: '',
     idFormaPago: 0,
-    idCuenta: 0
+    idCuenta: 0,
+    efectivo: false
   };
   @Input() cuenta: any;
   @Input() formas = [];
@@ -19,7 +20,8 @@ export class ModalTraspasoComponent {
   constructor(public generales: GeneralesService) { }
   
   ngOnInit(): void {
-    console.log(this.cuenta)
+    this.dato.idFormaPago = (this.cuenta.efectivo) ? 1 : this.dato.idFormaPago;
+    console.log(this.dato);
   }
   
   emitir() {

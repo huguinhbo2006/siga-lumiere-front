@@ -9,10 +9,10 @@
                 <app-input [valor]="dato.monto" [etiqueta]="'Monto'" (emitidor)="dato.monto = $event"></app-input>
             </div>
             <div class="col-sm-4">
-                <app-select [dato]="dato.idFormaPago" [etiqueta]="'Forma de Pago'" [datos]="formas" (emitidor)="dato.idFormaPago = $event"></app-select>
+                <app-select [des]="cuenta.efectivo" [dato]="dato.idFormaPago" [etiqueta]="'Forma de Pago'" [datos]="formas" (emitidor)="dato.idFormaPago = $event"></app-select>
             </div>
             <div class="col-sm-4">
-                <app-select [dato]="dato.idCuenta" [etiqueta]="'Cuenta'" [datos]="cuentas" (emitidor)="dato.idCuenta = $event" *ngIf="dato.idFormaPago > 1"></app-select>
+                <app-select [dato]="dato.idCuenta" [etiqueta]="'Cuenta'" [datos]="cuentas" (emitidor)="dato.idCuenta = $event" *ngIf="((dato.idFormaPago > 1 ) || (cuenta.efectivo))"></app-select>
             </div>
         </div>
         <div class="row justify-content-end">
