@@ -6,19 +6,23 @@ import { GeneralesService } from '../../../../servicios/generales.service';
   templateUrl: './modal-campania.component.html',
   styleUrl: './modal-campania.component.css'
 })
-export class ModalCampaniaComponent {
+export class ModalCampaniaComponent implements OnInit {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
     nombre: '',
   };
   @Input() modificar = false;
+
+  localDato: any = { nombre: '' };
+
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {
+    this.localDato = this.dato ? JSON.parse(JSON.stringify(this.dato)) : { nombre: '' };
   }
   
   emitir() {
-    this.emitidor.emit(this.dato);
+    this.emitidor.emit(this.localDato);
   }
   
   cerrar() {

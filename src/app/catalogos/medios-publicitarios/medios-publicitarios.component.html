@@ -20,8 +20,8 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
-<app-botones *ngIf="seleccion !== undefined">
+
+<app-botones *ngIf="seleccion !== undefined" (emitidor)="seleccion = undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Medio publicitario</button>
     <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Medio publicitario</button>
     <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Medio publicitario</button>

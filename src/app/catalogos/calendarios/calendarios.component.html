@@ -19,14 +19,15 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
-<app-botones *ngIf="seleccion !== undefined">
+
+<app-botones *ngIf="seleccion !== undefined" (emitidor)="seleccion = undefined" (emitidor)="seleccion = undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Calendario</button>
     <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Calendario</button>
     <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Calendario</button>
     <button class="btn btn-success" *ngIf="seleccion.activo" (click)="desactivar();">Desactivar Calendario</button>
     <button class="btn btn-danger" (click)="eliminar();">Eliminar Calendario</button>
 </app-botones>
+
 <app-modal [ngSwitch]="vista">
     <app-modal-calendario *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-calendario>
     <app-modal-calendario *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-calendario>

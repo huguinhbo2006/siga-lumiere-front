@@ -19,14 +19,15 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
-<app-botones *ngIf="seleccion !== undefined">
+
+<app-botones *ngIf="seleccion !== undefined" (emitidor)="seleccion = undefined" (emitidor)="seleccion = undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Categoria</button>
     <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Categoria</button>
     <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Categoria</button>
     <button class="btn btn-success" *ngIf="seleccion.activo" (click)="desactivar();">Desactivar Categoria</button>
     <button class="btn btn-danger" (click)="eliminar();">Eliminar Categoria</button>
 </app-botones>
+
 <app-modal [ngSwitch]="vista">
     <app-modal-categoria *ngSwitchCase="'nuevo'" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-categoria>
     <app-modal-categoria *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-categoria>

@@ -19,8 +19,8 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
-<app-botones *ngIf="seleccion !== undefined">
+
+<app-botones *ngIf="seleccion !== undefined" (emitidor)="seleccion = undefined">
     <button class="btn btn-success" (click)="modal('nuevo');">Agregar Concepto de cargo</button>
     <button class="btn btn-yellow" (click)="modal('modificar');">Modificar Concepto de cargo</button>
     <button class="btn btn-danger" *ngIf="!seleccion.activo" (click)="activar();">Activar Concepto de cargo</button>

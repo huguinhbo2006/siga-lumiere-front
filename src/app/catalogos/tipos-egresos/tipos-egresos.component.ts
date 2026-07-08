@@ -15,7 +15,7 @@ export class TiposEgresosComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
+  
   seleccion: any;
   vista: any;
   busqueda: any;
@@ -41,95 +41,71 @@ export class TiposEgresosComponent {
   }
   
   mostrar(){
-    this.cargando = true;
+    this.
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
+      this.
       this.listado = respuesta.datos;
       this.lista = respuesta.lista;
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
   
   nuevo(dato: any){
     if(this.servicio.validar(dato)){
-      this.cargando = true;
+      this.
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
+        this.
         this.generales.mensajeCorrecto('Tipo de egreso agregado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
         this.buscar()
-      },
-      error => {
-        this.cargando = false;
-        this.generales.interpretarError(error);
       });
     }
   }
   
   modificar(dato: any){
     if(this.servicio.validar(dato)){
-      this.cargando = true;
+      this.
       this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
+        this.
         this.generales.mensajeCorrecto('Tipo de egreso modificado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
         this.seleccion = respuesta;
         this.buscar()
-      },
-      error => {
-        this.cargando = false;
-        this.generales.interpretarError(error);
       });
     }
   }
   
   activar(){
-    this.cargando = true;
+    this.
     this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
+      this.
       this.generales.mensajeCorrecto('Tipo de egreso activado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
       this.buscar()
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
   
   desactivar(){
-    this.cargando = true;
+    this.
     this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
+      this.
       this.generales.mensajeCorrecto('Tipo de egreso desactivado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
       this.buscar()
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
   
   eliminar(){
-    this.cargando = true;
+    this.
     this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
+      this.
       this.generales.mensajeCorrecto('Tipo de egreso eliminado correctamente');
       this.listado = this.generales.eliminarDatoArray(this.listado, respuesta);
       this.seleccion = undefined;
       this.buscar()
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
   

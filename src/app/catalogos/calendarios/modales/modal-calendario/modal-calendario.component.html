@@ -1,22 +1,24 @@
 <div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
     <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Calendario</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close text-white" aria-label="Close" (click)="cerrar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 <div class="modal-body">
     <div class="container">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-4 col-12">
-                <app-input [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+                <app-input [mayusculas]="true" [valor]="localDato.nombre" [etiqueta]="'Nombre'" (emitidor)="localDato.nombre = $event"></app-input>
             </div>
             <div class="col-sm-4 col-12">
-                <app-input [valor]="dato.inicio" [etiqueta]="'Inicio'" [tipo]="'date'" (emitidor)="dato.inicio = $event"></app-input>
+                <app-input [valor]="localDato.inicio" [etiqueta]="'Inicio'" [tipo]="'date'" (emitidor)="localDato.inicio = $event"></app-input>
             </div>
             <div class="col-sm-4 col-12">
-                <app-input [valor]="dato.fin" [etiqueta]="'Fin'" [tipo]="'date'" (emitidor)="dato.fin = $event"></app-input>
+                <app-input [valor]="localDato.fin" [etiqueta]="'Fin'" [tipo]="'date'" (emitidor)="localDato.fin = $event"></app-input>
             </div>
         </div>
         <div class="row justify-content-end">
-            <div class="col-sm-12 d-md-flex justify-content-md-end">
+            <div class="col-sm-12 d-flex justify-content-end gap-2">
                 <button class="btn btn-success" (click)="emitir()">Guardar</button>
                 <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
             </div>

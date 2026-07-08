@@ -33,9 +33,6 @@ export class ModalCursosParidadesComponent {
       this.agregados = respuesta.agregados;
       this.cursosNoAgregados = this.generales.faltantes(this.agregados, this.cursos, 'idCurso');
       this.cursosAgregados = this.generales.iguales(this.agregados, this.cursos, 'idCurso');
-    },
-    error => {
-      this.generales.interpretarError(error);
     })
   }
   
@@ -44,9 +41,6 @@ export class ModalCursosParidadesComponent {
       this.mostrar();
       this.generales.mensajeCorrecto('Curso agregado correctamente');
       this.dato.idCurso = 0;
-    },
-    error => {
-      this.generales.interpretarError(error);
     })
   }
   
@@ -55,9 +49,6 @@ export class ModalCursosParidadesComponent {
       this.mostrar();
       this.generales.mensajeCorrecto('Curso eliminado correctamente');
       this.dato.idEliminado = 0;
-    },
-    error => {
-      this.generales.interpretarError(error);
     });
   }
 }

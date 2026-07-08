@@ -1,36 +1,38 @@
 <div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
-    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} </h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Carrera</h4>
+    <button type="button" class="close text-white" aria-label="Close" (click)="cerrar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 <div class="modal-body">
     <div class="container">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-4 col-12">
-                <app-input [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+                <app-input [valor]="localDato.nombre" [etiqueta]="'Nombre'" [mayusculas]="true" (emitidor)="localDato.nombre = $event"></app-input>
             </div>
             <div class="col-sm-4 col-12">
-                <app-select [datos]="listas.universidades" [dato]="dato.idUniversidad" [etiqueta]="'Universidad'" (emitidor)="dato.idUniversidad = $event; buscar();"></app-select>
+                <app-select [datos]="listas.universidades" [dato]="localDato.idUniversidad" [etiqueta]="'Universidad'" (emitidor)="localDato.idUniversidad = $event; buscar();"></app-select>
             </div>
             <div class="col-sm-4 col-12">
-                <app-select [datos]="centros" [dato]="dato.idCentroUniversitario" [etiqueta]="'Centro universitario'" (emitidor)="dato.idCentroUniversitario = $event"></app-select>
+                <app-select [datos]="centros" [dato]="localDato.idCentroUniversitario" [etiqueta]="'Centro universitario'" (emitidor)="localDato.idCentroUniversitario = $event"></app-select>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-3 col-12">
-                <app-input [etiqueta]="'Puntaje'" [valor]="dato.puntaje" [validacion]="'decimal'" (emitidor)="dato.puntaje = $event;"></app-input>
+                <app-input [etiqueta]="'Puntaje'" [valor]="localDato.puntaje" [validacion]="'decimal'" (emitidor)="localDato.puntaje = $event;"></app-input>
             </div>
             <div class="col-sm-3 col-12">
-                <app-input [etiqueta]="'Aspirantes'" [valor]="dato.aspirantes" [validacion]="'numero'" (emitidor)="dato.aspirantes = $event;"></app-input>
+                <app-input [etiqueta]="'Aspirantes'" [valor]="localDato.aspirantes" [validacion]="'numero'" (emitidor)="localDato.aspirantes = $event; calcularCampos();"></app-input>
             </div>
             <div class="col-sm-3 col-12">
-                <app-input [etiqueta]="'Admitidos'" [valor]="dato.admitidos" [validacion]="'numero'" (emitidor)="dato.admitidos = $event;"></app-input>
+                <app-input [etiqueta]="'Admitidos'" [valor]="localDato.admitidos" [validacion]="'numero'" (emitidor)="localDato.admitidos = $event; calcularCampos();"></app-input>
             </div>
             <div class="col-sm-3 col-12">
-                <app-input [etiqueta]="'Rechazados'" [valor]="dato.puntaje" [validacion]="'numero'" (emitidor)="dato.rechazados = $event;"></app-input>
+                <app-input [etiqueta]="'Rechazados'" [valor]="localDato.rechazados" [validacion]="'numero'" (emitidor)="localDato.rechazados = $event; calcularCampos();"></app-input>
             </div>
         </div>
         <div class="row justify-content-end">
-            <div class="col-sm-12 d-md-flex justify-content-md-end">
+            <div class="col-sm-12 d-flex justify-content-end gap-2">
                 <button class="btn btn-success" (click)="emitir()">Guardar</button>
                 <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
             </div>
