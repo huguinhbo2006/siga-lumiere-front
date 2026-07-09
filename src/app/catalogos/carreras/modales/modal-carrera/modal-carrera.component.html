@@ -7,14 +7,17 @@
 <div class="modal-body">
     <div class="container">
         <div class="row mb-3">
-            <div class="col-sm-4 col-12">
+            <div class="col-sm-3 col-12">
                 <app-input [valor]="localDato.nombre" [etiqueta]="'Nombre'" [mayusculas]="true" (emitidor)="localDato.nombre = $event"></app-input>
             </div>
-            <div class="col-sm-4 col-12">
+            <div class="col-sm-3 col-12">
                 <app-select [datos]="listas.universidades" [dato]="localDato.idUniversidad" [etiqueta]="'Universidad'" (emitidor)="localDato.idUniversidad = $event; buscar();"></app-select>
             </div>
-            <div class="col-sm-4 col-12">
+            <div class="col-sm-3 col-12">
                 <app-select [datos]="centros" [dato]="localDato.idCentroUniversitario" [etiqueta]="'Centro universitario'" (emitidor)="localDato.idCentroUniversitario = $event"></app-select>
+            </div>
+            <div class="col-sm-3 col-12">
+                <app-select [datos]="listas.calendarios" [dato]="localDato.idCalendario" [etiqueta]="'Calendario'" (emitidor)="localDato.idCalendario = $event"></app-select>
             </div>
         </div>
         <div class="row mb-3">

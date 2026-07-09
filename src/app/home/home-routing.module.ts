@@ -137,7 +137,7 @@ const routes: Routes = [
     { path: 'calendarios', canActivate: [auntenticacionGuard], component: CalendariosComponent },
     { path: 'campanias', canActivate: [auntenticacionGuard], component: CampaniasComponent },
     { path: 'universidades', canActivate: [auntenticacionGuard], component: UniversidadesComponent },
-    { path: 'centrosUniversitarios', canActivate: [auntenticacionGuard], component: CentrosUniversitariosComponent },
+    { path: 'centros', canActivate: [auntenticacionGuard], component: CentrosUniversitariosComponent },
     { path: 'carreras', canActivate: [auntenticacionGuard], component: CarrerasComponent },
     { path: 'categorias', canActivate: [auntenticacionGuard], component: CategoriasComponent },
     { path: 'conceptosAbonos', canActivate: [auntenticacionGuard], component: ConceptosAbonosComponent },

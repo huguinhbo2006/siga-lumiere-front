@@ -59,10 +59,15 @@ export class DatosAlumnoPrincipalComponent {
   mostrar(){
     this.cargando = true;
     this.servicio.datos({id: this.alumno}).subscribe((respuesta: any) => {
+      const datos = {
+        nombre: respuesta.datos.nombre,
+        codigo: respuesta.datos.generales.codigo,
+        id: respuesta.datos.id,
+      }
       this.cargando = false;
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
-      this.emitidor.emit(respuesta.datos.nombre);
+      this.emitidor.emit(datos);
     },
     error => {
       this.cargando = false;

@@ -12,6 +12,7 @@ export class ModalCarreraComponent implements OnInit {
     nombre: '',
     idUniversidad: 0,
     idCentroUniversitario: 0,
+    idCalendario: 0,
     puntaje: '',
     aspirantes: '',
     admitidos: '',
@@ -19,7 +20,8 @@ export class ModalCarreraComponent implements OnInit {
   };
   @Input() listas = {
     universidades: [],
-    centrosUniversitarios: []
+    centrosUniversitarios: [],
+    calendarios: []
   };
   centros: any;
   @Input() modificar = false;

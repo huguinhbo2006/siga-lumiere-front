@@ -12,7 +12,8 @@ import { PdfService } from '../../servicios/pdf.service';
 export class AlumnoPrincipalComponent {
   dato = {
     nombre: '',
-    id: 0
+    codigo: '',
+    id: 0,
   }
   listas = {
     inscripcion: {
@@ -77,17 +78,11 @@ export class AlumnoPrincipalComponent {
   }
 
   mostrar(){
-    this.cargando = true;
     this.servicio.traer({id: this.dato.id}).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.listas = respuesta.listas;
       this.cupos = respuesta.cupos;
       this.grupos = respuesta.grupos;
       this.codigos = respuesta.codigos;
-    },
-    error => {
-      this.cargando = false;
-      this.generales.interpretarError(error);
     });
   }
 
