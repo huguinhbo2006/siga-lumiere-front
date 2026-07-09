@@ -7,18 +7,7 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 })
 export class EmpleadoImagenesComponent {
   @Output() emitidor = new EventEmitter<any>();
-  @Input() dato = {
-    actaNacimiento: '',
-    comprobanteDomicilio: '',
-    curp: '',
-    ifef: '',
-    ifet: '',
-    rfc: '',
-    carta1: '',
-    carta2: '',
-    nss: '',
-    comporbanteEstudios: ''
-  };
+  @Input() dato: any;
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   

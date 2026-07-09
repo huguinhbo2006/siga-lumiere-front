@@ -41,9 +41,7 @@ export class CentrosUniversitariosComponent {
   }
   
   mostrar(){
-    this.
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.
       this.listado = respuesta.datos;
       this.lista = respuesta.lista;
     });
@@ -51,9 +49,7 @@ export class CentrosUniversitariosComponent {
   
   nuevo(dato: any){
     if(this.servicio.validar(dato)){
-      this.
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.
         this.generales.mensajeCorrecto('Centro universitario agregado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
@@ -64,9 +60,7 @@ export class CentrosUniversitariosComponent {
   
   modificar(dato: any){
     if(this.servicio.validar(dato)){
-      this.
       this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.
         this.generales.mensajeCorrecto('Centro universitario modificado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
@@ -77,9 +71,7 @@ export class CentrosUniversitariosComponent {
   }
   
   activar(){
-    this.
     this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Centro universitario activado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
@@ -88,9 +80,7 @@ export class CentrosUniversitariosComponent {
   }
   
   desactivar(){
-    this.
     this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Centro universitario desactivado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
@@ -99,9 +89,7 @@ export class CentrosUniversitariosComponent {
   }
   
   eliminar(){
-    this.
     this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Centro universitario eliminado correctamente');
       this.listado = this.generales.eliminarDatoArray(this.listado, respuesta);
       this.seleccion = undefined;

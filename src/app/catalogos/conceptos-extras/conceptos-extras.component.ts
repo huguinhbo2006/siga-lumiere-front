@@ -34,18 +34,14 @@ export class ConceptosExtrasComponent {
   }
   
   mostrar(){
-    this.
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.
       this.datos = respuesta;
     });
   }
   
   nuevo(dato: any){
     if(this.servicio.validar(dato)){
-      this.
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.
         this.generales.mensajeCorrecto('Concepto de extra agregado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
@@ -55,9 +51,7 @@ export class ConceptosExtrasComponent {
   
   modificar(dato: any){
     if(this.servicio.validar(dato)){
-      this.
       this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.
         this.generales.mensajeCorrecto('Concepto de extra modificado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
@@ -66,9 +60,7 @@ export class ConceptosExtrasComponent {
   }
   
   activar(){
-    this.
     this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Concepto de extra activado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
@@ -76,9 +68,7 @@ export class ConceptosExtrasComponent {
   }
   
   desactivar(){
-    this.
     this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Concepto de extra desactivado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
@@ -86,9 +76,7 @@ export class ConceptosExtrasComponent {
   }
   
   eliminar(){
-    this.
     this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.
       this.generales.mensajeCorrecto('Concepto de extra eliminado correctamente');
       this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
       this.seleccion = undefined;

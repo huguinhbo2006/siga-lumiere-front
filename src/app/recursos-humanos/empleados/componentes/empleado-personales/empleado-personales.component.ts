@@ -9,14 +9,7 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class EmpleadoPersonalesComponent {
   @Output() siguiente = new EventEmitter<any>();
   @Output() anterior = new EventEmitter<any>();
-  @Input() dato = {
-    nombre: '',
-    estadoCivil: '',
-    fechaNacimiento: '',
-    telefono: '',
-    celular: '',
-    correo: ''
-  };
+  @Input() dato: any;
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   

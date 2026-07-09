@@ -15,6 +15,7 @@ export class EmpleadosComponent {
     busqueda: true
   };
   datos: any;
+  listas: any;
   cargando = false;
   seleccion: any;
   vista: any;
@@ -37,7 +38,8 @@ export class EmpleadosComponent {
     this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
       this.cargando = false;
-      this.datos = respuesta;
+      this.datos = respuesta.datos;
+      this.listas = respuesta.listas;
     },
     error => {
       this.cargando = false;

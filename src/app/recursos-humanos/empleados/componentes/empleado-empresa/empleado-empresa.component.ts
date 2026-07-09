@@ -9,16 +9,9 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class EmpleadoEmpresaComponent {
   @Output() siguiente = new EventEmitter<any>();
   @Output() anterior = new EventEmitter<any>();
-  @Input() dato = {
-    sueldoBase: '',
-    sueldoFiscal: '',
-    bono: '',
-    idSucursal: 0,
-    idDepartamento: 0,
-    idPuesto: 0
-  };
+  @Input() dato: any;
   @Input() modificar = false;
-  listas = {
+  @Input() listas = {
     sucursales: [],
     departamentos: [],
     puestos: []

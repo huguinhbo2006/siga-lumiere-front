@@ -8,24 +8,14 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class EmpleadoDomicilioComponent {
   @Output() siguiente = new EventEmitter<any>();
   @Output() anterior = new EventEmitter<any>();
-  @Input() dato = {
-    calle: '',
-    numeroExterior: '',
-    numeroInterior: '',
-    colonia: '',
-    codigoPostal: '',
-    idEstado: 0,
-    idMunicipio: 0
-  };
-  listas = {
-    estados: [],
-    municipios: []
-  }
+  @Input() dato: any;
+  @Input()listas: any;
   municipios: any;
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {
+    console.log(this.listas);
     (this.modificar) ? this.buscarMunicipios() : null;
   }
 

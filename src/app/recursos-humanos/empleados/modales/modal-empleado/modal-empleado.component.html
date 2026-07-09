@@ -1,13 +1,38 @@
 <div class="modal-header bg-success">
-    <h4 class="text-white">Agregar Empleado</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="text-white">{{ modificar ? 'Modificar' : 'Agregar' }} Empleado</h4>
+    <button type="button" class="close" (click)="cerrar()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 <div class="modal-body">
     <div class="container">
-        <app-empleado-personales *ngIf="vista === 0"></app-empleado-personales>
-        <app-empleado-domicilio *ngIf="vista === 1"></app-empleado-domicilio>
-        <app-empleado-fiscales *ngIf="vista === 2"></app-empleado-fiscales>
-        <app-empleado-empresa *ngIf="vista === 3"></app-empleado-empresa>
-        <app-empleado-imagenes *ngIf="vista === 4"></app-empleado-imagenes>
+
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="vista === 0" [class.disabled]="true">Personales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="vista === 1" [class.disabled]="true">Domicilio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="vista === 2" [class.disabled]="true">Fiscales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="vista === 3" [class.disabled]="true">Empresa</a>
+            </li>
+        </ul>
+
+        <app-empleado-personales *ngIf="vista === 0" [dato]="dato.personales" (siguiente)="guardarPaso('personales', $event)">
+        </app-empleado-personales>
+
+        <app-empleado-domicilio *ngIf="vista === 1" [dato]="dato.domicilio" [listas]="listas.domicilio" (atras)="atrasPaso()" (siguiente)="guardarPaso('domicilio', $event)">
+        </app-empleado-domicilio>
+
+        <app-empleado-fiscales *ngIf="vista === 2" [dato]="dato.fiscales" (atras)="atrasPaso()" (siguiente)="guardarPaso('fiscales', $event)">
+        </app-empleado-fiscales>
+
+        <app-empleado-empresa *ngIf="vista === 3" [dato]="dato.empresa" [listas]="listas.empresa" (atras)="atrasPaso()" (siguiente)="guardarPaso('empresa', $event)">
+        </app-empleado-empresa>
+
     </div>
 </div>

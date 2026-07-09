@@ -9,15 +9,7 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class EmpleadoFiscalesComponent {
   @Output() siguiente = new EventEmitter<any>();
   @Output() anterior = new EventEmitter<any>();
-  @Input() dato = {
-    nss: '',
-    rfc: '',
-    curp: '',
-    cuentaBancaria: '',
-    fechaAltaImms: '',
-    fechaIngreso: '',
-    fechaBaja: ''
-  };
+  @Input() dato: any;
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
   

@@ -29,6 +29,6 @@
     <button class="btn btn-info" (click)="modal('sucursales')">Sucursales</button>
 </app-botones>
 <app-modal [ngSwitch]="vista">
-    <app-modal-empleado *ngSwitchCase="'nuevo'"></app-modal-empleado>
+    <app-modal-empleado *ngSwitchCase="'nuevo'" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-empleado>
     <app-modal-sucursales-empleado *ngSwitchCase="'sucursales'" [usuario]="seleccion"></app-modal-sucursales-empleado>
 </app-modal>

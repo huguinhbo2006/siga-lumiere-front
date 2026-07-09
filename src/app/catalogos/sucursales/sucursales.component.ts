@@ -33,20 +33,12 @@ export class SucursalesComponent {
     });
   }
   
-  mostrar(){
-    this.
-    this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.
-      this.datos = respuesta;
+  mostrar(){    this.servicio.mostrar().subscribe((respuesta: any) => {      this.datos = respuesta;
     });
   }
   
   nuevo(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Sucursal agregado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.nuevo(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Sucursal agregado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       });
@@ -54,42 +46,26 @@ export class SucursalesComponent {
   }
   
   modificar(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Sucursal modificado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.modificar(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Sucursal modificado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       });
     }
   }
   
-  activar(){
-    this.
-    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Sucursal activado correctamente');
+  activar(){    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Sucursal activado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     });
   }
   
-  desactivar(){
-    this.
-    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Sucursal desactivado correctamente');
+  desactivar(){    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Sucursal desactivado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     });
   }
   
-  eliminar(){
-    this.
-    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Sucursal eliminado correctamente');
+  eliminar(){    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Sucursal eliminado correctamente');
       this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
       this.seleccion = undefined;
     });

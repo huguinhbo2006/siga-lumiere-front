@@ -33,89 +33,53 @@ export class PrestadoresComponent {
     });
   }
   
-  mostrar(){
-    this.
-    this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.
-      this.datos = respuesta;
+  mostrar(){    this.servicio.mostrar().subscribe((respuesta: any) => {      this.datos = respuesta;
     },
-    (error: any) => {
-      this.
-      this.generales.interpretarError(error);
+    (error: any) => {      this.generales.interpretarError(error);
     });
   }
   
   nuevo(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Prestador agregado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.nuevo(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Prestador agregado correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       },
-      (error: any) => {
-        this.
-        this.generales.interpretarError(error);
+      (error: any) => {        this.generales.interpretarError(error);
       });
     }
   }
   
   modificar(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Prestador modificado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.modificar(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Prestador modificado correctamente');
         this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       },
-      (error: any) => {
-        this.
-        this.generales.interpretarError(error);
+      (error: any) => {        this.generales.interpretarError(error);
       });
     }
   }
   
-  activar(){
-    this.
-    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Prestador activado correctamente');
+  activar(){    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Prestador activado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     },
-    (error: any) => {
-      this.
-      this.generales.interpretarError(error);
+    (error: any) => {      this.generales.interpretarError(error);
     });
   }
   
-  desactivar(){
-    this.
-    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Prestador desactivado correctamente');
+  desactivar(){    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Prestador desactivado correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     },
-    (error: any) => {
-      this.
-      this.generales.interpretarError(error);
+    (error: any) => {      this.generales.interpretarError(error);
     });
   }
   
-  eliminar(){
-    this.
-    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Prestador eliminado correctamente');
+  eliminar(){    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Prestador eliminado correctamente');
       this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
       this.seleccion = undefined;
     },
-    (error: any) => {
-      this.
-      this.generales.interpretarError(error);
+    (error: any) => {      this.generales.interpretarError(error);
     });
   }
   

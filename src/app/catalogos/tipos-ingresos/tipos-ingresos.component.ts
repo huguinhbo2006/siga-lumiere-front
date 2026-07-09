@@ -40,21 +40,13 @@ export class TiposIngresosComponent {
     this.datos = this.generales.sublista(this.listado, this.busqueda, 'idRubro');
   }
   
-  mostrar(){
-    this.
-    this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.
-      this.listado = respuesta.datos;
+  mostrar(){    this.servicio.mostrar().subscribe((respuesta: any) => {      this.listado = respuesta.datos;
       this.lista = respuesta.lista;
     });
   }
   
   nuevo(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Tipo de ingreso agregado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.nuevo(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Tipo de ingreso agregado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
         this.buscar()
@@ -63,11 +55,7 @@ export class TiposIngresosComponent {
   }
   
   modificar(dato: any){
-    if(this.servicio.validar(dato)){
-      this.
-      this.servicio.modificar(dato).subscribe((respuesta: any) => {
-        this.
-        this.generales.mensajeCorrecto('Tipo de ingreso modificado correctamente');
+    if(this.servicio.validar(dato)){      this.servicio.modificar(dato).subscribe((respuesta: any) => {        this.generales.mensajeCorrecto('Tipo de ingreso modificado correctamente');
         this.listado = this.generales.agregarDatoArray(this.listado, respuesta);
         this.generales.cerrarModal();
         this.seleccion = respuesta;
@@ -76,33 +64,21 @@ export class TiposIngresosComponent {
     }
   }
   
-  activar(){
-    this.
-    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Tipo de ingreso activado correctamente');
+  activar(){    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Tipo de ingreso activado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
       this.buscar()
     });
   }
   
-  desactivar(){
-    this.
-    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Tipo de ingreso desactivado correctamente');
+  desactivar(){    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Tipo de ingreso desactivado correctamente');
       this.listado = this.generales.actualizarDatoArray(this.listado, respuesta);
       this.seleccion = respuesta;
       this.buscar()
     });
   }
   
-  eliminar(){
-    this.
-    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.
-      this.generales.mensajeCorrecto('Tipo de ingreso eliminado correctamente');
+  eliminar(){    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {      this.generales.mensajeCorrecto('Tipo de ingreso eliminado correctamente');
       this.listado = this.generales.eliminarDatoArray(this.listado, respuesta);
       this.seleccion = undefined;
       this.buscar()
