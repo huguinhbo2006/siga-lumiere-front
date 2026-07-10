@@ -35,7 +35,9 @@ export class CalificadorComponent implements OnInit {
   }
 
   buscar(){
-    this.datos = this.generales.sublistaMultiples(this.listas.grupos, this.busqueda);
+    this.calificador.grupos(this.busqueda).subscribe(respuesta => {
+      this.datos = respuesta;
+    });
   }
 
   traerHorarios() {

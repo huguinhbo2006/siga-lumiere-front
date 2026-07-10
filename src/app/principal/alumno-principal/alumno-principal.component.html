@@ -17,7 +17,7 @@
                     <button class="btn btn-success" (click)="modal('inscripcion');">Nueva Inscripcion</button>
                 </div>
             </div>
-            <app-datos-alumno-principal *ngIf="vista === 0" [alumno]="dato.id" (emitidor)="dato = $event;"></app-datos-alumno-principal>
+            <app-datos-alumno-principal *ngIf="vista === 0" [alumno]="dato.id" (emitidor)="dato.nombre = $event.nombre; dato.codigo = $event.codigo;"></app-datos-alumno-principal>
             <app-fichas-alumno-principal *ngIf="vista === 1" [alumno]="dato.id"></app-fichas-alumno-principal>
         </div>
     </div>

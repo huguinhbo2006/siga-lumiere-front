@@ -16,6 +16,9 @@ import { ModalCalificarAlumnoComponent } from './calificar-grupo/modales/modal-c
   imports: [
     CommonModule,
     UiSearchModule
+  ],
+  exports: [
+    ModalCalificarAlumnoComponent
   ]
 })
 export class LumiereSocialModule { }

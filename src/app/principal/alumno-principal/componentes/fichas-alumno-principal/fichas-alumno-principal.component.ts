@@ -132,4 +132,8 @@ export class FichasAlumnoPrincipalComponent {
     console.log(dato);
     this.router.navigate(['admin/ficha', dato.id]);
   }
+
+  calificaciones(){
+    
+  }
 }

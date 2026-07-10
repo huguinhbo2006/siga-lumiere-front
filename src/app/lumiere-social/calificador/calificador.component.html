@@ -24,28 +24,31 @@
 </div>
 <app-busquedas *ngIf="verBuscar" (emitidor)="verBuscar = $event;">
     <div class="col-sm-12">
-        <app-select [datos]="listas.calendarios" [etiqueta]="'Calendarios'" (emitidor)="busqueda.idCalendario = $event; buscar();"></app-select>
+        <app-select [datos]="listas.actuales" [etiqueta]="'Calendarios'" (emitidor)="busqueda.idCalendario = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.niveles" [etiqueta]="'Niveles'" (emitidor)="busqueda.idNivel = $event; buscar();"></app-select>
+        <app-select [datos]="listas.niveles" [etiqueta]="'Niveles'" (emitidor)="busqueda.idNivel = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.subniveles" [etiqueta]="'Subniveles'" (emitidor)="busqueda.idSubnivel = $event; buscar();"></app-select>
+        <app-select [datos]="listas.subniveles" [etiqueta]="'Subniveles'" (emitidor)="busqueda.idSubnivel = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.modalidades" [etiqueta]="'Modalidad'" (emitidor)="busqueda.idModalidad = $event; buscar();"></app-select>
+        <app-select [datos]="listas.modalidades" [etiqueta]="'Modalidad'" (emitidor)="busqueda.idModalidad = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.cursos" [etiqueta]="'Cursos'" (emitidor)="busqueda.idCurso = $event; buscar();"></app-select>
+        <app-select [datos]="listas.cursos" [etiqueta]="'Cursos'" (emitidor)="busqueda.idCurso = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.categorias" [etiqueta]="'Categorias'" (emitidor)="busqueda.idCategoria = $event; buscar();"></app-select>
+        <app-select [datos]="listas.categorias" [etiqueta]="'Categorias'" (emitidor)="busqueda.idCategoria = $event;"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listas.turnos" [etiqueta]="'Turno'" (emitidor)="busqueda.idTurno = $event; traerHorarios(); buscar();"></app-select>
+        <app-select [datos]="listas.turnos" [etiqueta]="'Turno'" (emitidor)="busqueda.idTurno = $event; traerHorarios();"></app-select>
     </div>
     <div class="col-sm-12">
-        <app-select [datos]="listaHorarios" [etiqueta]="'Horario'" (emitidor)="busqueda.idHorario = $event; buscar();"></app-select>
+        <app-select [datos]="listaHorarios" [etiqueta]="'Horario'" (emitidor)="busqueda.idHorario = $event;"></app-select>
+    </div>
+    <div class="col-sm-12">
+        <button class="btn btn-success" (click)="buscar()">Buscar</button>
     </div>
 </app-busquedas>
 <app-modal-generico [ngSwitch]="vista">

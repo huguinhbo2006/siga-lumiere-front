@@ -40,6 +40,7 @@ import { ModalInscripcionPrincipalComponent } from './alumno-principal/modales/m
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { CreditoComponent } from './credito/credito.component';
 import { PrestamoComponent } from './prestamo/prestamo.component';
+import { LumiereSocialModule } from '../lumiere-social/lumiere-social.module';
 
 
 
@@ -87,7 +88,8 @@ import { PrestamoComponent } from './prestamo/prestamo.component';
     CommonModule,
     UiSearchModule,
     RecursosHumanosModule,
-    AdministradorModule
+    AdministradorModule,
+    LumiereSocialModule
   ]
 })
 export class PrincipalModule { }
