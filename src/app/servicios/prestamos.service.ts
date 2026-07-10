@@ -53,4 +53,29 @@ export class PrestamosService {
     }
     return true;
   }
+
+  validarAbono(dato: any): boolean {
+    if (this.generales.validarString(dato.monto)) {
+      this.generales.mensajeError('No se ha ingresado el monto');
+      return false;
+    }
+    const montoNum = parseFloat(dato.monto);
+    if (isNaN(montoNum) || montoNum <= 0) {
+      this.generales.mensajeError('El monto debe ser un número mayor a cero');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.idFormaPago)) {
+      this.generales.mensajeError('No se ha seleccionado la forma de pago');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.idCuenta) && dato.idFormaPago > 1) {
+      this.generales.mensajeError('No se ha seleccionado la cuenta');
+      return false;
+    }
+    if (this.generales.validarEntero(dato.tipo)) {
+      this.generales.mensajeError('No se ha seleccionado el tipo de abono');
+      return false;
+    }
+    return true;
+  }
 }

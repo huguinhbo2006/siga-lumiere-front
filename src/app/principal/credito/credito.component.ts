@@ -55,7 +55,8 @@ export class CreditoComponent implements OnInit {
     const dato = {
       tipoPrestador: this.datos.tipo,
       ...this.abono,
-      ...this.datos
+      id: this.datos.id,
+      idPrestador: this.datos.idPrestador
     };
     if (this.servicio.validarAbono(dato)) {
       this.servicio.abono(dato).subscribe((respuesta: any) => {

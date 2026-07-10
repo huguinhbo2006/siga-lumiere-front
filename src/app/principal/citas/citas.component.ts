@@ -40,6 +40,6 @@ export class CitasComponent {
   }
 
   verSeguimiento() {
-    this.router.navigate(['siga/seguimiento', this.seleccion.idSeguimiento]); 
+    this.router.navigate(['admin/seguimiento', this.seleccion[0].idSeguimiento]); 
   }
 }
