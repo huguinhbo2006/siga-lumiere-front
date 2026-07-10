@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Alumno</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Nombre'" [valor]="datos.nombre" [mayusculas]="true" (emitidor)="datos.nombre = $event;"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Apellido Paterno'" [valor]="datos.apellidoPaterno" [mayusculas]="true" (emitidor)="datos.apellidoPaterno = $event;"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Apellido Materno'" [valor]="datos.apellidoMaterno" [mayusculas]="true" (emitidor)="datos.apellidoMaterno = $event;"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Código'" [valor]="datos.codigo" [mayusculas]="true" (emitidor)="datos.codigo = $event;"></app-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" (click)="modificar()">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

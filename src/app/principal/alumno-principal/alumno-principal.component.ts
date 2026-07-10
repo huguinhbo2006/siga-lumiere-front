@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnosService } from '../../servicios/alumnos.service';
 import { PdfService } from '../../servicios/pdf.service';
 
@@ -69,7 +69,8 @@ export class AlumnoPrincipalComponent {
     private generales: GeneralesService,
     private rutaActiva: ActivatedRoute, 
     private servicio: AlumnosService,
-    private pdf: PdfService
+    private pdf: PdfService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -113,5 +114,9 @@ export class AlumnoPrincipalComponent {
     abonos.forEach((abono: any) => {
       this.pdf.pdfRecibo(abono.id);
     });
+  }
+
+  alumno(){
+    this.router.navigate(['admin/alumnoDatos', this.dato.id]);
   }
 }
