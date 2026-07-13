@@ -117,6 +117,9 @@ export class AlumnoPrincipalComponent {
   }
 
   alumno(){
-    this.router.navigate(['admin/alumnoDatos', this.dato.id]);
+    const usuario = localStorage.getItem('usuario');
+    if(usuario?.toString() === '15' || usuario?.toString() === '13' || usuario?.toString() === '3'){
+      this.router.navigate(['admin/alumnoDatos', this.dato.id]);
+    }
   }
 }

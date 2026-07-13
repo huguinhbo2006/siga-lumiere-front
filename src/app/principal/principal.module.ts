@@ -41,7 +41,7 @@ import { CalificacionesComponent } from './calificaciones/calificaciones.compone
 import { CreditoComponent } from './credito/credito.component';
 import { PrestamoComponent } from './prestamo/prestamo.component';
 import { LumiereSocialModule } from '../lumiere-social/lumiere-social.module';
-import { AlumnoDatosComponent } from './alumno-datos/alumno-datos.component';
+import { AlumnoCodigoComponent } from './alumno-codigo/alumno-codigo.component';
 
 
 
@@ -84,7 +84,7 @@ import { AlumnoDatosComponent } from './alumno-datos/alumno-datos.component';
     CalificacionesComponent,
     CreditoComponent,
     PrestamoComponent,
-    AlumnoDatosComponent,
+    AlumnoCodigoComponent,
   ],
   imports: [
     CommonModule,

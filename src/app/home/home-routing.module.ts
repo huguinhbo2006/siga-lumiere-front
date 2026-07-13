@@ -130,6 +130,7 @@ import { PrestamosComponent } from '../recursos-humanos/prestamos/prestamos.comp
 import { ReporteIngresosBasicoComponent } from '../reportes/reporte-ingresos-basico/reporte-ingresos-basico.component';
 import { ReporteEgresosBasicoComponent } from '../reportes/reporte-egresos-basico/reporte-egresos-basico.component';
 import { PrestamoComponent } from '../principal/prestamo/prestamo.component';
+import { AlumnoCodigoComponent } from '../principal/alumno-codigo/alumno-codigo.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -262,6 +263,7 @@ const routes: Routes = [
     { path: 'calificarGrupo/:grupo', canActivate: [auntenticacionGuard], component: CalificarGrupoComponent},
     { path: 'credito/:credito', canActivate: [auntenticacionGuard], component: CreditoComponent},
     { path: 'prestamo/:prestamo', canActivate: [auntenticacionGuard], component: PrestamoComponent},
+    { path: 'alumnoDatos/:alumno', canActivate: [auntenticacionGuard], component: AlumnoCodigoComponent},
   ]}
 ];
 

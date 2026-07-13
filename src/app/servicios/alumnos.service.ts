@@ -75,6 +75,16 @@ export class AlumnosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
   
+  alumno(body: any){
+    const url = this.uri + 'alumno';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  modificarNombre(body: any){
+    const url = this.uri + 'modificarNombre';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+  
   validarPersonales(dato: any){
     if(this.generales.validarString(dato.nombre)){
       this.generales.mensajeError('No se ha ingresado el nombre');

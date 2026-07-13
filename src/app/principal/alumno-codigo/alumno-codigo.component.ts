@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GeneralesService } from '../../servicios/generales.service';
 import { AlumnosService } from '../../servicios/alumnos.service';
+import { GeneralesService } from '../../servicios/generales.service';
 
 @Component({
-  selector: 'app-alumno-datos',
-  templateUrl: './alumno-datos.component.html',
-  styleUrl: './alumno-datos.component.css'
+  selector: 'app-alumno-codigo',
+  templateUrl: './alumno-codigo.component.html',
+  styleUrl: './alumno-codigo.component.css'
 })
-export class AlumnoDatosComponent {
+export class AlumnoCodigoComponent {
   private rutaActivada = inject(ActivatedRoute);
   private servicio = inject(AlumnosService);
   private generales = inject(GeneralesService);
