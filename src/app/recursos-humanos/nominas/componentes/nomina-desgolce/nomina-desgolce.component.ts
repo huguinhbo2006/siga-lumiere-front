@@ -37,6 +37,7 @@ export class NominaDesgolceComponent {
   ngOnInit(): void {
     this.traerPercepciones();
     this.calcular();
+    console.log(this.percepciones)
   }
 
   traerPercepciones(){

@@ -28,7 +28,9 @@ export class NominasComponent {
     sucursales: [],
     formaspagos: [],
     nominas: [],
-    actuales: []
+    actuales: [],
+    conceptospercepciones: [],
+    conceptosdeducciones: []
   }
   datos: any;
   cargando = false;

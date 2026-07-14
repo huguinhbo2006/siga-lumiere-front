@@ -39,7 +39,9 @@ export class ModalNominaComponent {
     sucursales: [],
     formaspagos: [],
     nominas: [],
-    actuales: []
+    actuales: [],
+    conceptospercepciones: [],
+    conceptosdeducciones: []
   }
   @Input() modificar = false;
   accion = 1;
