@@ -128,6 +128,12 @@ export class SeguimientosPrincipalComponent {
       descuentos: new Array()
     }
   }
+
+  citas = [
+    { id: 0, nombre: 'No asistio'},
+    { id: 1, nombre: 'Finalizado'},
+    { id: 2, nombre: 'Cancelado'}
+  ]
   constructor(private generales: GeneralesService,
               private rutaActiva: ActivatedRoute,
               private crm: CRMService,

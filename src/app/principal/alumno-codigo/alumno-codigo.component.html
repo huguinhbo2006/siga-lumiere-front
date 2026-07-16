@@ -19,6 +19,9 @@
                 <div class="col-sm-3">
                     <app-input [etiqueta]="'Código'" [valor]="datos.codigo" [mayusculas]="true" (emitidor)="datos.codigo = $event;"></app-input>
                 </div>
+                <div class="col-sm-3">
+                    <app-input [etiqueta]="'Fecha de Nacimiento'" [valor]="datos.fechaNacimiento" [mayusculas]="true" (emitidor)="datos.fechaNacimiento = $event;"></app-input>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">

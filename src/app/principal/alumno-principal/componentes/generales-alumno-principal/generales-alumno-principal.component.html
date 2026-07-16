@@ -1,4 +1,7 @@
 <div class="row">
+    <div class="col-sm-12">
+        <app-checktimes [activo]="datos.modificar" (emitidor)="datos.modificar= $event;" [texto]="'Datos Generales'"></app-checktimes>
+    </div>
     <div class="col-sm-3">
         <app-input [etiqueta]="'Telefono'" [validacion]="'numero'" [cantidad]="10" [valor]="datos.telefono" [activo]="!datos.modificar" (emitidor)="datos.telefono = $event;"></app-input>
     </div>
@@ -9,7 +12,7 @@
         <app-input [etiqueta]="'Correo'" [valor]="datos.correo" [activo]="!datos.modificar" [valor]="datos.correo" (emitidor)="datos.correo = $event;"></app-input>
     </div>
     <div class="col-sm-3">
-        <app-input [etiqueta]="'Fecha de nacimiento'" [tipo]="'date'" [valor]="datos.fechaNacimiento" [activo]="!datos.modificar" (emitidor)="datos.fechaNacimiento = $event;"></app-input>
+        <app-input [activo]="true" [etiqueta]="'Fecha de nacimiento'" [tipo]="'date'" [valor]="datos.fechaNacimiento" (emitidor)="datos.fechaNacimiento = $event;"></app-input>
     </div>
     <div class="col-sm-12 text-end" *ngIf="datos.modificar">
         <button class="btn btn-success" (click)="emitir();">Guardar</button>

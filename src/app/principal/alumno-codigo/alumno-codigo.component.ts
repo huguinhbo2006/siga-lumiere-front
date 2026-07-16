@@ -17,7 +17,8 @@ export class AlumnoCodigoComponent {
     nombre: '',
     apellidoPaterno: '',
     apellidoMaterno: '',
-    codigo: ''
+    codigo: '',
+    fechaNacimiento: '',
   }
 
   ngOnInit(){
