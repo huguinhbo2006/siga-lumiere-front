@@ -13,7 +13,9 @@ export class DescripcionSeguimientosComponent implements OnInit {
 
   constructor(private eRef: ElementRef) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    console.log(this.descripcion);
+  }
 
   toggleDropdown(event: MouseEvent): void {
     event.stopPropagation();
@@ -34,6 +36,19 @@ export class DescripcionSeguimientosComponent implements OnInit {
 
   mostrarCita(): boolean {
     return parseInt(this.descripcion.idCita) > 0;
+  }
+
+  citaEditable(): boolean {
+    if (!this.descripcion) {
+      return false;
+    }
+    if (this.descripcion.idEstatusCita !== undefined && this.descripcion.idEstatusCita !== null && this.descripcion.idEstatusCita !== '') {
+      return parseInt(this.descripcion.idEstatusCita) === 1;
+    }
+    if (this.descripcion.estatusCita) {
+      return this.descripcion.estatusCita.toLowerCase().trim() === 'en proceso';
+    }
+    return false;
   }
 
   emitirEstatusCita(estatus: number): void {

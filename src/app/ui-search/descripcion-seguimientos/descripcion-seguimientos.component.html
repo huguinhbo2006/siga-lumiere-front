@@ -14,8 +14,8 @@
             </p>
             <!-- Dropdown propio Angular -->
             <div class="custom-dropdown" *ngIf="mostrarCita()">
-                <!-- Editable: solo si idEstatusCita <= 1 (En Proceso) -->
-                <ng-container *ngIf="descripcion.idEstatusCita <= 1; else citaCerrada">
+                <!-- Editable: solo si idEstatusCita == 1 (En Proceso) -->
+                <ng-container *ngIf="citaEditable(); else citaCerrada">
                     <button class="custom-dropdown__trigger" (click)="toggleDropdown($event)">
                   {{ descripcion.estatusCita }}
                   <span class="custom-dropdown__arrow" [class.custom-dropdown__arrow--open]="dropdownAbierto()">&#9660;</span>
