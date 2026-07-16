@@ -14,24 +14,24 @@
             </p>
             <!-- Dropdown propio Angular -->
             <div class="custom-dropdown" *ngIf="mostrarCita()">
-              <!-- Editable: solo si idEstatusCita <= 1 (En Proceso) -->
-              <ng-container *ngIf="descripcion.idEstatusCita <= 1; else citaCerrada">
-                <button class="custom-dropdown__trigger" (click)="toggleDropdown($event)">
+                <!-- Editable: solo si idEstatusCita <= 1 (En Proceso) -->
+                <ng-container *ngIf="descripcion.idEstatusCita <= 1; else citaCerrada">
+                    <button class="custom-dropdown__trigger" (click)="toggleDropdown($event)">
                   {{ descripcion.estatusCita }}
                   <span class="custom-dropdown__arrow" [class.custom-dropdown__arrow--open]="dropdownAbierto()">&#9660;</span>
                 </button>
-                <ul class="custom-dropdown__menu" *ngIf="dropdownAbierto()">
-                  <li (click)="emitirEstatusCita(2)">Finalizada</li>
-                  <li (click)="emitirEstatusCita(3)">Cancelada</li>
-                  <li (click)="emitirEstatusCita(4)">No Asistió</li>
-                </ul>
-              </ng-container>
-              <!-- Solo lectura: cita ya cerrada -->
-              <ng-template #citaCerrada>
-                <span class="custom-dropdown__readonly">
+                    <ul class="custom-dropdown__menu" *ngIf="dropdownAbierto()">
+                        <li (click)="emitirEstatusCita(2)">Finalizada</li>
+                        <li (click)="emitirEstatusCita(3)">Cancelada</li>
+                        <li (click)="emitirEstatusCita(4)">No Asistió</li>
+                    </ul>
+                </ng-container>
+                <!-- Solo lectura: cita ya cerrada -->
+                <ng-template #citaCerrada>
+                    <span class="custom-dropdown__readonly">
                   <i class="fas fa-lock"></i> {{ descripcion.estatusCita }}
                 </span>
-              </ng-template>
+                </ng-template>
             </div>
             <span class="vertical-timeline-element-date">{{descripcion.fecha}}</span>
         </div>
