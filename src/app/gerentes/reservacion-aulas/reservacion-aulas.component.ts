@@ -10,8 +10,8 @@ import { datatableConfig } from '../../interfaces/tables.interface';
 })
 export class ReservacionAulasComponent {
   configuracion: datatableConfig = {
-    alias: ['Curso', 'Nivel', 'Subnivel', 'Modalidad', 'Categoria', 'Sede', 'Fecha Inicio', 'Fecha Fin', 'Aulas Reservadas', 'Profesores Reservados'],
-    encabezados: ['curso', 'nivel', 'subnivel', 'modalidad', 'categoria', 'sede', 'inicio', 'fin', 'aulas', 'profesores'],
+    alias: ['Curso', 'Nivel', 'Subnivel', 'Modalidad', 'Categoria', 'Sede', 'Fecha Inicio', 'Fecha Fin', 'Horario', 'Aulas Reservadas', 'Profesores Reservados'],
+    encabezados: ['curso', 'nivel', 'subnivel', 'modalidad', 'categoria', 'sede', 'inicio', 'fin', 'horario', 'aulas', 'profesores'],
     busqueda: true
   };
   datos: any;
