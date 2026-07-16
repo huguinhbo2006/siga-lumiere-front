@@ -12,15 +12,26 @@
             <p *ngIf="descripcion.tipo.toString() === '2'">
                 Descuento: {{descripcion.descripcionDescuento}}<br> Caducidad: {{descripcion.caducidad}}
             </p>
-            <a class="amo" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="mostrarCita()">
-                <h5 class="card-title text-uppercase text-muted mb-0 manita">
-                    {{descripcion.estatusCita}}
-                </h5>
-            </a>
-            <div class="dropdown-menu amo" aria-labelledby="dropdownMenuButton" *ngIf="descripcion.mostrarDatosCita">
-                <a class="dropdown-item" (click)="emitirEstatusCita(2)">Finalizada</a>
-                <a class="dropdown-item" (click)="emitirEstatusCita(3)">Cancelada</a>
-                <a class="dropdown-item" (click)="emitirEstatusCita(4)">No Asistio</a>
+            <!-- Dropdown propio Angular -->
+            <div class="custom-dropdown" *ngIf="mostrarCita()">
+              <!-- Editable: solo si idEstatusCita <= 1 (En Proceso) -->
+              <ng-container *ngIf="descripcion.idEstatusCita <= 1; else citaCerrada">
+                <button class="custom-dropdown__trigger" (click)="toggleDropdown($event)">
+                  {{ descripcion.estatusCita }}
+                  <span class="custom-dropdown__arrow" [class.custom-dropdown__arrow--open]="dropdownAbierto()">&#9660;</span>
+                </button>
+                <ul class="custom-dropdown__menu" *ngIf="dropdownAbierto()">
+                  <li (click)="emitirEstatusCita(2)">Finalizada</li>
+                  <li (click)="emitirEstatusCita(3)">Cancelada</li>
+                  <li (click)="emitirEstatusCita(4)">No Asistió</li>
+                </ul>
+              </ng-container>
+              <!-- Solo lectura: cita ya cerrada -->
+              <ng-template #citaCerrada>
+                <span class="custom-dropdown__readonly">
+                  <i class="fas fa-lock"></i> {{ descripcion.estatusCita }}
+                </span>
+              </ng-template>
             </div>
             <span class="vertical-timeline-element-date">{{descripcion.fecha}}</span>
         </div>

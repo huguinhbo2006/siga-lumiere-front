@@ -123,3 +123,93 @@ body {
     display: table;
     clear: both
 }
+
+/* ── Dropdown propio ─────────────────────────────────── */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.custom-dropdown__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #3f51b5;
+    background: #e8eaf6;
+    border: 1px solid #c5cae9;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background .15s, box-shadow .15s;
+    outline: none;
+}
+
+.custom-dropdown__trigger:hover {
+    background: #c5cae9;
+    box-shadow: 0 2px 6px rgba(63, 81, 181, .2);
+}
+
+.custom-dropdown__arrow {
+    font-size: .6rem;
+    transition: transform .2s;
+    display: inline-block;
+}
+
+.custom-dropdown__arrow--open {
+    transform: rotate(180deg);
+}
+
+.custom-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 1000;
+    min-width: 150px;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+    animation: dropdownFadeIn .15s ease;
+}
+
+.custom-dropdown__menu li {
+    padding: 8px 16px;
+    font-size: .8rem;
+    cursor: pointer;
+    color: #424242;
+    transition: background .1s, color .1s;
+}
+
+.custom-dropdown__menu li:hover {
+    background: #e8eaf6;
+    color: #3f51b5;
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.custom-dropdown__readonly {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #757575;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    cursor: default;
+}

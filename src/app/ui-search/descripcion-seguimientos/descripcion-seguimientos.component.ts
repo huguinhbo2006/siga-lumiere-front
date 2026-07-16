@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, HostListener, ElementRef, signal } from '@angular/core';
 
 @Component({
   selector: 'app-descripcion-seguimientos',
@@ -8,24 +8,39 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class DescripcionSeguimientosComponent implements OnInit {
   @Input() descripcion: any;
   @Output() emitidorEstatusCita = new EventEmitter<any>();
-  constructor() { }
 
-  ngOnInit(): void {
+  dropdownAbierto = signal(false);
+
+  constructor(private eRef: ElementRef) { }
+
+  ngOnInit(): void { }
+
+  toggleDropdown(event: MouseEvent): void {
+    event.stopPropagation();
+    this.dropdownAbierto.update(v => !v);
   }
 
-  mostrarCita(): boolean{
-    if(parseInt(this.descripcion.idCita) > 0){
-      return true;
-    }else{
-      return false;
+  cerrarDropdown(): void {
+    this.dropdownAbierto.set(false);
+  }
+
+  // Cierra el dropdown al hacer click fuera del componente
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.dropdownAbierto.set(false);
     }
   }
 
-  emitirEstatusCita(estatus: any){
-    const body = {
+  mostrarCita(): boolean {
+    return parseInt(this.descripcion.idCita) > 0;
+  }
+
+  emitirEstatusCita(estatus: number): void {
+    this.emitidorEstatusCita.emit({
       idCita: this.descripcion.idCita,
-      estatus: estatus
-    };
-    this.emitidorEstatusCita.emit(body);
+      estatus
+    });
+    this.cerrarDropdown();
   }
 }
