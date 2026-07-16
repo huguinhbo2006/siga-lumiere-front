@@ -33,8 +33,8 @@
 <app-modal [ngSwitch]="vista">
     <app-modal-nuevo-seguimiento *ngSwitchCase="'nuevo'" (emitidor)="guardarSeguimiento($event)"></app-modal-nuevo-seguimiento>
     <app-modal-citas *ngSwitchCase="'cita'" (emitidor)="guardarCita($event)"></app-modal-citas>
-    <app-modal-inscripcion-sguimiento *ngSwitchCase="'inscripcion'" [alumno]="alumno" [grupo]="inscripcion" [esVentas]="false" [listas]="listas" (emitidor)="inscribir($event)"></app-modal-inscripcion-sguimiento>
-    <app-modal-inscripcion-sguimiento *ngSwitchCase="'inscripcionVentas'" [alumno]="alumno" [grupo]="inscripcion" [esVentas]="true" [listas]="listas" (emitidor)="inscribir($event)"></app-modal-inscripcion-sguimiento>
+    <app-modal-inscripcion *ngSwitchCase="'inscripcion'" [ficha]="ficha" [codigos]="codigos" [listas]="listas" [grupos]="grupos" [cupos]="cupos" (emitidor)="inscribir($event);"></app-modal-inscripcion>
+    <app-modal-inscripcion *ngSwitchCase="'inscripcionVentas'" [ficha]="ficha" [codigos]="codigos" [listas]="listas" [grupos]="grupos" [cupos]="cupos" (emitidor)="inscribir($event);"></app-modal-inscripcion>
     <app-modal-asignar-ficha (emitidor)="asignarFicha($event)" *ngSwitchCase="'asignar'"></app-modal-asignar-ficha>
 </app-modal>
 <app-cargando *ngIf="cargando"></app-cargando>

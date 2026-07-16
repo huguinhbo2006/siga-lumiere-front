@@ -77,7 +77,7 @@ export class ModalInscripcionComponent {
     { id: 6, texto: 'Publicidad' },
     { id: 7, texto: 'Cuenta' }
   ];
-  ficha = {
+  @Input() ficha = {
     alumno: {
       nombre: '',
       apellidoPaterno: '',

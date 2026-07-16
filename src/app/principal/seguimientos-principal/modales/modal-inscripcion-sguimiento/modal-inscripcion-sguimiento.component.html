@@ -45,37 +45,29 @@
                             Cuenta
                         </a>
                     </li>
-                    <li class="nav-item" (click)="validarInscripcion('fiscales')" *ngIf="inscripcion.cuenta.IVA">
-                        <a class="nav-link {{(bloqueos.facturacion) ? 'disabled' : ''}} {{(validar.facturacion) ? 'fas fa-check text-green' : 'fas fa-times text-red'}}" id="fiscalesTab" data-toggle="pill" href="#fiscales" role="tab" aria-controls="fiscales" aria-selected="true">
-                            Fiscales
-                        </a>
-                    </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="alumno" role="tabpanel" aria-labelledby="alumnoTab">
                         <app-alumno-datos [listas]="{sexos: listas.sexos}" [datos]="inscripcion.alumno" (emitidor)="inscripcion.alumno = $event; validarInscripcion('grupo');"></app-alumno-datos>
                     </div>
-                    <!--<div class="tab-pane fade show" id="grupo" role="tabpanel" aria-labelledby="grupoTab">
-                        <app-inscripcion-datos [listas]="listas" [ventas]="esVentas" [datos]="inscripcion.inscripcion" (siguiente)="inscripcion.inscripcion = $event; validarInscripcion('domicilio');"></app-inscripcion-datos>
+                    <div class="tab-pane fade show" id="grupo" role="tabpanel" aria-labelledby="grupoTab">
+                        <app-inscripcion-datos [listas]="listas.inscripcion" [ventas]="esVentas" [datos]="$any(inscripcion.inscripcion)" [grupos]="listas.grupos" [cupos]="listas.cupos" (siguiente)="inscripcion.inscripcion = $event; validarInscripcion('domicilio');"></app-inscripcion-datos>
                     </div>
                     <div class="tab-pane fade show" id="domicilio" role="tabpanel" aria-labelledby="domicilioTab">
-                        <app-componente-domicilio [listas]="listas" (emitidor)="inscripcion.domicilio = $event; validarInscripcion('tutor');"></app-componente-domicilio>
+                        <app-domicilio-datos [listas]="listas.domicilio" [datos]="inscripcion.domicilio" (siguiente)="inscripcion.domicilio = $event; validarInscripcion('tutor');"></app-domicilio-datos>
                     </div>
                     <div class="tab-pane fade show" id="tutor" role="tabpanel" aria-labelledby="tutorTab">
-                        <app-componente-tutor (emitidor)="inscripcion.tutor = $event; validarInscripcion('escolares');"></app-componente-tutor>
+                        <app-tutor-datos [datos]="inscripcion.tutor" (siguiente)="inscripcion.tutor = $event; validarInscripcion('escolares');"></app-tutor-datos>
                     </div>
                     <div class="tab-pane fade show" id="escolares" role="tabpanel" aria-labelledby="escolaresTab">
-                        <app-componente-escolares [listas]="listas" [grupo]="inscripcion.inscripcion" (emitidor)="inscripcion.escolares = $event; validarInscripcion('publicitarios');"></app-componente-escolares>
+                        <app-escolares-datos [listas]="listas.escolares" [datos]="$any(inscripcion.escolares)" [idCalendario]="inscripcion.inscripcion.idCalendario" [nivel]="inscripcion.inscripcion.idSubnivel" (siguiente)="inscripcion.escolares = $event; validarInscripcion('publicitarios');"></app-escolares-datos>
                     </div>
                     <div class="tab-pane fade show" id="publicitarios" role="tabpanel" aria-labelledby="publicitariosTab">
-                        <app-componente-publicitarios [listas]="listas" [grupo]="inscripcion.inscripcion" (emitidor)="inscripcion.publicitarios = $event; validarInscripcion('cuenta');"></app-componente-publicitarios>
+                        <app-publicitarios-datos [listas]="listas.publicitarios" [datos]="$any(inscripcion.publicitarios)" [idNivel]="inscripcion.inscripcion.idNivel" (siguiente)="inscripcion.publicitarios = $event; validarInscripcion('cuenta');"></app-publicitarios-datos>
                     </div>
                     <div class="tab-pane fade show" id="cuenta" role="tabpanel" aria-labelledby="cuentaTab">
-                        <app-componente-cuenta [grupo]="inscripcion.inscripcion" [listas]="listas" (emitidor)="inscripcion.cuenta = $event; validarInscripcion('fiscales')"></app-componente-cuenta>
+                        <app-cuenta-datos [listas]="listas.cuenta" [costoCurso]="inscripcion.inscripcion.precio" [idCurso]="inscripcion.inscripcion.idCurso" (siguiente)="inscripcion.cuenta = $event; emitir()"></app-cuenta-datos>
                     </div>
-                    <div class="tab-pane fade show" id="fiscales" role="tabpanel" aria-labelledby="fiscalesTab">
-                        <app-componente-fiscales (emitidor)="inscripcion.fiscales = $event; emitir()"></app-componente-fiscales>
-                    </div>-->
                 </div>
             </div>
         </div>

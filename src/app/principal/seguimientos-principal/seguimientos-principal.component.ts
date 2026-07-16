@@ -54,45 +54,80 @@ export class SeguimientosPrincipalComponent {
     {id: 4, nombre: 'Proximo Calendario'}
   ];
 
-  alumno = {
-    nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    telefono: '',
-    celular: '',
-    correo: '',
-    idSexo: 0,
-    fechaNacimiento: ''
-  };
-
-  inscripcion = {
-    id: 0,
-    idCalendario: 0,
-    idNivel: 0,
-    idSubnivel: 0,
-    idCategoria: 0,
-    idModalidad: 0,
-    idCurso: 0,
-    idSede: 0,
-    idAltaCurso: 0,
-    idTurno: 0,
-    idHorario: 0,
-    idGrupo: 0,
-    idSucursal: 0,
-    idSucursalInscripcion: 0,
-    precio: 0,
-    inicio: '',
-    fin: '',
-    limitePago: '',
-    cupo: 0,
-    lugares: 0,
-    inscritos: 0,
-    observaciones: '',
-    fecha: '',
-    curso: ''
-  };
-
   listas: any;
+  datos: any;
+  grupos: any;
+  cupos: any;
+  codigos: any;
+
+  ficha = {
+    alumno: {
+      nombre: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
+      celular: '',
+      telefono: '',
+      correo: '',
+      idSexo: 0,
+      fechaNacimiento: ''
+    },
+    inscripcion: {
+      idCalendario: 0,
+      idNivel: 0,
+      idSubnivel: 0,
+      idCategoria: 0,
+      idModalidad: 0,
+      idCurso: 0,
+      idSede: 0,
+      idTurno: 0,
+      idHorario: 0,
+      idSucursalImparticion: 0,
+      idSucursalInscripcion: 0,
+      observaciones: '',
+      idGrupo: 0,
+      precio: ''
+    },
+    domicilio: {
+      calle: '',
+      numeroExterior: '',
+      numeroInterior: '',
+      colonia: '',
+      codigoPostal: '',
+      idEstado: 0,
+      idMunicipio: 0
+    },
+    tutor: {
+      nombre: '',
+      celular: '',
+      telefono: ''
+    },
+    escolares: {
+      idTipoEscuela: 0,
+      idEscuela: 0,
+      idEstado: 0,
+      idMunicipio: 0,
+      promedio: '',
+      intentos: '',
+      idUniversidad: 0,
+      idCentroUniversitario: 0,
+      idCarrera: 0,
+    },
+    publicitarios: {
+      idMedioContacto: 0,
+      idMedioPublicitario: 0,
+      idViaPublicitaria: 0,
+      idMotivoInscripcion: 0,
+      idMotivoBachillerato: 0,
+      idCampania: 0,
+      curso: false,
+      idEmpresa: 0
+    },
+    cuenta: {
+      cargos: new Array(),
+      abonos: new Array(),
+      descuentos: new Array()
+    }
+  }
   constructor(private generales: GeneralesService,
               private rutaActiva: ActivatedRoute,
               private crm: CRMService,
@@ -109,20 +144,24 @@ export class SeguimientosPrincipalComponent {
       this.seguimiento = respuesta.seguimiento;
       this.descripciones = respuesta.descripciones;
       this.listas = respuesta.listas;
+      this.datos = respuesta.datos;
+      this.grupos = respuesta.grupos;
+      this.cupos = respuesta.cupos;
+      this.codigos = respuesta.codigos;
 
       //Alumno
-      this.alumno.nombre = this.prospecto.nombre;
-      this.alumno.apellidoPaterno = this.prospecto.apellidoPaterno;
-      this.alumno.apellidoMaterno = this.prospecto.apellidoMaterno;
-      this.alumno.celular = this.prospecto.celular;
+      this.ficha.alumno.nombre = this.prospecto.nombre;
+      this.ficha.alumno.apellidoPaterno = this.prospecto.apellidoPaterno;
+      this.ficha.alumno.apellidoMaterno = this.prospecto.apellidoMaterno;
+      this.ficha.alumno.celular = this.prospecto.celular;
 
       //Inscripcion
-      this.inscripcion.idCalendario = this.seguimiento.idCalendario;
-      this.inscripcion.idNivel = this.seguimiento.idNivel;
-      this.inscripcion.idSubnivel = this.seguimiento.idSubnivel;
-      this.inscripcion.idCategoria = this.seguimiento.idCategoria;
-      this.inscripcion.idModalidad = this.seguimiento.idModalidad;
-      this.inscripcion.idCurso = this.seguimiento.idCurso;
+      this.ficha.inscripcion.idCalendario = this.seguimiento.idCalendario;
+      this.ficha.inscripcion.idNivel = this.seguimiento.idNivel;
+      this.ficha.inscripcion.idSubnivel = this.seguimiento.idSubnivel;
+      this.ficha.inscripcion.idCategoria = this.seguimiento.idCategoria;
+      this.ficha.inscripcion.idModalidad = this.seguimiento.idModalidad;
+      this.ficha.inscripcion.idCurso = this.seguimiento.idCurso;
     },
     error => {
       this.generales.interpretarError(error);

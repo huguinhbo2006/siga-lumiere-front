@@ -65,6 +65,7 @@ export class AlumnoPrincipalComponent {
   vista = 0;
   ventana = '';
   cargando = false;
+  user: any;
   constructor(
     private generales: GeneralesService,
     private rutaActiva: ActivatedRoute, 
@@ -75,7 +76,13 @@ export class AlumnoPrincipalComponent {
 
   ngOnInit(){
     this.dato.id = this.rutaActiva.snapshot.params['alumno'];
+    this.user = localStorage.getItem('identificador');
     this.mostrar();
+
+  }
+
+  validar(){
+    return (this.user?.toString() === '15' || this.user?.toString() === '13' || this.user?.toString() === '3');
   }
 
   mostrar(){
@@ -117,9 +124,6 @@ export class AlumnoPrincipalComponent {
   }
 
   alumno(){
-    const usuario = localStorage.getItem('usuario');
-    if(usuario?.toString() === '15' || usuario?.toString() === '13' || usuario?.toString() === '3'){
-      this.router.navigate(['admin/alumnoDatos', this.dato.id]);
-    }
+    this.router.navigate(['admin/alumnoDatos', this.dato.id]);
   }
 }
