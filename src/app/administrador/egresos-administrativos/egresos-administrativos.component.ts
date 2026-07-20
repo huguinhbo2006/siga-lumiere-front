@@ -10,8 +10,8 @@ import { PdfService } from '../../servicios/pdf.service';
 })
 export class EgresosAdministrativosComponent {
   configuracion: datatableConfig = {
-    alias: ['Nivel', 'Calendario', 'Folio', 'Fecha', 'Rubro', 'Tipo', 'Concepto', 'Pago', 'Monto'],
-    encabezados: ['nivel', 'calendario', 'folio', 'fechaFormato', 'rubro', 'tipo', 'concepto', 'pago', 'monto'],
+    alias: ['Nivel', 'Calendario', 'Folio', 'Fecha', 'Rubro', 'Tipo', 'Concepto', 'Pago', 'Monto', 'Forma'],
+    encabezados: ['nivel', 'calendario', 'folio', 'fechaFormato', 'rubro', 'tipo', 'concepto', 'pago', 'monto', 'forma'],
     busqueda: true
   };
   datos: any;
