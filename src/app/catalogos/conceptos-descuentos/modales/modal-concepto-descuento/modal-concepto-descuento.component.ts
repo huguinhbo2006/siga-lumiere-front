@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, inject } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
@@ -10,12 +10,18 @@ export class ModalConceptoDescuentoComponent {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
     nombre: '',
+    tipo: 0,
+    monto: '',
+    forzar: false
   };
   @Input() modificar = false;
-  constructor(private generales: GeneralesService) { }
-  
-  ngOnInit(): void {
-  }
+
+  tipos = [
+    { id: 1, nombre: 'Efectivo'},
+    { id: 2, nombre: 'Porcentaje'}
+  ];
+
+  private generales = inject(GeneralesService);
   
   emitir() {
     this.emitidor.emit(this.dato);

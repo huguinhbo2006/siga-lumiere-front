@@ -5,8 +5,19 @@
 <div class="modal-body">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6 col-12">
                 <app-input [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+            </div>
+            <div class="col-sm-6 col-12">
+                <app-select [datos]="tipos" [dato]="dato.tipo" [etiqueta]="'Tipo de descuento'" (emitidor)="dato.tipo = $event"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-12">
+                <app-input [valor]="dato.monto" [etiqueta]="'Monto'" [validacion]="'decimal'" (emitidor)="dato.monto = $event"></app-input>
+            </div>
+            <div class="col-sm-6 col-12">
+                <app-checkbox [activo]="dato.forzar" [etiqueta]="'Forzar'" (emitidor)="dato.forzar = $event"></app-checkbox>
             </div>
         </div>
         <div class="row justify-content-end">
