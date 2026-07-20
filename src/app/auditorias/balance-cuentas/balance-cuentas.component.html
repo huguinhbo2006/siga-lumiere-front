@@ -7,39 +7,55 @@
     <div class="card-body">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4" *ngFor="let cuenta of cuentas">
-                    <app-card [encabezado]="cuenta.nombre">
-                        <div class="row">
-                            <div class="col-sm-12"><b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b></div>
-                            <div class="col-sm-12"><b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b></div>
-                            <div class="col-sm-12 {{(cuenta.positivo) ? 'text-success' : 'text-danger'}}"><b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-primary" (click)="seleccion = cuenta; seleccion.efectivo = false; modal()">Traspasar</button>
+                @for (cuenta of cuentas; track cuenta.id) {
+                    <div class="col-sm-4">
+                        <app-card [encabezado]="cuenta.nombre">
+                            <div class="row">
+                                <div class="col-sm-12 clicable" (click)="descargarExcel(cuenta.lista_ingresos, 'Ingresos', cuenta.nombre)" title="Descargar Excel de Ingresos">
+                                    <b>Ingresos: ${{generales.milesNumeros(cuenta.totalIngresos)}}</b>
+                                </div>
+                                <div class="col-sm-12 clicable" (click)="descargarExcel(cuenta.lista_egresos, 'Egresos', cuenta.nombre)" title="Descargar Excel de Egresos">
+                                    <b>Egresos: ${{generales.milesNumeros(cuenta.totalEgresos)}}</b>
+                                </div>
+                                <div class="col-sm-12 {{(cuenta.positivo) ? 'text-success' : 'text-danger'}}">
+                                    <b>Total: ${{generales.milesNumeros(cuenta.totalFinal)}}</b>
+                                </div>
                             </div>
-                        </div>
-                    </app-card>
-                </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-primary" (click)="seleccion = cuenta; seleccion.efectivo = false; modal()">Traspasar</button>
+                                </div>
+                            </div>
+                        </app-card>
+                    </div>
+                }
             </div><br><br>
             <div class="row">
-                <div class="col-sm-4" *ngFor="let sucursal of sucursales">
-                    <app-card [encabezado]="sucursal.nombre">
-                        <div class="row">
-                            <div class="col-sm-12"><b>Efectivo: ${{generales.milesNumeros(sucursal.total_final)}}</b></div>
-                            <div class="col-sm-12"><b>Vale Administrativo: ${{generales.milesNumeros(sucursal.total_vales)}}</b></div>
-                        </div>
-                        <div class="row" *ngIf="sucursal.id.toString() === '10'">
-                            <div class="col-sm-4">
-                                <button class="btn btn-primary" (click)="efectivo(sucursal)">Traspasar</button>
+                @for (sucursal of sucursales; track sucursal.id) {
+                    <div class="col-sm-4">
+                        <app-card [encabezado]="sucursal.nombre">
+                            <div class="row">
+                                <div class="col-sm-12"><b>Efectivo: ${{generales.milesNumeros(sucursal.total_final)}}</b></div>
+                                <div class="col-sm-12"><b>Vale Administrativo: ${{generales.milesNumeros(sucursal.total_vales)}}</b></div>
                             </div>
-                        </div>
-                    </app-card>
-                </div>
+                            @if (sucursal.id.toString() === '10') {
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-primary" (click)="efectivo(sucursal)">Traspasar</button>
+                                    </div>
+                                </div>
+                            }
+                        </app-card>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
-<app-modal [ngSwitch]="vista">
-    <app-modal-traspaso *ngSwitchCase="'traspaso'" [formas]="formas" [cuenta]="seleccion" [cuentas]="cuentas" (emitidor)="traspaso($event)"></app-modal-traspaso>
+<app-modal>
+    @switch (vista) {
+        @case ('traspaso') {
+            <app-modal-traspaso [formas]="formas" [cuenta]="seleccion" [cuentas]="cuentas" (emitidor)="traspaso($event)"></app-modal-traspaso>
+        }
+    }
 </app-modal>

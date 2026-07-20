@@ -1,0 +1,9 @@
+.clicable {
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, text-decoration 0.15s ease-in-out;
+}
+
+.clicable:hover {
+  color: #016BA6;
+  text-decoration: underline;
+}

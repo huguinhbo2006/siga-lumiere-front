@@ -3,6 +3,8 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { BalancesService } from '../../servicios/balances.service';
 import { TraspasosService } from '../../servicios/traspasos.service';
 
+declare function exportCSVFile(headers: string[] | null, items: unknown[], filename: string): void;
+
 @Component({
   selector: 'app-balance-cuentas',
   templateUrl: './balance-cuentas.component.html',
@@ -77,5 +79,53 @@ export class BalanceCuentasComponent {
       nombre: 'Efectivo'
     };
     this.modal();
+  }
+
+  descargarExcel(lista: Record<string, unknown>[] | undefined, tipo: string, nombreCuenta: string): void {
+    if (!lista || lista.length === 0) {
+      this.generales.mensajeError(`No hay ${tipo.toLowerCase()} registrados para esta cuenta.`);
+      return;
+    }
+
+    const copiaLista = lista.map((item: Record<string, unknown>) => {
+      const nuevoItem: Record<string, unknown> = {};
+      Object.keys(item).forEach(key => {
+        let val = item[key];
+        if (val === null || val === undefined) {
+          val = '';
+        } else if (typeof val === 'string') {
+          val = val.replace(/,/g, ' ');
+        }
+        nuevoItem[key] = val;
+      });
+      return nuevoItem;
+    });
+
+    const mapClaves: Record<string, string> = {
+      id: 'ID',
+      fecha: 'Fecha',
+      folio: 'Folio',
+      concepto: 'Concepto',
+      monto: 'Monto',
+      forma: 'Forma de Pago',
+      cuenta: 'Cuenta',
+      banco: 'Banco',
+      voucher: 'Voucher',
+      activo: 'Activo',
+      ficha: 'Ficha',
+      usuario: 'Usuario',
+      sucursal: 'Sucursal',
+      tipo: 'Tipo',
+      rubro: 'Rubro',
+      calendario: 'Calendario',
+      nivel: 'Nivel',
+      estatus: 'Estatus'
+    };
+
+    const keys = Object.keys(copiaLista[0]);
+    const headers = keys.map(key => mapClaves[key] || key.toUpperCase());
+    
+    const nombreArchivo = `${tipo}_${nombreCuenta.replace(/[^a-zA-Z0-9]/g, '_')}`;
+    exportCSVFile(headers, copiaLista, nombreArchivo);
   }
 }
