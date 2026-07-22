@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
-import { elementAt } from 'rxjs';
+
 declare function exportCSVFile(headers: any, items: any, filename: string): void;
 
 @Component({
@@ -8,35 +8,40 @@ declare function exportCSVFile(headers: any, items: any, filename: string): void
   templateUrl: './datatable.component.html',
   styleUrl: './datatable.component.css'
 })
-export class DatatableComponent {
+export class DatatableComponent implements OnInit, OnChanges {
   @Output() emitidor = new EventEmitter<any>();
   @Output() doble = new EventEmitter<any>();
+  
   @Input() configuracion: datatableConfig = {
     alias: [''],
     encabezados: ['']
-  }
-  @Input() datos: any;
-  listado = new Array<any>();
-  indiceOrden: any;
+  };
+  @Input() datos: any[] = [];
+
+  listado: any[] = [];
+  indiceOrden: number | undefined;
   ordenASC = false;
+  
   numeros = [
     { id: 5, nombre: 5},
     { id: 10, nombre: 10},
     { id: 25, nombre: 25},
     { id: 50, nombre: 50},
     { id: 0, nombre: 'All'}
-  ]
+  ];
+  
   numeroFilas = 5;
   numeroPaginas = 0;
   paginaSeleccionada = 1;
-  respaldo: any;
+  respaldo: any[] = [];
   totalDatos = 0;
+
   constructor() {}
 
   ngOnInit(): void {
     this.configuracion.ordenFilas = (this.configuracion.ordenFilas === undefined) ? true : this.configuracion.ordenFilas;
     this.configuracion.busqueda = (this.configuracion.busqueda === undefined) ? true : this.configuracion.busqueda;
-    if(this.datos !== undefined && this.datos.length > 0){
+    if (this.datos && this.datos.length > 0) {
       this.configurar();
     }
   }
@@ -45,88 +50,73 @@ export class DatatableComponent {
     exportCSVFile(null, this.datos, 'Prueba');
   }
 
-  esIcono(icono: any): boolean{
-    let incluye = false;
-    if(icono !== null && icono !== undefined){
-      incluye = (icono.toString().includes('fas fa') || icono.toString().includes('fab fa'));
-    }
-    return incluye
+  esIcono(icono: any): boolean {
+    if (icono === null || icono === undefined) return false;
+    const str = icono.toString();
+    return str.includes('fas fa') || str.includes('fab fa');
   }
 
-  esColor(color: any): boolean{
-    let incluye = false;
-    if(color !== undefined && color !== null){
-      incluye = (color.toString().includes('text-'));  
-    }
-    return incluye;
+  esColor(color: any): boolean {
+    if (color === null || color === undefined) return false;
+    return color.toString().includes('text-');
   }
 
-  esHay(item: any){
-    let incluye = false;
-    if(item !== undefined && item !== null){
-      incluye = (item.toString().includes('hay'));  
-    }
-    return incluye;
+  esHay(item: any): boolean {
+    if (item === null || item === undefined) return false;
+    return item.toString().includes('hay');
   }
 
-  configurar(){
-    if(this.configuracion.numeroFilas !== undefined){
-      this.numeros = [];
-      this.configuracion.numeroFilas.forEach((numero: any) => {
-        this.numeros.push({ id: numero, nombre: numero});
-      });
+  configurar() {
+    if (this.configuracion.numeroFilas !== undefined) {
+      this.numeros = this.configuracion.numeroFilas.map((numero: any) => ({ id: numero, nombre: numero }));
       this.numeroFilas = this.configuracion.numeroFilas[0];
     }
     this.configurarPaginacion();
   }
 
-  configurarPaginacion(){
-    this.numeroFilas = (this.numeroFilas.toString() === '0') ? this.datos.length : this.numeroFilas;
-    let totalDatos = (this.datos !== undefined) ? this.datos.length : 0;
-    let resultado = totalDatos / this.numeroFilas;
-    let total = parseInt(resultado.toString());
-    let modulo = totalDatos % this.numeroFilas;
-    total = (modulo > 0) ? total+1 : total;
-    this.numeroPaginas = total;
-    if(this.numeroPaginas < this.paginaSeleccionada){
+  configurarPaginacion() {
+    const total = this.datos ? this.datos.length : 0;
+    this.numeroFilas = (this.numeroFilas.toString() === '0') ? total : Number(this.numeroFilas);
+    this.numeroPaginas = total > 0 ? Math.ceil(total / this.numeroFilas) : 0;
+    if (this.numeroPaginas < this.paginaSeleccionada) {
       this.paginaSeleccionada = 1;
     }
     this.paginacion();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.datos = changes['datos'].currentValue;
-    this.listado = changes['datos'].currentValue;
-    this.respaldo = changes['datos'].currentValue;
-    this.indiceOrden = undefined;
-    this.ordenASC = false;
-    this.configurarPaginacion();
-    this.totalDatos = (this.datos !== null && this.datos !== undefined) ? this.datos.length : 0;
+    if (changes['datos']) {
+      const valor = changes['datos'].currentValue;
+      const arr = Array.isArray(valor) ? valor : [];
+      this.datos = [...arr];
+      this.respaldo = [...arr];
+      this.listado = [...arr];
+      this.indiceOrden = undefined;
+      this.ordenASC = false;
+      this.configurarPaginacion();
+      this.totalDatos = this.datos.length;
+    }
   }
 
-  mostrar(items: any, i: any) {
-    let actual = !items.seleccionado;
+  mostrar(item: any, indice: number) {
+    const estado_actual = !item.seleccionado;
+
     if (!this.configuracion.multiseleccion) {
-      this.datos.forEach((element: any) => {
-        if(items.id.toString() === element.id.toString()){
-          items.seleccionado = actual;
-          items.POSICION = i;
-        }else{
-          element.seleccionado = false;
-        }
+      this.datos.forEach((elemento: any) => {
+        elemento.seleccionado = (elemento === item) ? estado_actual : false;
       });
       
-      this.emitidor.emit((items.seleccionado) ? items : undefined);
-    }else{
-      items.seleccionado = (items.seleccionado) ? false : true;
-      let arreglo = new Array();
-      this.datos.forEach((element: any) => {
-        if(element.seleccionado){
-          items.POSICION = i;
-          arreglo.push(element);
-        }
-      });
-      this.emitidor.emit(arreglo);
+      if (estado_actual) {
+        item.POSICION = indice;
+      }
+      this.emitidor.emit(estado_actual ? item : undefined);
+    } else {
+      item.seleccionado = estado_actual;
+      if (estado_actual) {
+        item.POSICION = indice;
+      }
+      const seleccionados = this.datos.filter((elemento: any) => elemento.seleccionado);
+      this.emitidor.emit(seleccionados);
     }
   }
 
@@ -134,101 +124,67 @@ export class DatatableComponent {
     this.doble.emit(item);
   }
 
-  buscar(busqueda: any){
-    if(busqueda !== undefined && busqueda.length > 0){
-      let final: Array<any> = new Array<any>();
-      this.datos.forEach((elemento: any) => {
-        let coincide = false;
-        this.configuracion.encabezados.forEach((encabezado: any) => {
-          if(elemento[encabezado] !== undefined && elemento[encabezado] !== null){
-            if(elemento[encabezado].toString().toUpperCase().includes(busqueda.toString().toUpperCase())){
-              coincide = true;
-            }
+  buscar(busqueda: any) {
+    const termino = busqueda ? busqueda.toString().toLowerCase().trim() : '';
+    if (termino.length > 0) {
+      this.datos = this.respaldo.filter((elemento: any) => {
+        return this.configuracion.encabezados.some((encabezado: any) => {
+          const valor = elemento[encabezado];
+          if (valor !== undefined && valor !== null) {
+            return valor.toString().toLowerCase().includes(termino);
           }
+          return false;
         });
-        if(coincide){
-          final.push(elemento);
-        }
       });
-      this.datos = final;
-      this.configurarPaginacion();
-    }else{
-      this.datos = this.respaldo;
-      this.configurarPaginacion();
+    } else {
+      this.datos = [...this.respaldo];
     }
+    this.configurarPaginacion();
   }
 
-  ordenar(indice: any){
-    if(this.datos !== undefined && this.datos.length > 0){
+  ordenar(indice: any) {
+    if (this.datos && this.datos.length > 0) {
       this.indiceOrden = indice;
-      if(this.ordenASC){
-        this.ordenarDESC(indice);
-      }else{
-        this.ordenarASC(indice);
-      }
       this.ordenASC = !this.ordenASC;
+      this.aplicarOrden(indice);
     }
   }
 
-  reordenar(){
-    if(this.listado !== undefined && this.listado.length > 0){
-      if(this.ordenASC){
-        this.ordenarDESC(this.indiceOrden);
-      }else{
-        this.ordenarASC(this.indiceOrden);
-      }
+  reordenar() {
+    if (this.listado && this.listado.length > 0 && this.indiceOrden !== undefined) {
+      this.aplicarOrden(this.indiceOrden);
     }
   }
 
-  ordenarASC(indice: any){
-    let arreglo = new Array<any>();
-    this.datos.forEach((elemento: any) => {
-      arreglo.push(elemento[this.configuracion.encabezados[indice]]+'||'+elemento.id);
-    });
-    arreglo = arreglo.sort();
-    let final = new Array();
-    arreglo.forEach((elemento: any) => {
-      let separados = elemento.split('||');
-      this.datos.forEach((dato: any) => {
-        if(parseInt(separados[1]) === parseInt(dato.id)){
-          final.push(dato);
-        }
-      });
-    });
-    this.datos = final;
-    this.paginacion();
-  }
+  aplicarOrden(indice: any) {
+    const campo = this.configuracion.encabezados[indice];
+    this.datos.sort((a: any, b: any) => {
+      let valA = a[campo];
+      let valB = b[campo];
 
-  ordenarDESC(indice: any){
-    let arreglo = new Array<any>();
-    this.datos.forEach((elemento: any, index: any) => {
-      arreglo.push(elemento[this.configuracion.encabezados[indice]]+'||'+elemento.id);
-    });
-    arreglo = arreglo.sort().reverse();
-    let final = new Array();
-    arreglo.forEach((elemento: any) => {
-      let separados = elemento.split('||');
-      this.datos.forEach((dato: any) => {
-        if(parseInt(separados[1]) === parseInt(dato.id)){
-          final.push(dato);
-        }
-      });
-    });
-    this.datos = final;
-    this.paginacion();
-  }
+      if (valA === null || valA === undefined) valA = '';
+      if (valB === null || valB === undefined) valB = '';
 
-  paginacion(){
-    if(this.datos !== undefined){
-      let final = new Array();
-      let inicio = (this.paginaSeleccionada === 1) ? 0 : ((this.numeroFilas * (this.paginaSeleccionada-1)));
-      for (let index = 0; index < this.numeroFilas; index++) {
-        if(this.datos[inicio] !== undefined){
-          final.push(this.datos[inicio]);
-          inicio = inicio + 1;
-        }
+      const numA = Number(valA);
+      const numB = Number(valB);
+      if (!isNaN(numA) && !isNaN(numB) && valA !== '' && valB !== '') {
+        return this.ordenASC ? numA - numB : numB - numA;
       }
-      this.listado = final;
+
+      const strA = valA.toString().toLowerCase();
+      const strB = valB.toString().toLowerCase();
+      if (strA < strB) return this.ordenASC ? -1 : 1;
+      if (strA > strB) return this.ordenASC ? 1 : -1;
+      return 0;
+    });
+    this.paginacion();
+  }
+
+  paginacion() {
+    if (this.datos !== undefined) {
+      const inicio = (this.paginaSeleccionada - 1) * this.numeroFilas;
+      const fin = inicio + Number(this.numeroFilas);
+      this.listado = this.datos.slice(inicio, fin);
     }
   }
 }
