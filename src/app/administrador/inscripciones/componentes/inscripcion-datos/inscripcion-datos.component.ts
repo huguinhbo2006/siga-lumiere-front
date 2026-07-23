@@ -52,6 +52,8 @@ export class InscripcionDatosComponent {
   turnos: any;
   horarios: any;
   sucursales: any;
+  readonly sucursalLS = Number(localStorage.getItem('sucursal'));
+  readonly esSucursalCentral = this.sucursalLS === 1;
   reservacion = {
     cupo: 0,
     inscritos: 0,
@@ -84,6 +86,9 @@ export class InscripcionDatosComponent {
   }
 
   emitirSiguiente(){
+    if (!this.esSucursalCentral) {
+      this.datos.idSucursalInscripcion = this.sucursalLS;
+    }
     this.siguiente.emit(this.datos);
   }
 
